@@ -5,7 +5,7 @@ categories:
   - Java
 tags:
   - Java
-  - Java : Collection
+  - "Java : Collection"
 toc: true
 toc_sticky: true
 toc_label: 목차
