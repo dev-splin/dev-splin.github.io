@@ -13,7 +13,7 @@ toc_label: 목차
 
 # Branch
 
-![branch](C:\Users\1\Desktop\Study\사진\branch.jpg)
+![branch](https://user-images.githubusercontent.com/79291114/108801142-440cb000-75d8-11eb-9289-15aa235aadd1.jpg)
 
 - Git에서 따로 지정하지 않는 이상 master branch가 기본적으로 쓰입니다. 보통 master branch는 코드가 검증이되고 기능에 문제가 없는 내용들만 포함이 되어져 있습니다.
 - 만약, 새로운 기능인 Feature A를 개발한다고 한다면 master branch에서 바로 작업을 하기 보다는 Feature A라는 branch를 새로 만들어서 commit을 하는 것이 중요합니다.

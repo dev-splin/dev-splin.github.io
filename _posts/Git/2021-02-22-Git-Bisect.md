@@ -22,7 +22,7 @@ toc_label: 목차
 
 **사용 방법 **
 
-1. ![bisect exam1](C:\Users\1\Desktop\Study\사진\bisect exam1.jpg)
+1. ![bisect exam1](https://user-images.githubusercontent.com/79291114/108801116-322b0d00-75d8-11eb-9d2d-f3d59fcd1019.jpg)
 
    hashcode가 75726fadf 인 commit까지는 잘 동작하는 것 같다면 그 부분으로 `git checkout 75726fadf `를 이용해 해당 commit으로 이동하고 프로그램 테스트를 해봅니다.
 
@@ -32,7 +32,7 @@ toc_label: 목차
 
 4. good 마크와 bad 마크를 설정해 놓으면 bisecting 을 시작합니다.
 
-   ![bisect exam2](C:\Users\1\Desktop\Study\사진\bisect exam2.jpg)
+   ![bisect exam2](https://user-images.githubusercontent.com/79291114/108801117-32c3a380-75d8-11eb-841d-7d815bbaf0d7.jpg)
 
    good과 bad 사이의 12개의 commit이 존재하는데 4번만 확인하면 된다고 나오고 그 중간 지점 즈음에 commit에 checkout 한 상태가 됩니다.
 
@@ -42,7 +42,7 @@ toc_label: 목차
 
 7. bad 마크를 해준 commit이 발생하면 그 commit과 바로 직전 good 마크를 해준 commit 중간지점 어딘가에 commit에 문제가 있는 것이므로 그 중간 commit으로 이동합니다. 이 중간 commit에서 프로그램 테스트를 하고 마크를 해줍니다. 만약 4번의 포인트가 다 완료가 되면 결과물이 나오게 됩니다.
 
-8. ![bisect exam3](C:\Users\1\Desktop\Study\사진\bisect exam3.jpg)
+8. ![bisect exam3](https://user-images.githubusercontent.com/79291114/108801115-30f9e000-75d8-11eb-9e9f-678dbbcf36e4.jpg)
 
    어떤 commit이 bad commit인지 알려주는 것을 볼 수가 있습니다.
 
