@@ -13,7 +13,7 @@ toc_label: 목차
 
 # Remote
 
-![remote](C:\Users\1\Desktop\Study\사진\remote.jpg)
+![remote](https://user-images.githubusercontent.com/79291114/108801783-fc872380-75d9-11eb-949a-8391ffd368b5.jpg)
 
 - 나만의 PC에만 git repository를 만들고 간직한다면 내 PC에 문제가 생기거나 다른 환경에서 작업하고 싶을 때 repository에 접근이 불가능합니다.
 
@@ -49,7 +49,7 @@ toc_label: 목차
 
 - **fetch**
 
-  ![fetch](C:\Users\1\Desktop\Study\사진\fetch.jpg)
+  ![fetch](https://user-images.githubusercontent.com/79291114/108801799-06a92200-75da-11eb-9e2e-2b91d81483f0.jpg)
 
   ​	내가 현재 작업하고 있는 HEAD는 그대로 유지하면서 server에 업데이트된 history 정보만 가지고 옵니다.
 
@@ -57,7 +57,7 @@ toc_label: 목차
 
 - **pull**
 
-  ![pull](C:\Users\1\Desktop\Study\사진\pull.jpg)
+  ![pull](https://user-images.githubusercontent.com/79291114/108801803-090b7c00-75da-11eb-9b0c-ed3c9f030166.jpg)
 
   server에 있는 내용을 받아와서 나의 local 버전도 server와 함께 동일하게 만들고 싶을 때 사용합니다. 
 

@@ -17,7 +17,7 @@ toc_label: 목차
 
 ## commit 분할하기
 
-![interactive rebasing exam1_1](C:\Users\1\Desktop\Study\사진\interactive rebasing exam1_1.jpg)
+![interactive rebasing exam1_1](https://user-images.githubusercontent.com/79291114/108801554-62bf7680-75d9-11eb-97e6-cf6c25a002fa.jpg)
 
 - 'Add payment library and Add payment service' commit을 보면 두 가지의 내용이 한 가지의 commit에 들어 있는 걸 확인할 수가 있습니다.
 
@@ -34,7 +34,7 @@ toc_label: 목차
 
 3. 로그를 확인해 보면
 
-   ![interactive rebasing exam2_2](C:\Users\1\Desktop\Study\사진\interactive rebasing exam2_2.jpg)
+   ![interactive rebasing exam2_2](https://user-images.githubusercontent.com/79291114/108801560-64893a00-75d9-11eb-8e6d-db8c504abfd0.jpg)
 
    'Add payment library and Add payment service' commit으로 HEAD가 이동한 것을 볼 수 있습니다.
 
@@ -42,7 +42,7 @@ toc_label: 목차
 
 5. `git status`를 통해 확인해보면
 
-   ![interactive rebasing exam2_3](C:\Users\1\Desktop\Study\사진\interactive rebasing exam2_3.jpg)
+   ![interactive rebasing exam2_3](https://user-images.githubusercontent.com/79291114/108801561-6521d080-75d9-11eb-8d80-31ab58b7e64e.jpg)
 
    'package.json'파일과 'payment-service.txt' 파일이 working directory로 옮겨간 것을 볼 수 있습니다.
 
@@ -52,13 +52,13 @@ toc_label: 목차
 
 8. 로그를 확인해보면 
 
-   ![interactive rebasing exam2_4](C:\Users\1\Desktop\Study\사진\interactive rebasing exam2_4.jpg)
+   ![interactive rebasing exam2_4](https://user-images.githubusercontent.com/79291114/108801562-6521d080-75d9-11eb-8ec7-6c22f8a06a7c.jpg)
 
    'Setup Dependecies' 시점에서 기존의 commit과 방금 만든 commit이 갈라진 것을 볼 수 있습니다.
 
 9. `git rebase --continue` 명령어를 이용해 rebase를 완료하면
 
-   ![interactive rebasing exam2_5](C:\Users\1\Desktop\Study\사진\interactive rebasing exam2_5.jpg)
+   ![interactive rebasing exam2_5](https://user-images.githubusercontent.com/79291114/108801559-64893a00-75d9-11eb-8296-412e3d4eaf58.jpg)
 
    'Add payment library and Add payment service' commit이 나누어진 것을 볼 수 있습니다.
 

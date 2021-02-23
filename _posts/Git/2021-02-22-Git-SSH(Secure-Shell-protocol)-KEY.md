@@ -17,7 +17,7 @@ toc_label: 목차
 - push를 할 때마다 아이디와 비밀번호를 입력하는 것은 번거로울 수 있기 때문에 간편하고 자동적으로 할 수 있으며 안전한 방법이 SSH Key를 이용하는 것입니다.
 - 사용하고 있는 terminal과 server간에 안전하게 ID와 Password를 유지해 주는 방법입니다.
 
-![SSH key](C:\Users\1\Desktop\Study\사진\SSH key.jpg)
+![SSH key](https://user-images.githubusercontent.com/79291114/108801837-204a6980-75da-11eb-9bf1-418864c54967.jpg)
 
 - server에는 public key를 제공하고 나의 컴퓨터에는 private key를 생성해 사용함으로써 push를 할 때 번거롭게 ID와 Password를 입력하지 않아도 됩니다.
 
@@ -27,19 +27,19 @@ toc_label: 목차
 
 1. github 페이지에서 아바타를 선택해 Settings에 들어갑니다.
 
-   ![SSH key setting1](C:\Users\1\Desktop\Study\사진\SSH key setting1.jpg)
+   ![SSH key setting1](https://user-images.githubusercontent.com/79291114/108801831-1e80a600-75da-11eb-8566-943d145ab67f.jpg)
 
 2. 왼쪽에 `SSH and GPG keys`에 들어가 `generating SSH keys` 를 눌러 가이드로 갑니다.
 
-   ![SSH key setting2](C:\Users\1\Desktop\Study\사진\SSH key setting2.jpg)
+   ![SSH key setting2](https://user-images.githubusercontent.com/79291114/108801832-1f193c80-75da-11eb-9837-fb37660eff36.jpg)
 
 3. `Adding a new SSH key to your GitHub account` 를 눌러 들어갑니다.
 
-   ![SSH key setting3](C:\Users\1\Desktop\Study\사진\SSH key setting3.jpg)
+   ![SSH key setting3](https://user-images.githubusercontent.com/79291114/108801834-1fb1d300-75da-11eb-8339-f9b3d10a4fdd.jpg)
 
 4. 운영체제를 선택한 후 `Generated a new SSH key and added it to the ssh-agnet` 로 들어가 운영체제를 선택한 후 그대로 따라합니다.
 
-   ![SSH key setting4](C:\Users\1\Desktop\Study\사진\SSH key setting4.jpg)
+   ![SSH key setting4](https://user-images.githubusercontent.com/79291114/108801836-1fb1d300-75da-11eb-818c-09fc6828c572.jpg)
 
 5. SSH key를 생성했으면 `Adding a new SSH key to your GitHub account` 가 있는 페이지로 다시 가서 그대로 따라하시면 됩니다. `Switching remote URLs from HTTPS to SSH` 을 하셔야 SSH를 사용할 수 있습니다.
 
