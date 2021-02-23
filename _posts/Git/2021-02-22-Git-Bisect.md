@@ -20,7 +20,7 @@ toc_label: 목차
 
 
 
-**사용 방법 **
+**사용 방법** 
 
 1. ![bisect exam1](https://user-images.githubusercontent.com/79291114/108801116-322b0d00-75d8-11eb-9d2d-f3d59fcd1019.jpg)
 
