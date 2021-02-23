@@ -88,6 +88,9 @@ void | remove() | 컬렉션에서 객체를 제거한다.
 
 
 - 사용방법
+
+
+
 ```java
 // 기본적인 Iterator 인터페이스 선언
 Set<E> set = ...;
