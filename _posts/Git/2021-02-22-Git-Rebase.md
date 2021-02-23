@@ -106,9 +106,9 @@ toc_label: 목차
 
 #### 더 다양한 예제
 
-- [필요없는 commit 삭제하기](#)
-- [commit 분할하기](#)
-- [commit 묶기](#)
+- [필요없는 commit 삭제하기](https://dev-splin.github.io/git/Git-interactive-rebasing-%EC%98%88%EC%A0%9C1(%ED%95%84%EC%9A%94%EC%97%86%EB%8A%94-%EC%BB%A4%EB%B0%8B-%EC%82%AD%EC%A0%9C%ED%95%98%EA%B8%B0)/)
+- [commit 분할하기](https://dev-splin.github.io/git/Git-interactive-rebasing-%EC%98%88%EC%A0%9C2(commit-%EB%B6%84%ED%95%A0%ED%95%98%EA%B8%B0)/)
+- [commit 묶기](https://dev-splin.github.io/git/Git-interactive-rebasing-%EC%98%88%EC%A0%9C3(commit-%EB%AC%B6%EA%B8%B0)/)
 
 
 

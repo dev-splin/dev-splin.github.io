@@ -56,7 +56,7 @@ fatal: could not read from remote repository.
 please make sure you have the correct access rights and the repository exists.
 ```
 
-- 이런 오류가 발생한다면 [Using SSH over the HTTPS port](#https://docs.github.com/en/github/authenticating-to-github/using-ssh-over-the-https-port) GitHub 사이트를 보고 해결할 수 있습니다.
+- 이런 오류가 발생한다면 [Using SSH over the HTTPS port](https://docs.github.com/en/github/authenticating-to-github/using-ssh-over-the-https-port) GitHub 사이트를 보고 해결할 수 있습니다.
 - 오류의 원인은 방화벽이 SSH 연결을 허용하지 않을 때가 있다는 것 때문입니다.
 
 **해결 방법**
