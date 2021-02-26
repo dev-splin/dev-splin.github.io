@@ -1,5 +1,5 @@
 ---
-title: "Web : "
+title: "Web : Browser"
 excerpt_separator: <!--more-->
 categories:
   - Web
