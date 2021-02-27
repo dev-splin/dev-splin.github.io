@@ -13,7 +13,7 @@ toc_label: 목차
 
 ---
 
-# Scanner와 BufferedReader
+# Scanner와 BufferedReader/Writer
 
 
 
@@ -49,13 +49,13 @@ public class parc {
 
 
 
-## BufferedReader
+## BufferedReader/Writer
 
 - InputStreamReader는 문자열을 Character단위(한 글자 단위)로 읽어 들이는데, 긴 문자열을 읽을 때 불편하고 비효율적입니다. 이 점을 보완한 것이 BufferedReader 입니다.
 - 사용자가 요청할 때 마다 데이터를 읽어 오는 것이 아니라 일정한 크기의 데이터를 한번에 읽어와 버퍼에 보관 후, 사용자의 요청이 있을 때 버퍼에서 데이터를 읽어오는 방식으로 동작합니다.
   - 속도가 향상되고 시간 부하가 적습니다.
 - 라인단위로 입력 받기 때문에 공백의 경우에도 String으로 인식하여 받아들입니다.
-- 입력받은 데이터 타입이 String 타입이므로 다른 타입의 데이터라면 형변환이 필요합니다.
+- 입력,출력받은 데이터 타입이 String 타입이므로 다른 타입의 데이터라면 형변환이 필요합니다.
 - try / catch(예외처리)를 해 주어야 합니다.
 
 
