@@ -75,7 +75,6 @@ toc_label: 목차
 </bean>
 // setUserId가 map을 인자로 갖는 setter일 때,
 // map 키와 값을 <entry>로 묶고 키는 <key>로 묶고 <value>에 키 값을 입력, 값은 <value>에 입력해준다.            
-
 ```
 
 
@@ -125,6 +124,9 @@ toc_label: 목차
 #### @Autowired, @Resource 예제
 
 - appCtxUseAutowired.xml이라는 스프링 설정 파일과 WordDao를 생성자로 갖는 WordRegisterService.java라는 자바파일이 있다고 가정한다.
+
+
+
 ```java
 // appCtxUseAutowired.xml
 xmlns:context="http://www.springframework.org/schema/context" 
@@ -136,6 +138,8 @@ xsi:schemaLocation= http://www.springframework.org/schema/context
 // 나머지 네임스페이스는 생략
 ```
 
+
+
 ```java
 <context:annotation-config /> // 이 태그를 씀으로써 Autowired,Resource를 사용할 수 있다.
 <bean id="wordDao" class="com.word.dao.WordDao" />  
@@ -145,6 +149,8 @@ xsi:schemaLocation= http://www.springframework.org/schema/context
 <bean id="registerService" class="com.word.service.WordRegisterService">
 // <constructor-arg ref="wordDao" />  // 기존 생성자에 직접 명시해주는 방법, Autowired,Resource를 사용시 명시해주지 않아도 된다.
 ```
+
+
 
 ```java
 // WordRegisterService.java

@@ -21,7 +21,7 @@ JDBC 실습 중에 DB에 INSERT 했더니 한글이 깨진 현상이 발생해 �
 
 ## MySQL 기본 character set 설정하기
 
-character set을 명시적으로 설정하지 않으면 MySQL 5.7 이하는 *latin1*, MySQL 8은 *utf8mb4* 가 된다. 현재 character set 확인은 다음과 같이 mysql 클라이언트로 연결한 후에 `status` 나 `show variables like 'char%';`명령어로 알수 있습니다.
+character set을 명시적으로 설정하지 않으면 MySQL 5.7 이하는 *latin1*, MySQL 8은 *utf8mb4* 가 됩니다. 현재 character set 확인은 다음과 같이 mysql 클라이언트로 연결한 후에 `status` 나 `show variables like 'char%';`명령어로 알수 있습니다.
 
 
 
@@ -39,7 +39,7 @@ character set을 명시적으로 설정하지 않으면 MySQL 5.7 이하는 *lat
 
 character set은 my.ini에서 바꿀 수 있습니다.
 
-MySQL 5.1 과 5.5 이상은 my.ini 에 character set 설정하는 방식이 약간 다르다.
+MySQL 5.1 과 5.5 이상은 my.ini 에 character set 설정하는 방식이 약간 다릅니다.
 
 
 

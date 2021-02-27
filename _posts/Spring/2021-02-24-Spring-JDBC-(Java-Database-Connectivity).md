@@ -28,13 +28,17 @@ toc_label: 목차
 - JDBC 드라이버 설치
   -  Maven에 다음과 같은 의존성을 추가한다. MySQL사이트에서 다운로드 한다.
 
-```markup
+
+
+```xml
 <dependency>   
   <groupId>mysql</groupId>   
        <artifactId>mysql-connector-java</artifactId>
        <version>5.1.45</version>
  </dependency>
 ```
+
+
 
 - [Java API Reference 참고 바로가기](https://docs.oracle.com/javase/8/docs/api/)
 - [JDBC Tutorial 참고 바로가기](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)

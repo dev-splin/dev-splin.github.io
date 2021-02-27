@@ -27,7 +27,9 @@ toc_label: 목차
 
 ## 테이블 생성
 
-```markup
+
+
+```sql
 create table 테이블명( 
           필드명1 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT], 
           필드명2 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT], 
@@ -36,6 +38,8 @@ create table 테이블명(
           PRIMARY KEY(필드명) 
           );
 ```
+
+
 
 - 데이터 형 외에도 속성값의 빈 값 허용 여부는 NULL 또는 NOT NULL로 설정
 - DEFAULT 키워드와 함께 입력하지 않았을 때의 초기값을 지정
@@ -47,7 +51,9 @@ create table 테이블명(
 
 - EMPLOYEE와 같은 구조를 가진 EMPLOYEE2 테이블을 생성합니다.
 
-```markup
+
+
+```sql
 CREATE TABLE EMPLOYEE2(   
             empno      INTEGER NOT NULL PRIMARY KEY,  
            name       VARCHAR(10),   
@@ -63,7 +69,9 @@ CREATE TABLE EMPLOYEE2(
 
 ## 테이블 수정 (컬럼 추가 / 삭제)
 
-```markup
+
+
+```sql
 alter table 테이블명
           add  필드명 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT];
 
@@ -77,7 +85,9 @@ alter table 테이블명
 
 - EMPLOYEE2 테이블에 생일(birthdate)칼럼을 varchar(12)형식으로 추가합니다.
 
-```markup
+
+
+```sql
 alter table EMPLOYEE2
 
 add birthdate varchar(12);
@@ -89,7 +99,9 @@ add birthdate varchar(12);
 
 - EMPLOYEE2 테이블의 생일(birthdate)칼럼을 삭제합니다.
 
-```markup
+
+
+```sql
 alter table EMPLOYEE2
 
 drop birthdate;
@@ -99,10 +111,14 @@ drop birthdate;
 
 ## 테이블 수정 (컬럼 수정)
 
-```markup
+
+
+```sql
 alter table  테이블명
      change  필드명  새필드명 타입 [NULL | NOT NULL][DEFAULT ][AUTO_INCREMENT];
 ```
+
+
 
 - change 키워드를 사용하고 칼럼을 새롭게 재정의 합니다 (이름부터 속성까지 전부)
 
@@ -112,7 +128,9 @@ alter table  테이블명
 
 - EMPLOYEE2 테이블의 부서번호(deptno)를 dept_no로 수정합니다.
 
-```markup
+
+
+```sql
 alter table EMPLOYEE2
 
 change deptno dept_no int(11);
@@ -122,7 +140,9 @@ change deptno dept_no int(11);
 
 ## 테이블 이름 변경
 
-```markup
+
+
+```sql
 alter table  테이블명 rename 변경이름
 ```
 
@@ -132,7 +152,9 @@ alter table  테이블명 rename 변경이름
 
 - EMPLOYEE2 테이블의 이름을 EMPLOYEE3로 변경합니다.
 
-```markup
+
+
+```sql
 alter table EMPLOYEE2
 
 rename EMPLOYEE3;
@@ -142,9 +164,13 @@ rename EMPLOYEE3;
 
 ## 테이블 삭제하기
 
-```markup
+
+
+```sql
 drop table 테이블이름;
 ```
+
+
 
 - 참고로, 제약 조건이 있을 경우에는 drop table 명령으로도 테이블이 삭제되지 않을 수 있습니다. 그럴 경우는 테이블을 생성한 반대 순서로 삭제를 해야합니다.
 
@@ -154,9 +180,11 @@ drop table 테이블이름;
 
 \* 테이블 삭제 후 desc 명령을 수행하면, 존재하지 않는 테이블이라고 표시됩니다.
 
-실습 – EMPLOYEE2 테이블을 삭제합니다.
+-  EMPLOYEE2 테이블을 삭제합니다.
 
-```markup
+  
+
+```sql
 drop table EMPLOYEE2;
 ```
 
