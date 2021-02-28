@@ -237,7 +237,7 @@ b10.divide(b3, MathContext.UNLIMITED);
 
 ### BigDecimal의 다양한 활용방법
 
-BigDeciaml의 다양한 활용 방법은 제가 참고한 [지단로보트님 블로그]((https://jsonobject.tistory.com/466))에서 확인하실 수 있습니다!
+BigDeciaml의 다양한 활용 방법은 제가 참고한 [지단로보트님 블로그](https://jsonobject.tistory.com/466)에서 확인하실 수 있습니다!
 
 ---
 
