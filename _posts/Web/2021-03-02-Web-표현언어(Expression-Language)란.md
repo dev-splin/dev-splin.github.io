@@ -128,6 +128,94 @@ toc_label: 목차
 
 ![img](https://cphinf.pstatic.net/mooc/20180130_20/15172876538779gHtO_PNG/2_6_1___.PNG?type=w760)
 
+
+
+### 예제
+
+EL을사용해 Scope값을 출력해줍니다.
+
+```jsp
+// el01.jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%
+	pageContext.setAttribute("p1", "page scope value");
+	request.setAttribute("r1", "request scope value");
+	session.setAttribute("s1", "session scope value");
+	application.setAttribute("a1", "application scope value");
+	// 4가지의 scope에 값을 넣어줍니다.
+%>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+pageContext.getAttribute("p1") : <%=pageContext.getAttribute("p1") %><br>
+<!-- 기존 jsp의 출력방법은 표현식을 사용합니다. -->
+
+pageContext.getAttribute("p1") : ${pageScope.p1}<br>
+request.getAttribute("r1") : ${requestScope.r1}<br>
+session.getAttribute("s1") : ${sessionScope.s1}<br>
+application.getAttribute("a1") : ${applicationScope.a1}<br>
+<!-- el을 사용해서 출력하는 방법입니다. -->
+
+pageContext.getAttribute("p1") : ${p1}<br>
+request.getAttribute("r1") : ${r1 }<br>
+session.getAttribute("s1") : ${s1 }<br>
+application.getAttribute("a1") : ${a1 }<br>
+<!-- 이름이 겹치지 않으면 이런식으로 속성이름만 주어도 출력이 가능합니다. -->
+<!-- 만약 변수이름이 겹친다면 작은 범위의 scope부터 찾아줍니다. 웬만하면 명시적으로 적어주는 것이 좋습니다. -->
+</body>
+</html>
+```
+
+
+
+EL을 사용해 다양한 연산을 수행합니다.
+
+```jsp
+// el02.jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page isELIgnored="true" %>
+<!-- 이 지시문을 작성해주면 EL이 전무 무시됩니다. -->
+<% 
+request.setAttribute("k", 10);
+request.setAttribute("m", true);
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+k : ${k } <br>
+k + 5 : ${ k + 5 } <br>
+k - 5 : ${ k - 5 } <br>
+k * 5 : ${ k * 5 } <br>
+k / 5 : ${ k div 5 } <br>
+<!-- '/'같은 경우엔 인식을 못할 수도 있기 때문에 'div'를 이용하는게 좋습니다. -->
+
+
+k : ${k }<br>
+m : ${m }<br>
+k > 5 : ${ k > 5 } <br>
+k < 5 : ${ k < 5 } <br>
+k <= 10 : ${ k <= 10} <br>
+k >= 10 : ${ k >= 10 } <br>
+m : ${ m } <br>
+!m : ${ !m } <br>
+</body>
+</html>
+```
+
+
+
 ---
 
 참고 : https://www.boostcourse.org/web326/lecture/258517?isDesc=false
