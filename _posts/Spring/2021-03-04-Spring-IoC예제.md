@@ -5,7 +5,7 @@ categories:
   - Spring
 tags:
   - Spring
-  - "Spring : IoC"
+  - "Spring : IoC(Inversion of Control)"
 toc: true
 toc_sticky: true
 toc_label: 목차
