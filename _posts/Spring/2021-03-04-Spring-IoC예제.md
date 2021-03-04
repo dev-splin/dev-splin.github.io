@@ -103,7 +103,7 @@ pom.xml 파일에 JDK를 사용하기 위한 플러그인 설정을 추가합니
 
 
 
-버전이 1.8로 바뀌어 있는 것을 볼 수 있습니다. (만약 바뀌지 않았다면 pom.xml의 <properties> 부분을 확인해서 버전을 바꿔주세요.)
+버전이 1.8로 바뀌어 있는 것을 볼 수 있습니다. (만약 바뀌지 않았다면 pom.xml의 properties 부분을 확인해서 버전을 바꿔주세요.)
 
 [![img](https://cphinf.pstatic.net/mooc/20180201_186/1517463781375Jws7S_PNG/2_10_3_08.png?type=w760)](https://www.boostcourse.org/web326/lecture/258525?isDesc=false#)
 
