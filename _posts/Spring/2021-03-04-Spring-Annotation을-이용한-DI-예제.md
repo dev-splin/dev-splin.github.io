@@ -86,7 +86,7 @@ public class ApplicationContextExam03 {
 	public static void main(String[] args) {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		   
-		Car car = ac.getBean("car");
+		Car car = ac.getBean(Car.class);
 		car.run();
 		
 	}
