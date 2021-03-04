@@ -83,6 +83,10 @@ class 자동차 {
 
 
 
+[DI예제로 알아보기](https://dev-splin.github.io/spring/Spring-DI-%EC%98%88%EC%A0%9C/)
+
+
+
 ## Spring에서 제공하는 IoC/DI 컨테이너
 
 - BeanFactory : IoC/DI에 대한 기본 기능을 가지고 있습니다.
