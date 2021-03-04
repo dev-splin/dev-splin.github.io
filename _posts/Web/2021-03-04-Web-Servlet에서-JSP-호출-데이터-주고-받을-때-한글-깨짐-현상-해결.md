@@ -5,7 +5,7 @@ categories:
   - Web
 tags:
   - Web
-  - "Servlet : Error"
+  - "Web : Servlet Error"
 toc: true
 toc_sticky: true
 toc_label: 목차
