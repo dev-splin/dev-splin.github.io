@@ -217,9 +217,9 @@ JDBC 템플릿만 이용해도 기존의 JDBC 프로그래밍보다 훨씬 간�
 
 - **SimpleJdbcInsert**
 
-​	테이블에 쉽게 데이터 insert 기능을 제공
+  ​	테이블에 쉽게 데이터 insert 기능을 제공
 
-​	[SimpleJdbcInsert 예제](https://www.tutorialspoint.com/springjdbc/springjdbc_simplejdbcinsert.htm)
+  ​	[SimpleJdbcInsert 예제](https://www.tutorialspoint.com/springjdbc/springjdbc_simplejdbcinsert.htm)
 
 
 
