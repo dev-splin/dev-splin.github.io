@@ -198,7 +198,7 @@ Junit을 이용하는 테스트 클래스는 다음과 같은 어노테이션이
 
 [![img](https://cphinf.pstatic.net/mooc/20200211_163/1581397986058LHXHo_PNG/12.png?type=w760)](https://www.boostcourse.org/web326/lecture/58976?isDesc=false#)
 
-`JUnit`테스트 클래스 실행은 이클립스를 사용할 경우 이클립스에 내장된 JUnit에 의해 실행됩니다. 이클립스에 내장된 `Junit`에 `@Test`가 붙은 메소드를 실행하는 main(String[] args)메소드가 있다고 생각하면 
+`JUnit`테스트 클래스 실행은 이클립스를 사용할 경우 이클립스에 내장된 JUnit에 의해 실행됩니다. 이클립스에 내장된 `Junit`에 `@Test`가 붙은 메소드를 실행하는 main(String[] args)메소드가 있다고 생각하면 됩니다.
 
 
 
