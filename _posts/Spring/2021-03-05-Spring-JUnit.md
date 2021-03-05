@@ -31,7 +31,7 @@ toc_label: 목차
 
 Maven을 사용할 경우 pom.xml에 다음을 추가합니다.
 
-```markup
+```xml
 <dependency>
   <groupId>junit</groupId>
   <artifactId>junit</artifactId>
