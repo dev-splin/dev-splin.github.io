@@ -1,11 +1,11 @@
 ---
-title: "Spring : Maven이란?"
+title: "Java : Maven이란?"
 excerpt_separator: <!--more-->
 categories:
-  - Spring
+  - Java
 tags:
-  - Spring
-  - "Spring : Maven"
+  - Java
+  - "Java : Maven"
 toc: true
 toc_sticky: true
 toc_label: 목차

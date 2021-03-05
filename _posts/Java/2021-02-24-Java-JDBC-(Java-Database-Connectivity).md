@@ -1,11 +1,11 @@
 ---
-title: "Spring : JDBC(Java Database Connectivity)"
+title: "Java : JDBC(Java Database Connectivity)"
 excerpt_separator: <!--more-->
 categories:
-  - Spring
+  - Java
 tags:
-  - Spring
-  - "Spring : JDBC(Java Database Connectivity)"
+  - Java
+  - "Java : JDBC(Java Database Connectivity)"
 toc: true
 toc_sticky: true
 toc_label: 목차

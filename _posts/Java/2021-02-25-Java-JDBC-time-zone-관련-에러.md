@@ -1,11 +1,11 @@
 ---
-title: "Spring : JDBC time zone Error"
+title: "Java : JDBC time zone Error"
 excerpt_separator: <!--more-->
 categories:
-  - Spring
+  - Java
 tags:
-  - Spring
-  - "Spring : Error"
+  - Java
+  - "Java : Error"
 toc: true
 toc_sticky: true
 toc_label: 목차
