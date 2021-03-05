@@ -1,11 +1,13 @@
 ---
-title: "CS : Big-O 표기법"
+title: "DataStructure : Big-O 표기법"
 excerpt_separator: <!--more-->
 categories:
   - CS(Computer Science)
+  - DataStructure
 tags:
   - CS(Computer Science)
-  - "CS : Big-O"
+  - DataStructure
+  - "DataStructure : Big-O"
 toc: true
 toc_sticky: true
 toc_label: 목차
