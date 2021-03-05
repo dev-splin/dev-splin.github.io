@@ -49,7 +49,7 @@ CS 공부를 하면서 정리해둔 것입니다. 핵심 키워드는 **Bold** �
 
 ### Reference
 
-[Big-O 표기법이란?](https://dev-splin.github.io/cs(computer%20science)/CS-Big-O-%ED%91%9C%EA%B8%B0%EB%B2%95/)
+[Big-O 표기법이란?](https://dev-splin.github.io/cs(computer%20science)/datastructure/DataStructure-Big-O-%ED%91%9C%EA%B8%B0%EB%B2%95/)
 
 
 
@@ -135,11 +135,11 @@ Heapify는 heap구조를 유지하기 위해 재정렬 하는 것을 말합니�
 
 
 ```html
-		1
-	  /    \
-	2		4
+        1
+      /   \
+    2       4
   /   \
-5		6		
+5       6		
 ```
 
 이런 Min Heap이 있다고 했을 때
@@ -147,11 +147,11 @@ Heapify는 heap구조를 유지하기 위해 재정렬 하는 것을 말합니�
 
 
 ```html
-		
-	  /    \
-	2		4
+        
+      /   \
+    2       4
   /   \
-5		6		
+5       6	
 ```
 
 1의 값을 빼 루트노드가 제거 된다면
@@ -159,11 +159,11 @@ Heapify는 heap구조를 유지하기 위해 재정렬 하는 것을 말합니�
 
 
 ```html
-		6
-	  /    \
-	2		4
+        6
+      /   \
+    2       4
   /
-5				
+5	
 ```
 
 맨 마지막 노드를 가져와 루트에 채웁니다
@@ -171,11 +171,11 @@ Heapify는 heap구조를 유지하기 위해 재정렬 하는 것을 말합니�
 
 
 ```html
-		2
-	  /    \
-	6		4
+        2
+      /   \
+    6       4
   /
-5				
+5	
 ```
 
 하지만 정렬이 되어있지 않기 때문에 두 children과 비교해서 6보다 작은 값과 자리를 바꿔줍니다.
@@ -183,11 +183,11 @@ Heapify는 heap구조를 유지하기 위해 재정렬 하는 것을 말합니�
 
 
 ```html
-		2
-	  /    \
-	5		4
+        2
+      /   \
+    5       4
   /
-6				
+6	
 ```
 
 이런 작업을 반복하여 재정렬하는 것을 Heapify라고 합니다.
