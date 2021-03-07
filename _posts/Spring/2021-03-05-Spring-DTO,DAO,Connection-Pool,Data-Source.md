@@ -65,27 +65,6 @@ DB연결은 비용이 많이 듭니다. **커넥션 풀은 미리 커넥션을 �
 
  
 
-
-
-## Spring JDBC를 이용한 DAO작성 예제를 위한 다이어그램
-
-[![img](https://cphinf.pstatic.net/mooc/20180208_103/1518068520531pRbvK_PNG/3_8_2_Spring_JDBC__DAO_.png?type=w760)
-  ](https://www.boostcourse.org/web326/lecture/258527/?isDesc=false#)
-
-먼저 Spring 컨테이너인 `ApplicationContext`는 설정 파일로 `ApplicationConfig`라는 클래스를 읽어들입니다.
-
-`ApplicationConfig`의 `componentScan` 어노테이션이 `DAO` 클래스를 찾습니다. 찾은 `DAO` 클래스는 스프링 컨테이너가 관리하게 됩니다.
-
-`ApplicationContext`는 `DBConfig`를 `import`하게 되고 `DBConfig` 클래스에서는 `Data Source`와 트랜잭션 매니저 객체를 생성합니다.
-
-`DAO`는 필드로 `NamedParameterJdbcTemplate`과 `SimpleJdbcInsert`를 가지게 됩니다. 두 개의 객체 모두 **SQL의 실행을 편리하게 하도록 `Spring JDBC`에서 제공하는 객체**이기 때문에 DB연결을 위해서 내부적으로 `Data Source`를 필요로 합니다. 이 두개의 객체는 `RoleDao` 생성자에서 초기화를 하고 `RoleDao`의 메서드들을 구현하게 됩니다.
-
-`Spring JDBC`를 사용하는 사용자는 파라미터와 `SQL`을 가장 많이 신경 써야 됩니다. `SQL`은 `RoleDao`에 `SQL`의 **상수로 정의를 해놓음으로써 나중에 `SQL`이 변경될 경우에 좀 더 편하게 수정**할 수 있도록 합니다.
-
-한 건의 Role 정보를 저장하고 전달하기 위한 목적으로 `Role DTO`가 사용되고 있는 것을 볼 수 있습니다.
-
-
-
 ---
 
 참고 : https://www.boostcourse.org/web326/lecture/258528/?isDesc=false
