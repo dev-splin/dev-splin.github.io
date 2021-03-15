@@ -15,6 +15,7 @@ tags:
   - "OS : Segmentation"
   - "OS : Virtual Memory"
   - "OS : Cache"
+toc: true
 toc_sticky: true
 toc_label: 목차
 ---
