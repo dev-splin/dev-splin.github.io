@@ -13,9 +13,9 @@ toc_sticky: true
 toc_label: 목차
 ---
 
-# Java : BaekJoon Greedy
+# Java : BaekJoon Navigation
 
-BaekJoon 탐색 저의 문제풀이 입니다. 
+BaekJoon Navigation(탐색) 저의 문제풀이 입니다. 
 
 혹시 더 좋은 방법 알려주신다면 정말 감사하겠습니다!
 
