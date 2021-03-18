@@ -245,17 +245,24 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
 위의 경우와 같이 동시에 필요한 빈은 `ContextLoaderListener`를 사용함으로써 공통으로 사용하게 할 수 있습니다.
 
 ```xml
-<!-- 공통으로 사용할 Config 파일을 가져옵니다. -->
-<context-param>
-    	<param-name>contextConfigLocation</param-name>
-    	<param-value>kr.or.connect.selfmvcguestbook.config.ApplicationConfig</param-value>
-</context-param>
 <!-- listener를 선언해줍니다. -->
 <listener>
     <listener-class>
     		org.springframework.web.context.ContextLoaderListener
     </listener-class>
 </listener>
+
+<!-- listener에서 java Configuration을 이용하려면 이부분이 꼭 필요합니다!! -->
+  <context-param>
+  	<param-name>contextClass</param-name>
+  	<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </context-param>
+  
+  <!-- 공통으로 사용할 Config 파일을 가져옵니다. -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>kr.or.connect.selfmvcguestbook.config.ApplicationConfig</param-value>
+  </context-param>
 ```
 
 
