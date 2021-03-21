@@ -6,6 +6,7 @@ categories:
   - "Operating System"
 tags:
   - CS(Computer Science)
+  - "Operating System"
   - "OS : Process"
   - "OS : Thread"
   - "OS : Scheduler"
