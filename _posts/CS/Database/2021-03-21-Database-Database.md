@@ -1,5 +1,5 @@
 ---
-title: "Operating System : Database"
+title: "Database : Database"
 excerpt_separator: <!--more-->
 categories:
   - CS(Computer Science)
