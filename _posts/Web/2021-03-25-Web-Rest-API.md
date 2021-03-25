@@ -211,7 +211,7 @@ REST API를 요청할 경우, 그 결과를 전달 받게 됩니다. 그 결과�
 
 결과는 다음과 같습니다.
 
-```markup
+```json
 {
 "id" : 1,
 "title" : "hello spring",
@@ -226,7 +226,7 @@ REST API를 요청할 경우, 그 결과를 전달 받게 됩니다. 그 결과�
 
 아래의 JSON문서를 보면 `_links` 부분이 보일 것입니다. 이 부분이 HATEOAS부분입니다. 자기 자신의 URL, book 컬렉션과 관련된 URL, book저장을 위한 URL 등이 표현되어 있는 것을 알 수 있습니다. 이렇게, **DATA와 함께 관련된 URL정보를 제공하는 것을 HATEOAS**라고 말합니다.
 
-```markup
+```json
 {
     "id" : 1,
     "title" : "hello spring",

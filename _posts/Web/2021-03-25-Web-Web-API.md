@@ -127,7 +127,7 @@ org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
 
 위와 같은 오류가 발생하지 않도록 하려면 `MessageConverter`를 `Bean`으로 등록해줘야 합니다. 보통 **Web API는 JSON, XML 과 같은 데이터를 표현하기에 알맞은 형태로 결과를 출력**합니다. `PlusResult`를 JSON메시지로 변환하려면 pom.xml 파일에 다음의 라이브러리를 추가합니다.
 
-```markup
+```xml
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -146,7 +146,7 @@ jackson 라이브러리는 객체를 JSON으로 또는 JSON을 객체로 변환�
 
 이번엔 다음과 같이 JSON메시지가 브라우저에 출력되는 것을 확인할 수 있습니다. 에러가 발생하지 않았다는 것은 메시지 컨버터가 자동으로 등록되었다는 것을 의미합니다.
 
-```markup
+```json
 {"value1":10,"value2":20,"result":30}
 ```
 
