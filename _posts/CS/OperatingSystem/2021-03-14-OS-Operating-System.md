@@ -106,7 +106,7 @@ toc_label: 목차
 - 프로세스의 상태
   `new` -> `ready(in memory)`
 
-*cf) 메모리에 프로그램이 너무 많이 올라가도, 너무 적게 올라가도 성능이 좋지 않은 것입니다. 참고로 `time sharing system` 에서는 장기 스케줄러가 없다. 그냥 곧바로 메모리에 올라가 ready 상태가 된다.*
+*cf) 메모리에 프로그램이 너무 많이 올라가도, 너무 적게 올라가도 성능이 좋지 않은 것입니다. 참고로 `time sharing system` 에서는 장기 스케줄러가 없습니다. 그냥 곧바로 메모리에 올라가 ready 상태가 됩니다.*
 
 
 
@@ -507,3 +507,4 @@ https://sycho-lego.tistory.com/10
 https://velog.io/@adam2/OS%EA%B8%B0%EC%B4%88-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B4%80%EB%A6%AC%EA%B0%80%EC%83%81-%EB%A9%94%EB%AA%A8%EB%A6%AC-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B6%80%EC%9E%AC-%ED%8E%98%EC%9D%B4%EC%A7%80-%EA%B5%90%EC%B1%84-%EC%8A%A4%EB%A0%88%EC%8B%B1
 
 https://aidanbae.github.io/code/devops/computer/cpucache/
+
