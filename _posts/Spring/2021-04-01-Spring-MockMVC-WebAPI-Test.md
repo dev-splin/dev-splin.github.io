@@ -282,7 +282,7 @@ MockHttpServletResponse:
 
 `.andExpect(jsonPath("$.name").value("kim"))` 과 같은 문장을 사용하여 Json 결과에 `“name”:”kim”`이 있을 경우에만 성공이 될 수 있도록 할 수도 있습니다. **이 경우 `jsonPath`에 대한 라이브러리가 pom.xml파일에 추가** 되야 합니다.
 
-```markup
+```xml
 <dependency>
     <groupId>com.jayway.jsonpath</groupId>
     <artifactId>json-path</artifactId>
