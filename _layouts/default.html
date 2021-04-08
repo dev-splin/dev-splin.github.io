@@ -12,8 +12,8 @@
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+    {% seo %}
   </head>
-
   <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
     {% include_cached skip-links.html %}
     {% include_cached browser-upgrade.html %}
@@ -22,20 +22,20 @@
     <div class="initial-content">
       {{ content }}
     </div>
-
+    
     {% if site.search == true %}
       <div class="search-content">
         {% include_cached search/search_form.html %}
       </div>
     {% endif %}
-
+    
     <div id="footer" class="page__footer">
       <footer>
         {% include footer/custom.html %}
         {% include_cached footer.html %}
       </footer>
     </div>
-
+    
     {% include scripts.html %}
 
   </body>
