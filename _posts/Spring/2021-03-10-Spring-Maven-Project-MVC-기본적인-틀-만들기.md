@@ -220,6 +220,23 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
 
 
 
+## DataBase 만들기
+
+[DataBase 명령어](https://dev-splin.github.io/database/Database-cmd-%EB%AA%85%EB%A0%B9%EC%96%B4(DB)/)를 참고해 DB 계정을 만듭니다.
+
+`src/main/resources/application.properties` 파일에 다음과 같이 설정합니다.
+
+```properties
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://domain:port/dbName?useUnicode=true&characterEncoding=utf8
+spring.datasource.username=dbUserName
+spring.datasource.password=dbPasswd
+```
+
+`application.properties`는 스프링 사용시 필요한 옵션들을 작성하여 추가할 수 있습니다. 예를 들면 메일 서버를 구축한다던가 혹은 db의 종류를 설정, 로그사용여부 등을 설정이 가능합니다.
+
+
+
 ## DispatcherServlet을 FrontController로 설정하기
 
 설명이 필요하기 때문에 [링크](https://dev-splin.github.io/spring/Spring-MVC-%EC%98%88%EC%A0%9C(DispatcherServlet%EC%9D%84-FrontController%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)/)로 대체하겠습니다. 
