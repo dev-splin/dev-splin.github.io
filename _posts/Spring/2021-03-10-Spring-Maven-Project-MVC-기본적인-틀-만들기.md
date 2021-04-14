@@ -41,11 +41,11 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>kr.or.connect</groupId>
-  <artifactId>selfmvcguestbook</artifactId>
+  <artifactId>reservation</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>selfmvcguestbook Maven Webapp</name>
+  <name>reservation Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -54,106 +54,143 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <spring.version>4.3.5.RELEASE</spring.version>
+    <!-- Eclipse에서는 web.xml 파일을 작성하지 않고, Java Config를 사용할 때 failOnMissingWebXml를 false로 설정합니다. -->
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <spring.version>5.2.3.RELEASE</spring.version>
     <jackson2.version>2.8.6</jackson2.version>
   </properties>
 
+  <!-- junit  -->
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
     
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+    
+    <!-- spring -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context</artifactId>
 	    <version>${spring.version}</version>
 	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<!-- spring webmvc에 대한 의존성을 추가합니다. 
+	spring webmvc에 대한 의존성을 추가하게 되면 spring-web, spring-core등이 자동으로 의존성이 추가됩니다.-->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-webmvc</artifactId>
 	    <version>${spring.version}</version>
 	</dependency>
+	<!-- jUnit을 확장한 스프링의 테스트 라이브러리 -->
+	<dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
 	
-    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+	
+	<!-- servlet -->
+	<!-- servlet-api이다. tomcat에 배포될 경우엔 사용되지 않도록 하기 위해서 scope를 provided로 설정하였습니다. -->	
 	<dependency>
 	    <groupId>javax.servlet</groupId>
 	    <artifactId>javax.servlet-api</artifactId>
 	    <version>3.1.0</version>
 	    <scope>provided</scope>
 	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+	<!-- jsp-api이다. tomcat에 배포될 경우엔 사용되지 않도록 하기 위해서 scope를 provided로 설정하였습니다. -->
 	<dependency>
 	    <groupId>javax.servlet.jsp</groupId>
 	    <artifactId>javax.servlet.jsp-api</artifactId>
 	    <version>2.3.1</version>
 	    <scope>provided</scope>
 	</dependency>
+	
 		
-    
-    <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+	<!-- jstl -->
+	<!-- jstl은 tomcat이 기본 지원하지 않습니다. 그렇기 때문에 tomcat에도 배포가 되야 합니다.-->    
 	<dependency>
 	    <groupId>jstl</groupId>
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+
+	<!-- JDBC -->	
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-jdbc</artifactId>
 	    <version>${spring.version}</version>
 	</dependency>
-	
 	<!-- 트랜잭션을 사용하기 위한 설정입니다. -->
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-tx</artifactId>
 		<version>${spring.version}</version>
 	</dependency>
-	
 	<!-- basic data source -->
 	<dependency>
 		<groupId>org.apache.commons</groupId>
 		<artifactId>commons-dbcp2</artifactId>
 		<version>2.1.1</version>
 	</dependency>
-
 	<!-- JDBC에서 mysql을 사용하기 위한 설정입니다. -->
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
 		<version>5.1.45</version>
 	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+
+
+	<!-- jackson -->	
+	<!-- RestController의 json 변환을 위해 필요합니다 -->
+	<dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.9.8</version>
+    </dependency>
+    <!-- jackson-core 및 jackson-annotation 라이브러리의 의존성을 포함 -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-databind</artifactId>
 	    <version>${jackson2.version}</version>
 	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jdk8 -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.datatype</groupId>
 	    <artifactId>jackson-datatype-jdk8</artifactId>
 	    <version>${jackson2.version}</version>
 	</dependency>
 	
+	
+	<!-- java 9 이상에서 추가해줘야 합니다. @PostConstruct 등을 사용하려면 필요합니다-->
+    <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>1.3.2</version>
+    </dependency>
+    
+    
+    <!-- swagger2 의존성 추가. Swagger 사용을 위해서는 구현체인 springfox-swagger2 가 필요 -->
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>2.6.1</version>
+    </dependency>
+    <!--  또 가장 중요한 (사용목적이라해도 과언이 아닌) UI 적으로 확인을 위해서는 springfox-swagger-ui 라이브러리가 필요하다. -->
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>2.6.1</version>
+    </dependency>
+    
   </dependencies>
 
   <build>
-    <finalName>selfmvcguestbook</finalName>
+    <finalName>reservation</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
       
-      	
       	<!-- maven 버전 설정을 위한 플러그인 입니다.-->
       	<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
@@ -164,7 +201,7 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
 				<target>1.8</target>
 			</configuration>
 		</plugin>
-		
+      	
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
@@ -233,9 +270,30 @@ spring.datasource.username=dbUserName
 spring.datasource.password=dbPasswd
 ```
 
-`application.properties`는 스프링 사용시 필요한 옵션들을 작성하여 추가할 수 있습니다. 예를 들면 메일 서버를 구축한다던가 혹은 db의 종류를 설정, 로그사용여부 등을 설정이 가능합니다.
+`application.properties`는 스프링 사용시 필요한 옵션들을 작성하여 추가할 수 있습니다. 예를 들면 메일 서버를 구축한다던가 혹은 db의 종류를 설정, 로그사용여부 등을 설정이 가능합니다. 이 후, 아래와 같이 사용할 수 있습니다.
 
 
+
+```java
+@Configuration
+@PropertySource("classpath:application.properties")
+public class DBConfig implements TransactionManagementConfigurer {
+	
+	@Autowired
+	Environment env;
+	
+	private String driverClassName = env.getProperty("spring.datasource.driver-class-name");
+	private String url = env.getProperty("spring.datasource.url");
+	private String username = env.getProperty("spring.datasource.username");
+	private String password = env.getProperty("spring.datasource.password");
+    
+    ...
+}
+```
+
+`Environment`는 `시스템 환경변수 , JVM 시스템 프로퍼티 , 프로퍼티 파일 등의 프로퍼티`를 `PropertySource`라는 것으로 통합관리합니다.
+
+Environment란?
 
 ## DispatcherServlet을 FrontController로 설정하기
 
