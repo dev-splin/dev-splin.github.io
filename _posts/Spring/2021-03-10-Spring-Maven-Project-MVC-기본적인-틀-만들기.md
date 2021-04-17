@@ -293,11 +293,13 @@ public class DBConfig implements TransactionManagementConfigurer {
 
 `Environment`는 `시스템 환경변수 , JVM 시스템 프로퍼티 , 프로퍼티 파일 등의 프로퍼티`를 `PropertySource`라는 것으로 통합관리합니다.
 
-Environment란?
+[Environment란?](https://dev-splin.github.io/spring/Spring-Properties-Environment-Profile/)
 
 ## DispatcherServlet을 FrontController로 설정하기
 
 설명이 필요하기 때문에 [링크](https://dev-splin.github.io/spring/Spring-MVC-%EC%98%88%EC%A0%9C(DispatcherServlet%EC%9D%84-FrontController%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)/)로 대체하겠습니다. 
+
+[WebApplicationInitializer / AbstractAnnotationConfigDispatcherServletInitializer](https://dev-splin.github.io/spring/Spring-WebApplicationInitializer,AbstractAnnotationConfigDispatcherServletInitializer/)
 
 
 
