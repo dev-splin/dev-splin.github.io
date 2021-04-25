@@ -51,7 +51,7 @@ toc_label: 목차
 
 ### List Interface의 메소드
 
-<img src="https://blog.kakaocdn.net/dn/efYO5c/btqI07cgkG0/9kd7yxy8aMkk2c40FWbPZ1/img.png" alt="img" style="zoom: 50%;" />
+<img src="https://blog.kakaocdn.net/dn/efYO5c/btqI07cgkG0/9kd7yxy8aMkk2c40FWbPZ1/img.png" alt="img" style="zoom: 33%;" />
 
 
 
@@ -207,7 +207,7 @@ List<E> list = new LinkedList<E>();
 
 ### Queue와 Deque Interface의 메소드
 
-<img src="https://blog.kakaocdn.net/dn/cfpfoQ/btqI66JL8WF/YgwfZ2O1HRhm67NK3CovEk/img.png" alt="img" style="zoom: 50%;" />
+<img src="https://blog.kakaocdn.net/dn/cfpfoQ/btqI66JL8WF/YgwfZ2O1HRhm67NK3CovEk/img.png" alt="img" style="zoom: 33%;" />
 
 
 
@@ -307,7 +307,7 @@ PriorityQueue<E> priorityQueue = new PriorityQueue<E>(new DescendingComparator()
 | **PriorityQueue** | O(n)         | O(1)   | O(log(n)) | O(log(n)) |
 | **ArrayDeque**    | O(n) or O(1) | O(n)   | O(1)      | O(1)      |
 
-
+<p>
 
 |                | LinkedList                           | PriorityQueue                                               | ArrayDeque                                                   |
 | -------------- | :----------------------------------- | :---------------------------------------------------------- | :----------------------------------------------------------- |
@@ -332,7 +332,7 @@ PriorityQueue<E> priorityQueue = new PriorityQueue<E>(new DescendingComparator()
 
 ### Set Interface의 메소드
 
-<img src="https://blog.kakaocdn.net/dn/lnanb/btqI4UqkeIl/LNvdh82l4b94aDdTkVBB0K/img.png" alt="img" style="zoom:50%;" />
+<img src="https://blog.kakaocdn.net/dn/lnanb/btqI4UqkeIl/LNvdh82l4b94aDdTkVBB0K/img.png" alt="img" style="zoom: 33%;" />
 
 
 
