@@ -58,7 +58,20 @@ toc_label: 목차
 
 이에 대한 자세한 내용은 [로직 단위테스트](https://dev-splin.github.io/spring/Spring-%EB%A1%9C%EC%A7%81-%EB%8B%A8%EC%9C%84%ED%85%8C%EC%8A%A4%ED%8A%B8/)를 봐주세요~!
 
-그리고, 컨트롤러를 테스트하기 위해 `MockMvc`를 사용하도록 하겠습니다.
+그리고, 컨트롤러를 테스트하기 위해 `MockMvc`를 사용하도록 하겠습니다. 
+
+테스트 전에 `pom.xml`에 라이브러리를 추가해줍니다.
+
+```xml
+<dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+</dependency>
+```
+
+
 
 #### GestubookApiControllerTest.java
 
@@ -280,7 +293,7 @@ MockHttpServletResponse:
           Cookies = []
 ```
 
-`.andExpect(jsonPath("$.name").value("kim"))` 과 같은 문장을 사용하여 Json 결과에 `“name”:”kim”`이 있을 경우에만 성공이 될 수 있도록 할 수도 있습니다. **이 경우 `jsonPath`에 대한 라이브러리가 pom.xml파일에 추가** 되야 합니다.
+`.andExpect(jsonPath("$.list[0].name").value("kim"))` 과 같은 문장을 사용하여 Json 결과에 `“name”:”kim”`이 있을 경우에만 성공이 될 수 있도록 할 수도 있습니다. **이 경우 `jsonPath`에 대한 라이브러리가 pom.xml파일에 추가** 되야 합니다.
 
 ```xml
 <dependency>
