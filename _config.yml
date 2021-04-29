@@ -65,7 +65,7 @@ google:
   instant_search         : # false (default), true
 # SEO Related
 
-google_site_verification : "pUIaoIhnl-A2y8XPIfeuJRwrCxkXAAdeRP9w_ndJ7vk"
+google_site_verification :
 bing_site_verification   :
 yandex_site_verification :
 naver_site_verification  :
