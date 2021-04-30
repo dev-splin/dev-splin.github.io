@@ -183,7 +183,7 @@ public class RegexExample {
 - `start(int group)` : 지정된 그룹이 매칭되는 시작위치 반환합니다.
 - `end()` : 매칭되는 문자열 끝 다음 문자위치 반환합니다.
 - `end(int group)` : 지정된 그룹이 매칭되는 끝 다음 문자위치 반환합니다.
-- `ㄴgroup()` : 매칭된 부분을 반환합니다.
+- `group()` : 매칭된 부분을 반환합니다.
 - `group(int group)` : 매칭된 부분중 group번 그룹핑 매칭부분 반환합니다. 
 - `groupCount()` : 패턴내 그룹핑한(괄호지정) 전체 갯수를 반환합니다.
 - `appendReplacement(StringBuffer sb, String replacement) ` : 일치되는 패턴이 나타날 때까지 모든 문자들을 버퍼(StringBuffer)로 옮기고, 패턴에 일치되는 문자열은 두 번째 파라미터인 replacement 문자열로 대체합니다.
