@@ -21,7 +21,7 @@ toc_sticky: true
 toc_label: 목차
 ---
 
-# Operationg System
+# Operating System
 
 
 
@@ -138,7 +138,7 @@ Suspended(stopped) : 외부적인 이유로 프로세스의 수행이 정지된 
 
 ## CPU 스케줄러
 
-*스케줄링 대상은 Ready Queue 에 있는 프로세스들입니다.*
+*스케줄링 대상은 Ready Queue 에 있는 프로세스들 입니다.*
 
 ### FCFS(First Come First Served)
 
@@ -219,10 +219,8 @@ Suspended(stopped) : 외부적인 이유로 프로세스의 수행이 정지된 
 
 #### 장점
 
-- `Response time`이 빨라진다.
-  n 개의 프로세스가 `ready queue` 에 있고 할당시간이 `q(time quantum)`인 경우 각 프로세스는 q 단위로 CPU 시간의 1/n 을 얻습니다. 즉, 어떤 프로세스도 `(n-1)q time unit` 이상 기다리지 않습니다.
-- 프로세스가 기다리는 시간이 CPU 를 사용할 만큼 증가합니다.
-  공정한 스케줄링이라고 할 수 있습니다.
+- `Response time`이 빨라집니다.<br>n 개의 프로세스가 `ready queue`에 있고 할당시간이 `q(time quantum)`인 경우 각 프로세스는 q 단위로 CPU 시간의 1/n 을 얻습니다. 즉, 어떤 프로세스도 `(n-1)q time unit` 이상 기다리지 않습니다.
+- 프로세스가 기다리는 시간이 CPU 를 사용할 만큼 증가합니다.<br>공정한 스케줄링이라고 할 수 있습니다.
 
 #### 주의할 점
 
@@ -234,7 +232,7 @@ Suspended(stopped) : 외부적인 이유로 프로세스의 수행이 정지된 
 
 ### 비유를 통한 쉬운 설명
 
-해야할 일(task)가 빨래, 설거지, 청소 세 가지가 있다고 가정합니다. 이 일들을 동기적으로 처리한다면 빨래를 하고 설거지를 하고 청소를 합니다. 비동기적으로 일을 처리한다면 빨래하는 업체에게 빨래를 시킵니다. 설거지 대행 업체에 설거지를 시킵니다. 청소 대행 업체에 청소를 시킵니다. 셋 중 어떤 것이 먼저 완료될지는 알 수 없습니다. 일을 모두 마친 업체는 나에게 알려주기로 했으니 나는 다른 작업을 할 수 있습니다. 이 때는 백그라운드 스레드에서 해당 작업을 처리하는 경우의 비동기를 의미합니다.
+해야할 일(task)가 빨래, 설거지, 청소 세 가지가 있다고 가정합니다. 이 일들을 동기적으로 처리한다면 빨래를 하고 설거지를 하고 청소를 합니다. 비동기적으로 일을 처리한다면 빨래하는 업체에게 빨래를 시킵니다. 설거지 대행 업체에 설거지를 시킵니다. 청소 대행 업체에 청소를 시킵니다. 셋 중 어떤 것이 먼저 완료될지는 알 수 없습니다. 업체가 일을 모두 마치면 알려주기로 했으니 그동안 다른 작업을 할 수 있습니다. 이 때는 백그라운드 스레드에서 해당 작업을 처리하는 경우의 비동기를 의미합니다.
 
 ### Sync vs Async
 
@@ -254,16 +252,13 @@ Suspended(stopped) : 외부적인 이유로 프로세스의 수행이 정지된 
 
 ### Critical Section Problem(임계영역 문제)
 
-프로세스들이 `Critical Section` 을 함께 사용할 수 있는 프로토콜을 설계하는 것입니다.
+프로세스들이 `Critical Section` 을 함께 사용할 수 있는 프로토콜을 설계하게 되면 문제가 발생할 수 있습니다.
 
 #### Requirements(해결을 위한 기본조건)
 
-- **Mutual Exclusion(상호 배제)**
-  `프로세스 P1` 이 `Critical Section` 에서 실행중이라면, 다른 프로세스들은 그들이 가진 `Critical Section` 에서 실행될 수 없습니다.
-- **Progress(진행)**
-  `Critical Section` 에서 실행중인 프로세스가 없고, 별도의 동작이 없는 프로세스들만 `Critical Section 진입 후보`로서 참여될 수 있습니다.
-- **Bounded Waiting(한정된 대기)**
-  `P1` 가 `Critical Section` 에 진입 신청 후 부터 받아들여질 때가지, 다른 프로세스들이 `Critical Section 에 진입하는 횟수`는 제한이 있어야 합니다.
+- **Mutual Exclusion(상호 배제)**<br>`프로세스 P1` 이 `Critical Section` 에서 실행중이라면, 다른 프로세스들은 그들이 가진 `Critical Section` 에서 실행될 수 없습니다.
+- **Progress(진행)**<br>`Critical Section` 에서 실행중인 프로세스가 없고, 별도의 동작이 없는 프로세스들만 `Critical Section 진입 후보`로서 참여될 수 있습니다.
+- **Bounded Waiting(한정된 대기)**<br>`P1` 이 `Critical Section` 에 진입 신청 후 부터 받아들여질 때가지, 다른 프로세스들이 `Critical Section 에 진입하는 횟수`는 제한이 있어야 합니다.
 
 ### 해결책
 
