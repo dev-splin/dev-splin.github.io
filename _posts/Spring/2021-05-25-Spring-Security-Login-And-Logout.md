@@ -1,5 +1,5 @@
 ---
-title: "Spring : Spring Security를 이용한 로그인 및 회원가입"
+title: "Spring : Spring Security를 이용한 로그인 및 로그아웃"
 excerpt_separator: <!--more-->
 categories:
   - Spring
