@@ -11,9 +11,9 @@ toc_sticky: true
 toc_label: 목차
 ---
 
-# Spring Security를 이용한 로그인 및 회원가입
+# Spring Security를 이용한 로그인 및 로그아웃
 
-[Spring Security 포스트](https://dev-splin.github.io/spring/Spring-Security/)에서 Spring Security 설정을 해봤기 때문에 이어서, **Spring Security를 이용한 로그인 및 회원가입**에 대해 알아보려고 합니다.
+[Spring Security 포스트](https://dev-splin.github.io/spring/Spring-Security/)에서 Spring Security 설정을 해봤기 때문에 이어서, **Spring Security를 이용한 로그인 및 로그아웃**에 대해 알아보려고 합니다.
 
 
 
