@@ -15,6 +15,8 @@ toc_label: 목차
 
 [Spring Security를 이용한 로그인 및 로그아웃](https://dev-splin.github.io/spring/Spring-Security-Login-And-Logout/) 포스트에서는 DB를 이용하지 않았기 때문에 **Spring Security를 DB를 이용해 로그인 및 회원가입**을 해보겠습니다.
 
+그리고 로그인 후 **사용자 정보를 확인하는 방법**도 알아보겠습니다.
+
 
 
 ## 데이터 베이스 모델링, 테이블 생성, 데이터 추가
@@ -774,7 +776,113 @@ public class MemberController {
 
 
 
+## 로그인 한 사용자 정보 읽어 오기
+
+사용자가 로그인을 한 상태라면, 스프링 MVC는 컨트롤러 메소드에 회원정보를 저장하고 있는 Principal객체(Security에서 지원)를 파라미터로 받을 수 있습니다. 이 Principal 객체를 이용해 로그인 한 사용자의 정보를구할 수 있습니다.
+
+
+
+### MemberServiceImpl.java
+
+데이터베이스로 부터 아이디(Email)을 이용해 사용자 정보를 가져오는 메서드를 만듭니다.
+
+```java
+@Service
+public class MemberServiceImpl implements MemberService {
+    
+    ...
+
+	@Override
+	public Member getMemberByEmail(String email) {
+		return memberDao.getMemberByEmail(email);
+	}
+}
+```
+
+
+
+### MemberController.java
+
+Principal 객체의 `getName()`메서드를 이용해 로그인 아이디를 구할 수 있습니다. 로그인 아이디를 구하고 해당 아이디를 이용해 데이터베이스로부터 회원 정보를 읽어 옵니다.
+
+```java
+@Controller
+@RequestMapping(path = "/members")
+public class MemberController {
+    
+	...
+    
+    @GetMapping("/memberinfo")
+    public String memberInfo(Principal principal, ModelMap modelMap) {
+    	String email = principal.getName();
+    	Member member = memberService.getMemberByEmail(email);
+    	modelMap.addAttribute("member",member);
+    	
+    	return "members/memberinfo";
+    }
+}
+```
+
+
+
+### memberinfo.jsp
+
+사용자 정보를 화면에 보여줄 jsp 페이지 입니다.
+
+```jsp
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>회원 가입폼 </title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <h1>회원정보</h1>
+        <p>로그인한 회원 정보를 표기합니다.</p>
+      </div>
+
+        <div>
+          <label>id</label>
+          <p>${member.id}</p>
+        </div>
+        <div>
+          <label>이름</label>
+          <p>${member.name}</p>
+        </div>
+        <div>
+          <label>암호</label>
+          <p>${member.password}</p>
+        </div>
+        <div>
+          <label>등록일</label>
+          <p>${member.createDate}</p>
+        </div>
+        <div>
+          <label>수정일</label>
+          <p>${member.modifyDate}</p>
+        </div>
+
+    </div>
+  </body>
+</html>
+```
+
+
+
+### 실행
+
+웹 애플리케이션을 재시작한 후 로그인 합니다. 로그인 후 members/memberinfo 페이지에 들어가보면 사용자 정보가 잘 나오는 것을 볼 수 있습니ㅏ.
+
+
+
 ---
 
 참고 : [https://www.boostcourse.org/web326/lecture/60591?isDesc=false](https://www.boostcourse.org/web326/lecture/60591?isDesc=false)
+
+[https://www.boostcourse.org/web326/lecture/60592?isDesc=false](https://www.boostcourse.org/web326/lecture/60592?isDesc=false)
 
