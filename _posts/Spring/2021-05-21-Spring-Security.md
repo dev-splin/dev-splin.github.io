@@ -68,7 +68,7 @@ toc_label: 목차
 * `DefaultLoginPageGeneratingFilter` : 인증을 위한 로그인폼 URL을 감시합니다.
 * `BasicAuthenticationFilter` : HTTP 기본 인증 헤더를 감시하여 처리합니다.
 * `RequestCacheAwareFilter` : 로그인 성공 후, 원래 요청 정보를 재구성하기 위해 사용됩니다.
-* `SecurityContextHolderAwareRequestFilter` : `HttpServletRequestWrapper`를 상속한 `SecurityContextHolderAware`를 `RequestWapper` 클래스로 `HttpServletRequest`정보를 감쌉니다. `SecurityContextHolderAwareRequestWrapper` 클래스는 필터 체인상의 다음 필터들에게 부가정보를 제공합니다.
+* `SecurityContextHolderAwareRequestFilter` : `HttpServletRequestWrapper`를 상속한 `SecurityContextHolderAwareRequestWapper` 클래스로 `HttpServletRequest`정보를 감쌉니다. `SecurityContextHolderAwareRequestWrapper` 클래스는 필터 체인상의 다음 필터들에게 부가정보를 제공합니다.
 * `AnonymousAuthenticationFilter` : 이 필터가 호출되는 시점까지 사용자 정보가 인증되지 않았다면 인증토큰에 사용자가 익명 사용자로 나타납니다.
 * `SessionManagementFilter` : 이 필터는 인증된 사용자와 관련된 모든 세션을 추적합니다.
 * `ExceptionTranslationFilter` : 이 필터는 보호된 요청을 처리하는 중에 발생할 수 있는 예외를 위임하거나 전달하는 역할을 합니다.
@@ -112,6 +112,130 @@ toc_label: 목차
 
 
 ### 웹 어플리케이션 설정 파일
+
+
+
+### pom.xml
+
+Security를 사용하기 위한 라이브러리를 추가해줍니다.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.edwith.webbe</groupId>
+    <artifactId>securityexam</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    
+    <properties>
+    <!-- eclipse에서 웹 어플리케이션 프로젝트 작성시 web.xml파일을 작성하지 않고 java-config로 설정할 경우 아래의 설정이 있어야 합니다.-->
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <!-- spring 5.2.3이 나오는 시점에 spring security는 5.2.2가 최신버전이라서 5.2.2.RELEASE로 설정함 -->
+        <spring.version>5.2.2.RELEASE</spring.version>
+    </properties>
+
+    <dependencies>
+        <!-- servlet-api이다. tomcat에 배포될 경우엔 사용되지 않도록 하기 위해서 scope를 provided로 설정하였다. -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- jsp-api이다. tomcat에 배포될 경우엔 사용되지 않도록 하기 위해서 scope를 provided로 설정하였다. -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.2-b02</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- jstl은 tomcat이 기본 지원하지 않는다. 그렇기 때문에 tomcat에도 배포가 되야 한다.-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- spring webmvc에 대한 의존성을 추가한다. spring webmvc에 대한 의존성을 추가하게 되면 spring-web, spring-core등이 자동으로 의존성이 추가된다.-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- java 9 이상에서 추가해줘야 합니다. @PostConstruct 등을 사용하려면 필요함-->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Spring Security Core -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Spring Security Config -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Spring Security Web -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Spring Security JSP Custom Tags -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
 
 
 
