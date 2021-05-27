@@ -27,7 +27,7 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
 
 
 
-## pom.xml 설정하기
+### pom.xml 설정하기
 
 다양한 라이브러리를 가져와서 사용할 수 있지만 일단은 제가 사용했던 pom.xml을 가져오겠습니다.
 
@@ -169,7 +169,34 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
         <artifactId>javax.annotation-api</artifactId>
         <version>1.3.2</version>
     </dependency>
-    
+      
+      
+    <!-- Spring Security -->
+    <!-- Spring Security Core -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- Spring Security Config -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-config</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- Spring Security Web -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-web</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+    <!-- Spring Security JSP Custom Tags -->
+    <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-taglibs</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+      
     
     <!-- swagger2 의존성 추가. Swagger 사용을 위해서는 구현체인 springfox-swagger2 가 필요 -->
     <dependency>
@@ -177,7 +204,7 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
         <artifactId>springfox-swagger2</artifactId>
         <version>2.6.1</version>
     </dependency>
-    <!--  또 가장 중요한 (사용목적이라해도 과언이 아닌) UI 적으로 확인을 위해서는 springfox-swagger-ui 라이브러리가 필요하다. -->
+    <!--  또 가장 중요한 (사용목적이라해도 과언이 아닌) UI 적으로 확인을 위해서는 springfox-swagger-ui 라이브러리가 필요합니다. -->
     <dependency>
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger-ui</artifactId>
@@ -239,7 +266,7 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
 
 
 
-## Servlet 버전 설정하기
+### Servlet 버전 설정하기
 
 자바 어노테이션을 사용하기위해 Servlet 버전을 3.0이상으로 바꿔줍니다.
 
@@ -257,7 +284,7 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
 
 
 
-## DataBase 만들기
+### DataBase 만들기
 
 [DataBase 명령어](https://dev-splin.github.io/database/Database-cmd-%EB%AA%85%EB%A0%B9%EC%96%B4(DB)/)를 참고해 DB 계정을 만듭니다.
 
@@ -295,7 +322,7 @@ public class DBConfig implements TransactionManagementConfigurer {
 
 [Environment란?](https://dev-splin.github.io/spring/Spring-Properties-Environment-Profile/)
 
-## DispatcherServlet을 FrontController로 설정하기
+### DispatcherServlet을 FrontController로 설정하기
 
 설명이 필요하기 때문에 [링크](https://dev-splin.github.io/spring/Spring-MVC-%EC%98%88%EC%A0%9C(DispatcherServlet%EC%9D%84-FrontController%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)/)로 대체하겠습니다. 
 
@@ -303,7 +330,7 @@ public class DBConfig implements TransactionManagementConfigurer {
 
 
 
-## Controller 작성하기
+### Controller 작성하기
 
 간단한 컨트롤러를 만들어서 테스트 해봅니다.
 
@@ -311,7 +338,7 @@ public class DBConfig implements TransactionManagementConfigurer {
 
 
 
-## JDBC 연결하기
+### JDBC 연결하기
 
 [JDBC 연결하기](https://dev-splin.github.io/spring/Spring-Spring-JDBC-Exam/)
 
@@ -321,27 +348,47 @@ public class DBConfig implements TransactionManagementConfigurer {
 
 위의 경우와 같이 동시에 필요한 빈은 `ContextLoaderListener`를 사용함으로써 공통으로 사용하게 할 수 있습니다.
 
-```xml
-<!-- listener를 선언해줍니다. -->
-<listener>
-    <listener-class>
-    		org.springframework.web.context.ContextLoaderListener
-    </listener-class>
-</listener>
-
-<!-- listener에서 java Configuration을 이용하려면 이부분이 꼭 필요합니다!! -->
-  <context-param>
-  	<param-name>contextClass</param-name>
-  	<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-  </context-param>
-  
-  <!-- 공통으로 사용할 Config 파일을 가져옵니다. -->
-  <context-param>
-  	<param-name>contextConfigLocation</param-name>
-  	<param-value>kr.or.connect.selfmvcguestbook.config.ApplicationConfig</param-value>
-  </context-param>
-```
+`ContextLoaderListener`의 설정은 `DispatcherServlet을 FrontController로 설정하기`에 포함되어 있습니다.
 
 
+
+
+
+## 그 외에 프로젝트 진행 시 유용한 자료들
+
+
+
+### 테스트
+
+테스트를 할 때 참고할 만한 자료입니다.
+
+[MockMvc를 이용한 단위 테스트](https://dev-splin.github.io/spring/Spring-MockMVC-WebAPI-Test/)
+
+[Given-When-Then 패턴](https://dev-splin.github.io/spring/Spring-Given-When-Then-Pattern/)
+
+[Web API 문서화를 위한 Swagger](https://dev-splin.github.io/spring/Web-Swagger/)
+
+[Spring MVC에서 Swagger 사용하기](https://dev-splin.github.io/spring/Spring-Swagger/)
+
+
+
+### Security
+
+[Spring Security란? (설정 포함)](https://dev-splin.github.io/spring/Spring-Security/)
+
+[Spring Security를 이용한 로그인 및 로그아웃](https://dev-splin.github.io/spring/Spring-Security-Login-And-Logout/)
+
+[Spring Security에서 DB를 이용한 로그인 및 회원가입](https://dev-splin.github.io/spring/Spring-Security-UsedDB-Login-And-Register/)
+
+
+
+### 기타
+
+[Cookie / Session](https://dev-splin.github.io/spring/Spring-Cookie,Session/)
+
+
+
+---
 
 여기까지 했으면 안에 내용을 구현해서 멋진 프로젝트를 만듭니다! 추후에 알게되는 것이 있으면 계속 추가하겠습니다!
+
