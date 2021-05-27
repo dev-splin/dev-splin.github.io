@@ -214,7 +214,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 ### UserEntity.java
 
-로그인 아이디와 암호 정보를 가지고 있는 `UserEntity`객체를 생성합니다.
+`UserDetailsService`을 구현할 때 사용할, 로그인 아이디와 암호 정보를 가지고 있는 `UserEntity`객체를 생성합니다. 
 
 ```java
 package org.edwith.webbe.securityexam.service.security;
@@ -250,26 +250,26 @@ public class UserEntity {
 
 ### UserRoleEntity.java
 
-로그인 아이디와 권한(Role)정보를 가지는 `UserRoleEntity`클래스를 생성합니다.
+`UserDetailsService`을 구현할 때 사용할, 로그인 아이디와 권한(Role)정보를 가지는 `UserRoleEntity`클래스를 생성합니다.
 
 ```java
 package org.edwith.webbe.securityexam.service.security;
 
 public class UserRoleEntity {
-    private String userLoginId;
+	private String loginUserId;
     private String roleName;
 
-    public UserRoleEntity(String userLoginId, String roleName) {
-        this.userLoginId = userLoginId;
+    public UserRoleEntity(String loginUserId, String roleName) {
+        this.loginUserId = loginUserId;
         this.roleName = roleName;
     }
 
-    public String getUserLoginId() {
-        return userLoginId;
+    public String getLoginUserId() {
+        return loginUserId;
     }
 
-    public void setUserLoginId(String userLoginId) {
-        this.userLoginId = userLoginId;
+    public void setLoginUserId(String userLoginId) {
+        this.loginUserId = userLoginId;
     }
 
     public String getRoleName() {
@@ -280,6 +280,7 @@ public class UserRoleEntity {
         this.roleName = roleName;
     }
 }
+
 ```
 
 
@@ -370,10 +371,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class CustomUserDetails implements UserDetails {
     private String username;
     private String password;
+    // 계정의 활성화 여부 (true : 활성화)
     private boolean isEnabled;
+    // 계정의 만료 여부 (true : 만료 안됨)
     private boolean isAccountNonExpired;
+    // 계정의 잠김 여부 (true : 잠기지 않음)
     private boolean isAccountNonLocked;
+    // 계정의 비밀번호 만료 여부 (true : 만료 안됨)
     private boolean isCredentialsNonExpired;
+    // 계정의 권한 목록(여러 권한이 있을 수 있음)
     private Collection<? extends GrantedAuthority>authorities ;
 
     @Override
