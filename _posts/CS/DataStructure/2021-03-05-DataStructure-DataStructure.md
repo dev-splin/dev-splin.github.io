@@ -49,7 +49,7 @@ CS 공부를 하면서 정리해둔 것입니다. 핵심 키워드는 **Bold** �
 
 ### Reference
 
-[Big-O 표기법이란?](https://dev-splin.github.io/cs(computer%20science)/datastructure/DataStructure-Big-O-%ED%91%9C%EA%B8%B0%EB%B2%95/)
+[Big-O 표기법이란?](https://dev-splin.github.io/cs(computer%20science)/datastructure/DataStructure-Big-O/)
 
 
 
@@ -436,7 +436,7 @@ vertex 의 adjacent list 를 확인해봐야 하므로 vertex 간 연결되어�
 
 ##### Reference
 
-[예시로 보는 DFS와 BFS](https://dev-splin.github.io/cs(computer%20science)/datastructure/DataStructure-%EC%98%88%EC%8B%9C%EB%A1%9C-%EB%B3%B4%EB%8A%94-DFS%EC%99%80-BFS/)
+[예시로 보는 DFS와 BFS](https://dev-splin.github.io/cs(computer%20science)/datastructure/DataStructure-Example-DFS-BFS/)
 
 
 

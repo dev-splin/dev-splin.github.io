@@ -46,7 +46,7 @@ BaekJoon Navigation(탐색) 저의 문제풀이 입니다.
 
 `DFS`는 `stack`을, `BFS`는 `queue`를 이용해 풀었습니다.
 
-[예시로 보는 DFS와 BFS](https://dev-splin.github.io/cs(computer%20science)/datastructure/DataStructure-%EC%98%88%EC%8B%9C%EB%A1%9C-%EB%B3%B4%EB%8A%94-DFS%EC%99%80-BFS/) 여기의 방식과 비슷하게 풀었지만 하나 다른 점은 stack에 이미 노드가 있더라도 넣어주는 것 입니다. 그 이유는 `(1,2)(1,3)(1,4)(2,4)(3,4)`와 같은 경우에 stack에 있을 때 저장하지 않게 되면 `1->2->3->4` 순으로 찾게 되지만 (2에서 4로 바로 가지 않고 1로올라온 다음, 남아 있는 노드 중 작은 노드인 3부터 찾게 하는 방식입니다.)
+[예시로 보는 DFS와 BFS](https://dev-splin.github.io/cs(computer%20science)/datastructure/DataStructure-Example-DFS-BFS/) 여기의 방식과 비슷하게 풀었지만 하나 다른 점은 stack에 이미 노드가 있더라도 넣어주는 것 입니다. 그 이유는 `(1,2)(1,3)(1,4)(2,4)(3,4)`와 같은 경우에 stack에 있을 때 저장하지 않게 되면 `1->2->3->4` 순으로 찾게 되지만 (2에서 4로 바로 가지 않고 1로올라온 다음, 남아 있는 노드 중 작은 노드인 3부터 찾게 하는 방식입니다.)
 
 문제의 출력결과는 `1->2->4->3`순으로 찾게 되기 때문입니다. (2에서 1로올라가지 않고 바로 4로 가는 방식입니다.)	
 

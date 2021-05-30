@@ -14,7 +14,7 @@ toc_label: 목차
 
 # WebApplicationInitializer / AbstractAnnotationConfigDispatcherServletInitializer 
 
-[기존의 xml을 이용한 설정](https://dev-splin.github.io/spring/Spring-MVC-%EC%98%88%EC%A0%9C(DispatcherServlet%EC%9D%84-FrontController%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)/#webmvcconfigurationsupport)과는 다른 어노테이션만을 이용한 설정 방법입니다.
+[기존의 xml을 이용한 설정](https://dev-splin.github.io/spring/Spring-MVC-Example(DispatcherServlet-FrontController-Set)/)과는 다른 어노테이션만을 이용한 설정 방법입니다.
 
 **Spring MVC는 ServletContainerInitializer를 구현하고 있는 SpringServletContainerInitializer를 제공**합니다. **SpringServletContainerInitializer는 `WebApplicationInitializer` 구현체를 찾아 인스턴스를 만들고 해당 인스턴스의 `onStartup` 메소드를 호출하여 초기화**합니다.
 

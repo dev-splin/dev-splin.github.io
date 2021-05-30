@@ -150,7 +150,7 @@ public class Main {
 
 ### 수정 후 코드
 
-[다른 사람이 한 것](https://st-lab.tistory.com/145)을 참고하여 다시 구현해본 것입니다. [comparator](https://dev-splin.github.io/java/Java-Comparable,Comparator/)와 [람다식](https://dev-splin.github.io/java/Java-%ED%95%A8%EC%88%98%ED%98%95%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D(%EB%9E%8C%EB%8B%A4%EC%8B%9D)/)을사용하는 게 되게 간편하다는 걸 알았습니다!
+[다른 사람이 한 것](https://st-lab.tistory.com/145)을 참고하여 다시 구현해본 것입니다. [comparator](https://dev-splin.github.io/java/Java-Comparable,Comparator/)와 [람다식](https://dev-splin.github.io/java/Java-functional-programming(Lambda)/)을사용하는 게 되게 간편하다는 걸 알았습니다!
 
 ```java
 import java.io.BufferedReader;
@@ -241,3 +241,4 @@ public class Main {
 ---
 
 해당 코드들은 [저의 GitHub](https://github.com/dev-splin/Coding-Test)에서 확인할 수 있습니다.
+

@@ -56,7 +56,7 @@ toc_label: 목차
 `GuestbookApiController`를 단위 테스트한다는 것은, `GuestbookApiController`가 사용하는 `GuestbookService`에 대한 부분은 함께 테스트하지 않는다는 것을 의미합니다.
 이를 위해 `GuestbookService`에 대한 `목(Mock)객체`를 사용할 것이고 `Mokito`를 이용해 목객체를 생성할 것입니다. 
 
-이에 대한 자세한 내용은 [로직 단위테스트](https://dev-splin.github.io/spring/Spring-%EB%A1%9C%EC%A7%81-%EB%8B%A8%EC%9C%84%ED%85%8C%EC%8A%A4%ED%8A%B8/)를 봐주세요~!
+이에 대한 자세한 내용은 [로직 단위테스트](https://dev-splin.github.io/spring/Spring-Logic-Unit-Test/)를 봐주세요~!
 
 그리고, 컨트롤러를 테스트하기 위해 `MockMvc`를 사용하도록 하겠습니다. 
 

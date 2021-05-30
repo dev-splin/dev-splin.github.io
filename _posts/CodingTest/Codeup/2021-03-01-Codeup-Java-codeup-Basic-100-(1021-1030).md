@@ -218,7 +218,7 @@ public class Main {
 
 ### Reference
 
-[부동소수점이란?](https://dev-splin.github.io/java/Java-%EB%B6%80%EB%8F%99%EC%86%8C%EC%88%98%EC%A0%90/)
+[부동소수점이란?](https://dev-splin.github.io/java/Java-Floating-Point/)
 
 [BigDecimal이란?](https://dev-splin.github.io/java/Java-BigDecimal/)
 

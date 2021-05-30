@@ -189,7 +189,7 @@ System.out.println(players); // [Player(name=Chloe, score=1090), Player(name=Eri
 
 람다 함수를 사용하면 코드가 간결해짐을 알 수 있습니다.
 
-[함수형 인터페이스, 람다식이란?](https://dev-splin.github.io/java/Java-%ED%95%A8%EC%88%98%ED%98%95%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D(%EB%9E%8C%EB%8B%A4%EC%8B%9D)/)
+[함수형 인터페이스, 람다식이란?](https://dev-splin.github.io/java/Java-functional-programming(Lambda)/)
 
 
 
@@ -204,7 +204,7 @@ List<Player> sortedPlayers = players.stream()
 System.out.println(sortedPlayers); // [Player(name=Chloe, score=1090), Player(name=Eric, score=1018), Player(name=Bob, score=982), Player(name=Dale, score=982), Player(name=Alice, score=899)]
 ```
 
-[스트림,스트림 파이프라인 이란?](https://dev-splin.github.io/java/Java-%EC%8A%A4%ED%8A%B8%EB%A6%BC,%EC%8A%A4%ED%8A%B8%EB%A6%BC%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8/)
+[스트림,스트림 파이프라인 이란?](https://dev-splin.github.io/java/Java-Stream,Stream-Pipeline/)
 
 
 

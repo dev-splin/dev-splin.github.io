@@ -288,4 +288,5 @@ public class prac {
 }
 ```
 
-[Scanner와 BufferedReader에 대한 자세한 설명](https://dev-splin.github.io/java/Java-Scanner%EC%99%80-BufferedReader%EC%9D%98-%EC%B0%A8%EC%9D%B4/)
+[Scanner와 BufferedReader에 대한 자세한 설명](https://dev-splin.github.io/java/Java-Scanner,BufferedReader/)
+

@@ -120,7 +120,7 @@ DI를 사용했을 때 장점은 `Engine`이라는 클래스가 실행 클래스
 
 이렇게 xml파일을 이용한 방법말고 Annotation이라는 것을 이용하는 방법도 있습니다.
 
-[Annotation을 이용한 DI예제](https://dev-splin.github.io/spring/Spring-Annotation%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-DI-%EC%98%88%EC%A0%9C/)
+[Annotation을 이용한 DI예제](https://dev-splin.github.io/spring/Spring-Annotation-DI-Example/)
 
 ---
 

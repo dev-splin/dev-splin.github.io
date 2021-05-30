@@ -83,7 +83,7 @@ class 자동차 {
 
 
 
-[DI예제로 알아보기](https://dev-splin.github.io/spring/Spring-DI-%EC%98%88%EC%A0%9C/)
+[DI예제로 알아보기](https://dev-splin.github.io/spring/Spring-DI-Example/)
 
 
 
