@@ -23,19 +23,43 @@ toc_label: 목차
 
 
 
-### 의존성 설정
+### 설치 및 의존성 설정
+
+1. [Lombok 다운로드 사이트](https://projectlombok.org/download)에 들어가 Lombok을 설치 해줍니다.
+2. 의존성을 주입합니다.
 
 ```xml
 <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-    <version>1.18.16</version>
+    <version>1.18.20</version>
     <scope>provided</scope>
 </dependency>
 ```
 
 
+
+**의존성을 설정해도 사용되지 않는 경우**
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.2</version>
+    <configuration>
+        <source>1.8</source>
+        <target>1.8</target>
+        <encoding>UTF-8</encoding>
+        <!-- 이 부분을 추가 -->
+        <annotationProcessors>
+            <annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>
+        </annotationProcessors>
+    </configuration>
+</plugin>
+```
+
+`maven-compiler-plugin`에 `<annotationProcessors> </annotationProcessors>`부분을 추가해줍니다.
 
 
 
