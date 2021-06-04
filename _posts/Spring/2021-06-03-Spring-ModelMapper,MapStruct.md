@@ -243,17 +243,17 @@ public class ModelMapperTest {
 
 ...
 
-	<plugins>
-      <!-- maven 버전 설정을 위한 플러그인 입니다.-->
-      	<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>3.5.1</version>
-			<configuration>
-				<source>1.8</source>
-				<target>1.8</target>
+    <plugins>
+        <!-- maven 버전 설정을 위한 플러그인 입니다.-->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.5.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
                 <!-- mapstruct-processor을 설정해줍니다. -->
-				<annotationProcessorPaths>
+                <annotationProcessorPaths>
                     <path>
                         <groupId>org.mapstruct</groupId>
                         <artifactId>mapstruct-processor</artifactId>
@@ -261,8 +261,8 @@ public class ModelMapperTest {
                     </path>
                     <!-- other annotation processors -->
                 </annotationProcessorPaths>
-			</configuration>
-		</plugin>
+            </configuration>
+        </plugin>
     <plugins>
 ```
 
