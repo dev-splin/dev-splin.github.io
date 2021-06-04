@@ -61,8 +61,9 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
     <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>  
   </properties>
 
-  <!-- junit  -->
+  
   <dependencies>
+      <!-- junit  -->
       <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
