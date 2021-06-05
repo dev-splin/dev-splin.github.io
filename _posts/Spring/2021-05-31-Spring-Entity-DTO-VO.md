@@ -53,7 +53,7 @@ class UserEntity {
         this.name = name;
     }
     
-    // Setter 생략
+    // Getter 생략
 }
 ```
 
@@ -68,10 +68,10 @@ JPA를 사용하게 될 경우 엔티티 클래스에는`@Entity` 어노테이�
 - VO의 핵심은 **equals()와 hashcode()** 를 오버라이딩 하는 것입니다. 
   - VO **내부에 선언된 속성(필드)의 모든 값들이 VO 객체마다 값이 같아야, 똑같은 객체라고 판별**합니다.
 - `immutable(불변성)`을 가집니다.
+  - `Setter`를 가질 수 없습니다.
   - DB에서 읽은 값을 VO에 담을 경우, 이 VO의 값이 DB 데이터 원본으로써 신뢰할 수 있습니다.
   - `read only`의 속성을 가진다고 볼 수 있습니다.
 - 비즈니스 로직을 가질 수 있습니다.
-- `Getter`와 `Setter`를 가질 수 있습니다.
 - 테이블 내에 있는 속성 외에 추가적인 속성을 가질 수 있습니다.
 - 여러 테이블(A, B, C)에 대한 공통 속성을 모아서 만든 BaseVO 클래스를 상속받아서 사용할 수 도있습니다.
 
@@ -89,7 +89,7 @@ public class BuyItemVO {
 	private int count;
 	private Date buyDate;
 	
-    // Getter, Getter 생략
+    // Getter 생략
     
     ...   
 	
@@ -135,7 +135,7 @@ public class BuyItemDTO {
 	private String itemCode;
 	private int count;
 	
-    // Getter, Setter 생략
+    // Setter, Getter 생략
     
     ...   
 }
@@ -155,9 +155,19 @@ Entity는 각 테이블 컬럼이 모두 선언되어 있어서 DTO를 대신해
 
 하지만 **View에서 요청하는 값은 언제나 변경되는 값이고, 그 때마다 Entity를 변경하면 영속성 모델을 구현한 Entity가 순수성을 잃어버릴 수 있어 권장하지 않습니다.**
 
-전체 Layer 중 값이 바뀔 수 있는`User - Controller- Service` 까지는 `DTO`를 사용하고, 그 이후 `Repository`에서 `ModelMapper` 등의 유틸 라이브러리를 사용해 값을 `Entity`로 옮겨 활용하는 식으로 구현하는 것을 권장합니다. 즉 **View Layer와 DB Layer의 역할 분리는 철저하게 하는 것이 좋습니다.**
+전체 Layer 중 값이 바뀔 수 있는`User - Controller- Service` 까지는 `DTO`를 사용하고, 그 이후 `Repository`에서 `MapStruct, ModelMapper` 등의 유틸 라이브러리를 사용해 값을 `Entity`로 옮겨 활용하는 식으로 구현하는 것을 권장합니다. 즉 **View Layer와 DB Layer의 역할 분리는 철저하게 하는 것이 좋습니다.**
+
+
+
+***하지만, 여러 테이블을 조인해서 데이터를 가져와야 할 때는 어떻게 해야할까요??*** 
+
+*Repository에서는 Entity를 사용하는 게 좋다고 했으니 Etity를 사용해야 한다고 생각할 수 있습니다. 하지만 **Entity는 도메인만** 나타내야 하고 **여러 테이블을 조인하는 과정에서 집계 함수등을 이용해 데이터가 도메인 범위를 벗어날 수 있기 때문에 DTO를 사용하는 게 좋다**고 생각합니다.*
+
+
 
 >**영속성 모델** : 데이터를 생성한 프로그램이 종료되더라도 사라지지 않는 데이터의 특성을 말합니다. 영속성을 갖지 않는 데이터는 단지 메모리에서만 존재하기 때문에 프로그램을 종료하면 모두 잃어버리게 됩니다.
+
+[MapStruct의 사용법 및 ModelMapper와의 비교 포스트 링크](https://dev-splin.github.io/spring/Spring-ModelMapper,MapStruct/)
 
 
 
