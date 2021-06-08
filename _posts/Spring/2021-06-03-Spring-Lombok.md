@@ -190,7 +190,6 @@ public class User{
 
 - `acces` : `AccessLevel`을 이용하여 접근 제한자를 설정해줄 수 있습니다.
 - `staticName` : 생성자 관련 어노테이션은 모두 사용할 수 있습니다. 생성자를 private으로 생성하고, private 생성자를 감싸고 있는 static factory 메소드를 추가할 수 있습니다. 
-  - 하지만, 기본 생성자를 이용하여 생성해 줄 일이 잘 없고 `@AllArgsConstructor`와  `@RequiredArgsConstructor`도 잘 안쓰이기 때문에 사용할 일이 없을 것 같습니다.
 
 
 
@@ -208,6 +207,7 @@ User user = new User("userId","userPwd");
 
 - 위와 같이 초기설정을 했는데, **개발자가 변수의 위치가 마음에 안들어서 바꾸게 된다면, 생성자의 위치도 바뀌지만 입력에는 둘다 String이라 오류가 발생하지 않습니다.** 이를 개발자가 인지하지 못하게 되는 경우가 생길 수 있습니다.
 - 그렇기 때문에 `@AllArgsConstructor`, `@RequiredArgsConstructor` 두 어노테이션들은 사용하지 않는것이 좋습니다.
+  - 다만, `@RequiredArgsConstructor`는 멤버변수가 **final이고, 변수의 수가 많을 때 일일이 생성자를 만드는 방법보다 훨씬 유용**하기 때문에 **따로 생성자를 이용해서 생성하지 않고 DI를 이용해 생성할 때 사용**하면 좋습니다.
 
 
 
