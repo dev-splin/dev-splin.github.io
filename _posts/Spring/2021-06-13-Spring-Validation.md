@@ -214,7 +214,7 @@ public class ValidTest {
 
 **참고 링크**
 
-[ConstraintViolation<T> 공식 문서](https://docs.oracle.com/javaee/7/api/javax/validation/ConstraintViolation.html)
+[`ConstraintViolation<T>` 공식 문서](https://docs.oracle.com/javaee/7/api/javax/validation/ConstraintViolation.html)
 
 
 
