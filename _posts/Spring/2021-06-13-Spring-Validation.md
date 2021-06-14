@@ -257,10 +257,10 @@ public class ValidTest {
 
 #### 주의할 점
 
-- Json을 전송할 때 `body = <no character encoding set>`처럼 body를 인식하지 못할 수 있기 때문에 `.characterEncoding("UTF-8")`를 넣어주어야 합니다.
+- Json을 전송할 때 `body = <no character encoding set>`처럼 body를 인식하지 못하거나 한글이 깨지는 경우, MockMvc를 build()할 때, Filter를 넣어주어야 합니다.
+  - `mockMvc = MockMvcBuilders.standaloneSetup(reservationInfoApiController).addFilters(new CharacterEncodingFilter("UTF-8",true)).build();`
 - `perform(post("/valid")`에서 `post()`는 `MockMvcRequestBuilders.post()`입니다. 여기서는 간단하게 사용하기 위해 import static을 사용하였습니다.
   - `import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;`
-
 - `javax.validation.ValidationException: HV000183: Unable to initialize 'javax.el.ExpressionFactory'.`에러가 발생하면 아래의 라이브러리 의존성을 추가합니다.
 
 ```xml
