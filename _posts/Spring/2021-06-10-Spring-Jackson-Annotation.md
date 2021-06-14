@@ -662,9 +662,7 @@ public static class UserWithRoot {
 
 
 
-
-
-# Jackson Deserialization Annotation(역직렬화 어노테이션)
+## Jackson Deserialization Annotation(역직렬화 어노테이션)
 
 **Jackson Deserialization Annotation**에서 `Deserialization(역직렬화)`이란, 직렬화한 Json 데이터들을 자바 객체로 변환하는 것을 의미합니다.
 
