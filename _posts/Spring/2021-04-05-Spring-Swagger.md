@@ -548,8 +548,23 @@ public class CalculatorApiController {
 
 
 
+## Swagger 오류
+
+다른 곳에서는 제대로 작동하지만 Swagger에서 아래와 같은 오류가 발생할 경우가 있습니다.
+
+```json
+{
+  "error": "no response from server"
+}
+```
+
+이 경우는 버전의 문제이기 때문에 Swagger의 버전을 2.9.2이상으로 바꾸어주면 됩니다.
+
+
+
 ---
 
 참고 : [https://www.boostcourse.org/web326/lecture/58990/?isDesc=false](https://www.boostcourse.org/web326/lecture/58990/?isDesc=false)
 
 [https://www.boostcourse.org/web326/lecture/58989/?isDesc=false](https://www.boostcourse.org/web326/lecture/58989/?isDesc=false)
+
