@@ -17,7 +17,7 @@ jackson은 자바진영 Json 라이브러리로 잘 알려져 있지만 Json 뿐
 
 
 
-클라이언트와 서버 사이에서 Json을 이용할 때, ` Jackson 어노테이션`을 이용하면 편리한 점이 많기 때문에 다양한 `Jackson 어노테이션`에 대해 알아보겠습니다.
+클라이언트와 서버 사이에서 Json을 이용할 때, `Jackson 어노테이션`을 이용하면 편리한 점이 많기 때문에 다양한 `Jackson 어노테이션`에 대해 알아보겠습니다.
 
 여기서 `Serialization(직렬화)와 Deserialization(역직렬화)`란 개념이 나오는데, <br>`Serialization(직렬화)`이란, 자바 객체를 전송가능한 Json형태로 만들어주는 것을 의미하고<br>`Deserialization(역직렬화)`이란, 직렬화한 Json 데이터들을 자바 객체로 변환하는 것을 의미합니다.
 
