@@ -1,5 +1,5 @@
 ---
-title: "Spring : 유효성 검사(Validation) 방법"
+title: "Spring : 유효성 검사(Validation) 방법 및 Custom Annotation"
 excerpt_separator: <!--more-->
 categories:
   - Spring
@@ -433,7 +433,7 @@ MockMvc방식으로 간단하게 테스트해보면, `ConstraintViolationExcepti
 
 
 
-## Custom Constraint annotation
+## Custom Constraint Annotation
 
 제약조건 어노테이션으로 모든 제약조건을 설명할 수 있는 것이 아니기 때문에 **필요한 제약조건을 직접 커스터마이징**할 수 있습니다. 
 
