@@ -222,6 +222,14 @@ boostcourse 강의를 듣고 혼자 실습하다가.. 틀 만드는 것 부터 �
           <artifactId>mapstruct</artifactId>
           <version>${org.mapstruct.version}</version>
       </dependency>
+
+          
+      <!-- hibernate-validator -->
+      <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-validator</artifactId>
+          <version>6.1.0.Final</version>
+      </dependency> 
           
           
       <!-- java 9 이상에서 추가해줘야 합니다. @PostConstruct 등을 사용하려면 필요합니다-->
@@ -342,7 +350,7 @@ MapStruct와 Lombok을 같이 사용하게 되면, 의존성 설정할 때 순�
 
 ### DataBase 만들기
 
-[DataBase 명령어](https://dev-splin.github.io/database/Database-cmd-%EB%AA%85%EB%A0%B9%EC%96%B4(DB)/)를 참고해 DB 계정을 만듭니다.
+[DataBase 명령어](https://dev-splin.github.io/database/Database-cmd-Command(DB)/)를 참고해 DB 계정을 만듭니다.
 
 `src/main/resources/application.properties` 파일에 다음과 같이 설정합니다.
 
@@ -380,7 +388,7 @@ public class DBConfig implements TransactionManagementConfigurer {
 
 ### DispatcherServlet을 FrontController로 설정하기
 
-설명이 필요하기 때문에 [링크](https://dev-splin.github.io/spring/Spring-MVC-%EC%98%88%EC%A0%9C(DispatcherServlet%EC%9D%84-FrontController%EB%A1%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)/)로 대체하겠습니다. 
+설명이 필요하기 때문에 [링크](https://dev-splin.github.io/spring/Spring-MVC-Example(DispatcherServlet-FrontController-Set)/)로 대체하겠습니다. 
 
 [WebApplicationInitializer / AbstractAnnotationConfigDispatcherServletInitializer](https://dev-splin.github.io/spring/Spring-WebApplicationInitializer,AbstractAnnotationConfigDispatcherServletInitializer/)
 
@@ -390,7 +398,7 @@ public class DBConfig implements TransactionManagementConfigurer {
 
 간단한 컨트롤러를 만들어서 테스트 해봅니다.
 
-[Controller작성하기](https://dev-splin.github.io/spring/Spring-MVC-%EC%98%88%EC%A0%9C(Controller%EC%9E%91%EC%84%B1)/)
+[Controller작성하기](https://dev-splin.github.io/spring/Spring-MVC-Example(Controller)/)
 
 
 
@@ -423,6 +431,24 @@ public class DBConfig implements TransactionManagementConfigurer {
 [Lombok의 사용법 및 주의점](https://dev-splin.github.io/spring/Spring-Lombok/)
 
 [MapStruct의 사용법 및 ModelMapper와의 비교](https://dev-splin.github.io/spring/Spring-ModelMapper,MapStruct/)
+
+[ResponseEntity를 사용해야 하는 이유](https://dev-splin.github.io/spring/Spring-ResponseEntity/)
+
+
+
+### 직렬화, 역직렬화
+
+[Jackson Annotation 사용법](https://dev-splin.github.io/spring/Spring-Jackson-Annotation/)
+
+> 직렬화 : 자바 객체를 전송가능한 Json형태로 만들어주는 것을 의미
+>
+> 역직렬화 : 직렬화한 Json 데이터들을 자바 객체로 변환하는 것을 의미
+
+
+
+### 유효성 검사
+
+[유효성 검사(Validation) 방법 및 Custom Annotation](https://dev-splin.github.io/spring/Spring-Validation/)
 
 
 
