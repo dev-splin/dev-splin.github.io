@@ -452,17 +452,9 @@ public class DBConfig implements TransactionManagementConfigurer {
 
 
 
-### 테스트
+### 예외처리
 
-테스트를 할 때 참고할 만한 자료입니다.
-
-[MockMvc를 이용한 단위 테스트](https://dev-splin.github.io/spring/Spring-MockMVC-WebAPI-Test/)
-
-[Given-When-Then 패턴](https://dev-splin.github.io/spring/Spring-Given-When-Then-Pattern/)
-
-[Web API 문서화를 위한 Swagger](https://dev-splin.github.io/spring/Web-Swagger/)
-
-[Spring MVC에서 Swagger 사용하기](https://dev-splin.github.io/spring/Spring-Swagger/)
+[Exception 전략](https://cheese10yun.github.io/spring-guide-exception/)
 
 
 
@@ -473,6 +465,18 @@ public class DBConfig implements TransactionManagementConfigurer {
 [Spring Security를 이용한 로그인 및 로그아웃](https://dev-splin.github.io/spring/Spring-Security-Login-And-Logout/)
 
 [Spring Security에서 DB를 이용한 로그인 및 회원가입](https://dev-splin.github.io/spring/Spring-Security-UsedDB-Login-And-Register/)
+
+
+
+### 테스트
+
+[MockMvc를 이용한 단위 테스트](https://dev-splin.github.io/spring/Spring-MockMVC-WebAPI-Test/)
+
+[Given-When-Then 패턴](https://dev-splin.github.io/spring/Spring-Given-When-Then-Pattern/)
+
+[Web API 문서화를 위한 Swagger](https://dev-splin.github.io/spring/Web-Swagger/)
+
+[Spring MVC에서 Swagger 사용하기](https://dev-splin.github.io/spring/Spring-Swagger/)
 
 
 
