@@ -57,9 +57,9 @@ Java에서는 개발자가 프로그램 코드로 메모리를 명시적으로 �
 
 ### Major GC(Full GC)
 
-**Old영역이 가득 차면 Old영역에 있는 모든 객체들을 검사하여 참조되지 않은 객체들을 한꺼번에 삭제**합니다.(Permanent Generation 영역에 GC가 발생해도 Major GC의 횟수에 포함) 시간이 오래 걸리고 실행 중 프로세스가 정지됩니다. 이것을 `stop-the-world`라고 하는데, **`Major GC`가 발생하면 GC를 실행하는 스레드를 제외한 나머지 스레드는 모두 작업을 멈춥니다.** GC작업을 완료한 이후에야 중단했던 작업을 다시 시작합니다.
+**Old영역이 가득 차면 Old영역에 있는 모든 객체들을 검사하여 참조되지 않은 객체들을 한꺼번에 삭제**합니다. (Permanent Generation 영역에 GC가 발생해도 Major GC의 횟수에 포함) 시간이 오래 걸리고 실행 중 프로세스가 정지됩니다. 이것을 `stop-the-world`라고 하는데, **`Major GC`가 발생하면 GC를 실행하는 스레드를 제외한 나머지 스레드는 모두 작업을 멈춥니다.** GC작업을 완료한 이후에야 중단했던 작업을 다시 시작합니다.
 
-GC 방식은 JDK 7을 기준으로 5가지 방식이 있습니다
+GC 방식은 JDK 7을 기준으로 5가지 방식이 있습니다.
 
 - Serial GC
 - Parallel GC
@@ -96,6 +96,8 @@ GC 방식은 JDK 7을 기준으로 5가지 방식이 있습니다
 
 `Parallel Old GC`는 JDK 5 update 6부터 제공한 GC 방식입니다. 앞서 설명한 **Parallel GC와 비교하여 Old 영역의 GC 알고리즘만 다릅니다.** **이 방식은 `Mark-Summary-Compaction` 단계를 거칩니다.** `Summary` 단계는 앞서 GC를 수행한 영역에 대해서 별도로 살아 있는 객체를 식별한다는 점에서` Mark-Sweep-Compaction` 알고리즘의 `Sweep` 단계와 다르며, 약간 더 복잡한 단계를 거칩니다.
 
+
+
 #### CMS(Concurrent Mark-Sweep) GC (-XX:+UseConcMarkSweepGC)
 
 앞서 살펴보았던 GC 보다 좀 더 개선된 방식입니다. 개선이 된 만큼 성능은 좋아졌지만 GC의 과정은 좀 더 복잡해졌습니다. **`CMS`는 GC 과정에서 발생하는 `stop-the-world` 시간을 최소화 하는데 초점을 맞춘 GC 방식**입니다. 다음 그림은 `Serial GC`와 `CMS GC`의 절차를 비교한 그림입니다.
@@ -128,7 +130,9 @@ GC 방식은 JDK 7을 기준으로 5가지 방식이 있습니다
 
 #### G1(Garbage First) GC
 
-`G1(Garbage First) GC`는 `Young 영역`과 `Old 영역`으로 나누는 방식을 사용하지 않습니다. `Eden`, `Survivor`, `Old` 영역이 존재하지만 고정된 크기로 고정된 위치에 존재하는 것이아니며, 전체 힙 메모리 영역을 `Region` 이라는 특정한 크기로 나눠서 각 `Region`의 상태에 따라 그 `Region`에 역할(`Eden, Survivor, Old`)이 동적으로 부여되는 상태입니다.  **JVM 힙은 2048개의 Region 으로 나뉠 수 있으며, 각 Region의 크기는 1MB ~ 32MB 사이로 지정될 수 있습니다.** (-XX:G1HeapRegionSize 로 설정) 즉, **`G1 GC`는 큰 힙 메모리에서 짧은 GC 시간을 보장하는데 그 목적**을 둡니다.
+`G1(Garbage First) GC`는 `Young 영역`과 `Old 영역`으로 나누는 방식을 사용하지 않습니다. `Eden`, `Survivor`, `Old` 영역이 존재하지만 고정된 크기로 고정된 위치에 존재하는 것이아니며, 전체 힙 메모리 영역을 `Region` 이라는 특정한 크기로 나눠서 각 `Region`의 상태에 따라 그 `Region`에 역할(`Eden, Survivor, Old`)이 동적으로 부여되는 상태입니다.
+
+ **JVM 힙은 2048개의 Region 으로 나뉠 수 있으며, 각 Region의 크기는 1MB ~ 32MB 사이로 지정될 수 있습니다.** (`-XX:G1HeapRegionSize 로 설정`) 즉, **`G1 GC`는 큰 힙 메모리에서 짧은 GC 시간을 보장하는데 그 목적**을 둡니다. JDK 11의 Default GC 알고리즘으로, 별다른 옵션을 주지 않으면 G1 GC를 사용합니다.
 
 다음 그림에서 보다시피, **G1 GC는 바둑판의 각 Region에 객체를 할당하고 GC를 실행**합니다. **그러다가, 해당 Region이 꽉 차면 다른 영역에서 객체를 할당하고 GC를 실행**합다. 즉, **Young의 세가지 영역에서 데이터가 Old 영역으로 이동하는 단계가 사라진 GC 방식**이라고 이해하면 됩니다. `G1 GC`는 장기적으로 말도 많고 탈도 많은 `CMS GC`를 대체하기 위해서 만들어 졌습니다.
 
@@ -153,17 +157,15 @@ GC 방식은 JDK 7을 기준으로 5가지 방식이 있습니다
    - `Old Region` 에 존재하는 객체들이 참조하는 `Survivor Region` 을 찾습니다. 이 과정에서는 `stop-the-world`현상이 발생하게 됩니다.
 2. **Root Region Scan**
    - `Initial Mark` 에서 찾은 `Survivor Region`에 대한 GC 대상 객체 스캔 작업을 진행합니다.
-
 3. **Concurrent Mark**
    - 전체 힙의 `Region`에 대해 스캔 작업을 진행하며, GC 대상 객체가 발견되지 않은 `Region` 은 이후 단계를 처리하는데 제외되도록 합니다.
 4. **Remark**
    - 애플리케이션을 멈추고(`stop-the-world`) 최종적으로 GC 대상에서 제외될 객체(살아남을 객체)를 식별해냅니다.
-
 5. **Cleanup**
    - 애플리케이션을 멈추고(`stop-the-world`) 살아있는 객체가 가장 적은 `Region` 에 대한 미사용 객체 제거를 수행합니다. 이후 `stop-the-world`를 끝내고, 앞선 GC 과정에서 완전히 비워진 `Region`을 `Freelist`에 추가하여 재사용될 수 있게 합니다.
-
 6. **Copy**
    - GC 대상 `Region`이었지만 `Cleanup` 과정에서 완전히 비워지지 않은 `Region`의 살아남은 객체들을 새로운`(Available/Unused) Region` 에 복사하여 `Compaction` 작업을 수행한다.
+7. 살아있는 객체가 아주 적은 Old 영역에 대해 GC pause(mixed)를 로그로 표시하고, Minor GC가 이루어질 때 수집합니다.
 
 
 
@@ -181,6 +183,125 @@ GC 방식은 JDK 7을 기준으로 5가지 방식이 있습니다
 | -XX:G1OldCSetRegionLiveThresholdPercent |   65    |          Mixed GC 가 시작되는 Old Region 크기 비율           |
 
 > **Mixed GC** : Full GC 를 완료하는 시점에 Young/Old Region을 동시에 GC
+
+
+
+#### Z GC
+
+Z GC는 JDK 11부터 실험적으로 도입되었으며, **JDK 15에서 Production Ready** 상태입니다. 
+
+Z GC는 **조금 더 큰 메모리(8MB ~ 16TB) 에서 효율적으로 GC 하기 위한 알고리즘**으로 **적은 메모리나 큰 메모리에서 STW 시간을 최대한 적게(10ms 이하로)** 가져가고 **G1 GC보다 어플리케이션 처리량이 15%이상 떨지지 않는 것**을 목표로 제작되었습니다. 
+
+즉, **Z GC의 목표는 G1보다 더 짧은 latency를 가지면서 G1보다 크게 뒤쳐지지 않는 처리량을 갖는 것**입니다. 실제로 STW 시간을 줄이기 위해서 Marking시간에만 STW가 발생하도록 하고 있고 Thread가 동작하는 중간에도 Z GC가 객체 재배치 같은 작업을 수행할 수 있습니다.
+
+Z GC는 아래와 같은 메모리 구조를 가지고 있습니다.
+
+<img src="https://user-images.githubusercontent.com/79291114/123595689-296b7180-d82c-11eb-8e87-09b8f62d1308.png" alt="ZGC-Heap" style="zoom: 50%;" />
+
+- Z GC Heap은 위와 같은 다양한 사이즈의 영역이 여러 개 발생할 수 있습니다.
+- Z GC가 compaction된 후, Z Page는 Z PageCache라고 불리는 캐시에 삽입됩니다.
+- Z GC에서는 메모리를 Z Pages라 불리는 영역으로 나누고 동적 사이즈로 2MB의 배수가 동적으로 생성 및 삭제될 수 있습니다. 
+- 캐시 안의 Z page는 새로운 Heap 할당을 위해 재사용할 준비를 합니다.
+- 메모리를 커밋과 커밋하지 않는 작업은 매우 비싼 작업이므로 캐시의 성능에 중요한 영향을 끼칩니다.
+
+
+
+Z GC의 핵심은 **Colored pointers**와 **Load barriers**를 사용하는 것입니다.
+
+##### Colored pointers
+
+<img src="https://user-images.githubusercontent.com/79291114/123595697-2b353500-d82c-11eb-91cb-d2bc2d513f7d.png" alt="ZGC-Colored-Pointers" style="zoom: 67%;" />
+
+**Colored pointers는 Z GC가 객체를 찾아낸 뒤, 마킹하고 재배치하는 등의 작업을 지**원합니다. 객체를 가리키는 변수의 포인터에서 64bit 을 활용해서 Marking을 한 것을 볼 수 있습니다. 때문에 Z GC는 반드시 64bit 운영체제에서만 사용 가능 합니다.
+
+18 bit의 미사용 공간, 42 bit의 객체의 참조 주소와 총 4 bit의 공간을 차지하는 4개의 color pointer가 존재합니다. 이러한 bit들을 `meta bits`라고 합니다.
+
+- **Finalizable** : finalizer을 통해서만 참조되는 객체. 해당 pointer가 Mark 되어 있다면 non-live Object
+- **Remapped** : 재배치 여부를 판단하는 Mark. 해당 Bit의 값이 1이라면 최신 참조 상태임을 의미
+- **Marked 1 / 0** : Live Object
+
+
+
+##### Load barriers
+
+<img src="https://user-images.githubusercontent.com/79291114/123595693-2a9c9e80-d82c-11eb-8f1d-6744c3d3223b.png" alt="ZGC-Load-Barriers"  />
+
+Load Barriers는 Thread가 Stack으로 Heap Object 참조 값을 불러올 때 실행됩니다. Z GC는 G1 GC와는 다르게 **Colored pointers에서 언급한 bit 를 바탕으로 STW 없이 메모리를 재배치** 합니다. 이 때, 아래와 같이 `RemapMark`와 `RellocationSet`을 확인하면서 참조와 Mark를 업데이트하게 됩니다.
+
+- Mark pointer의 색이 나쁜 경우 Mark, Relocate, Remapping을 진행하여 은 상태 (색상)로 변경하는 작업을 진행합니다. (Repair or Heal)
+- Mark pointer의 색이 좋은 경우 그대로 작업을 진행합니다.
+- Remap bit가 1인 경우 최신 참조 상태를 의미하기 때문에 바로 참조 값을 반환하며, 0인 경우에는 참조된 개체가 Relocation Set에 있는지 확인합니다.
+- Set에 없는 경우 Remap bit를 1로 설정합니다. (재배치 되었음을 의미)
+- Set에 있는 경우에는 Relocation 하고 Forwarding table에 해당 정보를 기록한 뒤 Remap bit를 1로 설정한다.
+- 참조 값을 반환합니다.
+
+> Forwarding table : Relocation 대상인 객체의 현재 참조 값과 변경 후 참조 값을 기록하는 일종의 Mapping Table을 말합니다. 이를 이용하여 현재 Relocation 된 객체를 바로 접근하고 참조할 수 있습니다.
+
+
+
+##### Flow
+
+<img src="https://user-images.githubusercontent.com/79291114/123603442-d944dd00-d834-11eb-8d4e-aa018bcbe4f3.png" alt="ZGC-flow" style="zoom:80%;" />
+
+**Mark Start -> Concurrent Mark/Remap -> Mark End -> Concurrent Pereare -> Concurrent Relocate -> Relocate Start -> Concurrent Relocate**
+
+1. **Mark Start**
+   - Z GC의 Root set에서 가리키는 객체를 Mark 표시합니다. (짧은 STW 발생)
+2. **Concurrent Mark/Remap**
+   - Marking된 Root Set으로부터 객체의 참조를 탐색하면서 모든 객체에 Mark 표시를 합니다.
+   - Load barrier를 활용하여, Marking 되지 않은 Object load를 감지하고 해당 객체의 Mark pointer도 표시합니다.
+3. **Mark End**
+   - 새롭게 들어온 객체들에 대해 Mark 표시 (STW 발생)
+4. **Concurrent Pereare**
+   - Local Thread 간의 동기화를 진행합니다. (Thread local handshakes) (STW 발생)
+   - 이후 Week, Phantom Reference와 같은 일부 edge case를 확인하고 정리합니다.
+5. **Concurrent Relocate**
+   - 재배치하려는 영역을 찾아 Relocation Set에 배치
+   - Mapping 되지 않은 대상들은 Heap Memory에서 정리
+   - Relocation Set에 연결된 대상 중 Root Set을 통해 참조되는 모든 객체를 재 배치 후 업데이트
+6. **Relocate Start**
+   - 모든 Root 참조의 재배치를 진행하고 업데이트 (STW 발생)
+7. **Concurrent Relocate**
+   - 이후 Load Barriers를 사용하여 모든 객체를 재배치 및 참조 수정
+
+Z GC는 G1 GC와 다르게 바로 Pointer를 이용해서 객체를 Marking하고 관리하는 것이 핵심입니다.
+
+
+
+##### Z GC 튜닝
+
+Z GC 튜닝에서 **가장 중요한 것은 `-Xmx`로 설정할 수 있는 최대 힙 크기**입니다. Z GC는 동시 콜렉터이기 때문에
+
+1. Heap이 어플리케이션의 라이브 셋을 수용할 수 있고,
+2. Heap에서 GC가 돌아가는 동안 할당을 처리할 수 있을만큼의 충분한 여유 공간이 있어야 합니다.
+
+일반적으로 Z GC는 메모리가 많으면 많을수록 좋다고 합니다.
+
+Z GC 튜닝에서 **두 번째로 중요한 것은 동시에 가동하는 GC 스레드의 수** 입니다. `-XX:ConcGCThreads`로 설정할 수 있으며, Z GC는 휴리스틱을 통해 이 값을 자동으로 선택합니다. 
+
+이 값이 너무 크면 GC가 애플리케이션의 CPU 시간을 다 빼앗아버리므로 처리량이 떨어집니다. 반면 이 값이 너무 작으면 GC의 처리량보다 Garbage가 쌓이는 속도가 더 빠를 수도 있습니다.
+
+
+
+##### 주의점
+
+- Z GC를 사용하기 위해서는 Compressed OOP(32bit만으로 32GB Heap을 사용하게 해줌)를 사용해서는 안됩니다. 0으로 채워지는 padding 영역(Unsed bits)을 Z GC에서 사용하기 때문입니다.
+- 위와 같은 이유로 Heap 사이즈가 32GB 이상으로 크게 써야할 경우 Z GC를 사용하는게 좋습니다. 
+- Z Page는 사용되지 않는 메모리 집합을 정책에 따라 커밋 해제하여 OS로 반환하는데, 일반적으로 `LRU(Least Recently Used)` 방식을 사용하고, page 크기로 구분하기에 메모리를 해제하는 방법은 비교적 간단하지만, Z Page를 제거할 시기를 결정하는데 주의해야 합니다.
+  - 일정 시간이 지나면 제거되도록 설정 : `-XX:ZUncommitDelay=<seconds>(default 300sec)` 으로 간단하게 정책 제공이 가능합니다.
+  - 새 옵션을 추가하지 않고 GC가 일어나는 빈도에 기초해 메모리 해제 주기를 설정할 수 있습니다. 
+
+
+
+##### 성능 비교
+
+Z GC는 큰 메모리에 적합한 GC방식이기 때문에 메모리가 클 수록 효율적입니다.
+
+<img src="https://user-images.githubusercontent.com/79291114/123595694-2a9c9e80-d82c-11eb-9b30-3abc02f48e01.jpg" alt="ZGC-Performance" style="zoom:80%;" />
+
+위와 같은 테스트환경은, Heap Size 128G , CPU Intel Xeon E5-2690 2.9GHz, 16core 환경에서 성능을 측정한 결과인데, 최악의 경우에는 `G1 GC` 와 비교했을 때 거의 **1000배의 STW 시간 차이**가 나는 것을 볼 수 있습니다.
+
+
 
 
 
@@ -300,3 +421,14 @@ Java 스펙에서는 **`SoftReference`, `WeakReference`, `PhantomReference` 3가
 [https://deveric.tistory.com/64](https://deveric.tistory.com/64)
 
 [https://mirinae312.github.io/develop/2018/06/04/jvm_gc.html](https://mirinae312.github.io/develop/2018/06/04/jvm_gc.html)
+
+[https://huisam.tistory.com/entry/jvmgc](https://huisam.tistory.com/entry/jvmgc)
+
+[https://johngrib.github.io/wiki/java-gc-zgc/](https://johngrib.github.io/wiki/java-gc-zgc/)
+
+[https://sarc.io/index.php/java/2098-zgc-z-garbage-collectors](https://sarc.io/index.php/java/2098-zgc-z-garbage-collectors)
+
+[https://catsbi.oopy.io/56acd9f4-4331-4887-8bc3-e3e50b2f3ea5#2c93582df7784f119093bb525bb5778d](https://catsbi.oopy.io/56acd9f4-4331-4887-8bc3-e3e50b2f3ea5#2c93582df7784f119093bb525bb5778d)
+
+[https://lob-dev.tistory.com/m/entry/ZGC](https://lob-dev.tistory.com/m/entry/ZGC)
+
