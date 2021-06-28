@@ -243,28 +243,25 @@ Load Barriers는 Thread가 Stack으로 Heap Object 참조 값을 불러올 때 �
 
 <img src="https://user-images.githubusercontent.com/79291114/123603442-d944dd00-d834-11eb-8d4e-aa018bcbe4f3.png" alt="ZGC-flow" style="zoom:80%;" />
 
-**Mark Start -> Concurrent Mark/Remap -> Mark End -> Concurrent Pereare -> Concurrent Relocate -> Relocate Start -> Concurrent Relocate**
+**Mark Start -> Concurrent Mark/Remap -> Concurrent Pereare & Edge Handle -> Concurrent Relocate -> Concurrent Relocation and update**
 
 1. **Mark Start**
    - Z GC의 Root set에서 가리키는 객체를 Mark 표시합니다. (짧은 STW 발생)
 2. **Concurrent Mark/Remap**
    - Marking된 Root Set으로부터 객체의 참조를 탐색하면서 모든 객체에 Mark 표시를 합니다.
    - Load barrier를 활용하여, Marking 되지 않은 Object load를 감지하고 해당 객체의 Mark pointer도 표시합니다.
-3. **Mark End**
-   - 새롭게 들어온 객체들에 대해 Mark 표시 (STW 발생)
-4. **Concurrent Pereare**
+4. **Concurrent Pereare & Edge Handle**
    - Local Thread 간의 동기화를 진행합니다. (Thread local handshakes) (STW 발생)
    - 이후 Week, Phantom Reference와 같은 일부 edge case를 확인하고 정리합니다.
 5. **Concurrent Relocate**
-   - 재배치하려는 영역을 찾아 Relocation Set에 배치
-   - Mapping 되지 않은 대상들은 Heap Memory에서 정리
-   - Relocation Set에 연결된 대상 중 Root Set을 통해 참조되는 모든 객체를 재 배치 후 업데이트
-6. **Relocate Start**
-   - 모든 Root 참조의 재배치를 진행하고 업데이트 (STW 발생)
-7. **Concurrent Relocate**
-   - 이후 Load Barriers를 사용하여 모든 객체를 재배치 및 참조 수정
+   - 재배치하려는 영역을 찾아 Relocation Set에 배치합니다.
+   - Mapping 되지 않은 대상들은 Heap Memory에서 정리합니다.
+   - Relocation Set에 연결된 대상 중 Root Set을 통해 참조되는 모든 객체를 재 배치 후 업데이트합니다.
+7. **Concurrent Relocation and update**
+   - Relocation Set에 남아있는 대상들을 추적하며 재배치하고 이전 참조 값과 변경된 참조 값을 Mapping 하는 forwarding table에 저장합니다.
+   - Load barrier를 이용하여 Relocation Set에 배치된 대상을 참조하는 Pointer를 감지할 수 있습니다.
 
-Z GC는 G1 GC와 다르게 바로 Pointer를 이용해서 객체를 Marking하고 관리하는 것이 핵심입니다.
+이후 생성되는 참조 관계는 Mark 단계부터 다시 진행됩니다. Z GC는 G1 GC와 다르게 바로 Pointer를 이용해서 객체를 Marking하고 관리하는 것이 핵심입니다.
 
 
 
