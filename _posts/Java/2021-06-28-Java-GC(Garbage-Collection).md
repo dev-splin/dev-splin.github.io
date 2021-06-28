@@ -228,7 +228,7 @@ Z GC의 핵심은 **Colored pointers**와 **Load barriers**를 사용하는 것�
 
 Load Barriers는 Thread가 Stack으로 Heap Object 참조 값을 불러올 때 실행됩니다. Z GC는 G1 GC와는 다르게 **Colored pointers에서 언급한 bit 를 바탕으로 STW 없이 메모리를 재배치** 합니다. 이 때, 아래와 같이 `RemapMark`와 `RellocationSet`을 확인하면서 참조와 Mark를 업데이트하게 됩니다.
 
-- Mark pointer의 색이 나쁜 경우 Mark, Relocate, Remapping을 진행하여 은 상태 (색상)로 변경하는 작업을 진행합니다. (Repair or Heal)
+- Mark pointer의 색이 나쁜 경우 Mark, Relocate, Remapping을 진행하여 좋은 상태 (색상)로 변경하는 작업을 진행합니다. (Repair or Heal)
 - Mark pointer의 색이 좋은 경우 그대로 작업을 진행합니다.
 - Remap bit가 1인 경우 최신 참조 상태를 의미하기 때문에 바로 참조 값을 반환하며, 0인 경우에는 참조된 개체가 Relocation Set에 있는지 확인합니다.
 - Set에 없는 경우 Remap bit를 1로 설정합니다. (재배치 되었음을 의미)
@@ -256,7 +256,7 @@ Load Barriers는 Thread가 Stack으로 Heap Object 참조 값을 불러올 때 �
 5. **Concurrent Relocate**
    - 재배치하려는 영역을 찾아 Relocation Set에 배치합니다.
    - Mapping 되지 않은 대상들은 Heap Memory에서 정리합니다.
-   - Relocation Set에 연결된 대상 중 Root Set을 통해 참조되는 모든 객체를 재 배치 후 업데이트합니다.
+   - Relocation Set에 연결된 대상 중 Root Set을 통해 참조되는 모든 객체를 재배치 후 업데이트합니다.
 7. **Concurrent Relocation and update**
    - Relocation Set에 남아있는 대상들을 추적하며 재배치하고 이전 참조 값과 변경된 참조 값을 Mapping 하는 forwarding table에 저장합니다.
    - Load barrier를 이용하여 Relocation Set에 배치된 대상을 참조하는 Pointer를 감지할 수 있습니다.
