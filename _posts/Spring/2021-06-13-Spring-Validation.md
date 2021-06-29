@@ -90,7 +90,7 @@ Post요청 시 `@RequestBody`를 통해 데이터의 유효성을 검사하는 �
 
 ```java
 public class UserDTO {
-	@NotNull
+    @NotNull
     private Long id;
     @NotEmpty(message = "fail")
     private String password;
@@ -140,7 +140,7 @@ public class ValidController {
 
 1. `@Valid`가 선언되어 있기 때문에 UserDTO 클래스의 제약조건 어노테이션(`@Notnull, @NotEmpty`)에 따라 데이터의 유효성 검사를 진행합니다.
 2. 모든 필드의 데이터가 유효하다면 문제없이 작성된 로직을 진행합니다.
-3. 데이터가 유효하지 않는 필드가 있으면 그에 대한 에러 정보를 `BindingResult`변수에 담는다.
+3. 데이터가 유효하지 않는 필드가 있으면 그에 대한 에러 정보를 `BindingResult`변수에 담습니다.
    - **BindingResult에 값이 있다면 유효성 검사에 실패한 것**이기 때문에 실패한 경우에 실행할 로직을 만들어줄 수 있습니다.
 
 
@@ -151,7 +151,7 @@ public class ValidController {
 
 ```java
 public class UserDTO {
-	@NotNull
+    @NotNull
     private Long id;
     @NotEmpty(message = "fail")
     private String password;
@@ -311,7 +311,7 @@ public class ValidationGroups {
 
 ```java
 public class UserDTO {
-	@NotNull(groups = {ValidationGroups.group1.class})
+    @NotNull(groups = {ValidationGroups.group1.class})
     private Long id;
     @NotEmpty(message = "fail", groups = {ValidationGroups.group2.class})
     private String password;
@@ -366,7 +366,7 @@ public class ValidController {
 ### MethodValidationPostProcessor Bean 등록
 
 ```java
-	@Bean
+    @Bean
     public MethodValidationPostProcessor methodValidationPostProcessor() {
          return new MethodValidationPostProcessor();
     }
@@ -510,7 +510,7 @@ public class NameConstraintValidator implements ConstraintValidator<NameConstrai
 
 ```java
 public class UserDTO {
-	@NotNull
+    @NotNull
     private Long id;
     @NotEmpty(message = "fail")
     private String password;
