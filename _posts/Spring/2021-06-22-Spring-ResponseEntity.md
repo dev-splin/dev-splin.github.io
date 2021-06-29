@@ -173,7 +173,7 @@ public ResponseEntity<MoveResponseDto> move(@PathVariable String name,
 }
 ```
 
-Spring 에서 다음과 같이 HTTP 응답으로 반환할 메서드를 만들게 되었습니다. 이 때, 타입은 ResponseEntity<반환할 타입>으로 지정합니다. **생성자를 사용 시에는  Body 부분, Header 그리고 상태로 지정될 Status 를 차례로 입력하여 생성**하면 됩니다. 예시 코드에서는 moveResponseDto라는 객체가 Body부분에 들어가서 응답으로 전송이 됩니다. 즉, HTTP 응답에 필요한 요소들 중 대표적인 `Status, Header , Body`를 지정하여 응답을 만들 수 있습니다.
+Spring 에서 다음과 같이 HTTP 응답으로 반환할 메서드를 만들게 되었습니다. 이 때, 타입은 `ResponseEntity<반환할 타입>`으로 지정합니다. **생성자를 사용 시에는  Body 부분, Header 그리고 상태로 지정될 Status 를 차례로 입력하여 생성**하면 됩니다. 예시 코드에서는 moveResponseDto라는 객체가 Body부분에 들어가서 응답으로 전송이 됩니다. 즉, HTTP 응답에 필요한 요소들 중 대표적인 `Status, Header , Body`를 지정하여 응답을 만들 수 있습니다.
 
 
 
