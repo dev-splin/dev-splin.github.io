@@ -460,8 +460,8 @@ TreeSet<E> treeSet = new TreeSet<E>();
     - `Search, Insertion, Deletion`의 시간 복잡도가 `O(1)`,  `Acces`는 `N/A`
 
 - **Key의 중복과 순서가 허용되지 않습니다.**
-  - **키와 값으로 nll값이 올 수 있습니다.**
-  - **HashSet과 마찬가지로 hashCode와 equals를 재정의해서 동일한 리턴 값을 가지면 동등한 객체로 간주**합니다.
+- **키와 값으로 nll값이 올 수 있습니다.**
+- **HashSet과 마찬가지로 hashCode와 equals를 재정의해서 동일한 리턴 값을 가지면 동등한 객체로 간주**합니다.
 
 ```java
 Map<K, V> map = new HashMap<K, V>();
