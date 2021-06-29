@@ -82,9 +82,9 @@ toc_label: 목차
 
       - `Search`의 시간 복잡도가 `O(n)`
 
-  ```java
+```java
 List<E> list = new ArrayList<E>(); // E에는 어떤 객체 타입이던 올 수 있다.
-  ```
+```
 
 
 
@@ -388,7 +388,7 @@ Set<E> set = new HashSet<E>();
 ### TreeSet
 
 - **이진 트리 구조에 자료를 저장**합니다.
-  - 트리 구조를 이용하기 때문에  `Search, Insertion, Deletion`의 시간 복잡도가 `O(log(n))`,  `Acces`는 (`N/A`).
+  - 트리 구조를 이용하기 때문에  `Search, Insertion, Deletion`의 시간 복잡도가 `O(log(n))`,  `Acces`는 `N/A`
 - **하나의 노드는 노드 값인 value와 왼쪽과 오른쪽 자식노드를 참조하기 위한 두 개의 변수로 구성**됩니다.
 - 객체를 저장하면 자동으로 정렬됩니다. (기본 오름차순)
 - **정렬된 순서대로 보관하며 Comparable나 Comparator를 이용해 정렬방법을 지정**할 수 있습니다.
@@ -431,7 +431,7 @@ TreeSet<E> treeSet = new TreeSet<E>();
 | **LinkedHashSet** | N/A    | O(1)      | O(1)      | O(1)      |
 | **TreeSet**       | N/A    | O(log(n)) | O(log(n)) | O(log(n)) |
 
-**해시셋과 링크드 해시셋은 해시값으로 호출/삭제/삽입을 하므로 모든 연산에 있어 O(1)의 시간 효율성**을 가집니다.<br>**트리셋은 이진 탐색 트리를 사용하므로, 검색/삽입/삭제의 시간 효율성은 log(n)**을 가지게 됩니다.
+**HashSet과 LinkedHashSet은 Hash값으로 호출/삭제/삽입을 하므로 모든 연산에 있어 O(1)의 시간 효율성**을 가집니다.<br>**TreeSet은 이진 탐색 트리를 사용하므로, 검색/삽입/삭제의 시간 효율성은 log(n)**을 가지게 됩니다.
 
 
 
@@ -457,10 +457,11 @@ TreeSet<E> treeSet = new TreeSet<E>();
 ### HashMap
 
   - `Map Interface`를 구현하기 위해 `해쉬코드`를 사용한 class
-        - `Search, Insertion, Deletion`의 시간 복잡도가 `O(1)`,  `Acces`는 (`N/A`).
+        - `Search, Insertion, Deletion`의 시간 복잡도가 `O(1)`,  `Acces`는 `N/A`
   - **Key의 중복과 순서가 허용되지 않습니다.**
   - **키와 값으로 nll값이 올 수 있습니다.**
   - **HashSet과 마찬가지로 hashCode와 equals를 재정의해서 동일한 리턴 값을 가지면 동등한 객체로 간주**합니다.
+
 ```java
 Map<K, V> map = new HashMap<K, V>();
 ```
@@ -470,11 +471,12 @@ Map<K, V> map = new HashMap<K, V>();
 ### Hashtable
 
 - **HashMap과 동일한 내부구조**를 가집니다.
-  - `Search, Insertion, Deletion`의 시간 복잡도가 `O(1)`,  `Acces`는 (`N/A`).
+  - `Search, Insertion, Deletion`의 시간 복잡도가 `O(1)`,  `Acces`는 `N/A`
 - **HashMap 보다는 느리지만 동기화 지원**
   - 동기화된 메소드로 구성되어 있기때문에 멀티스레드가 동시에 이 메소드들을 실행할 수 없습니다.
   - 하나의 스레드가 실행을 완료해야 다른 스레드가 실행할 수 있습니다.
 - **키와 값으로 null값이 허용되지 않습니다.**
+
 ```java
 Map<K, V> map = new Hashtable<K, V>();
 ```
@@ -484,9 +486,10 @@ Map<K, V> map = new Hashtable<K, V>();
 ### LinkedHashMap
 
 - 기본적으로 **HashMap을 상속받아 HashMap과 매우 흡사**합니다.
-  - `Search, Insertion, Deletion`의 시간 복잡도가 `O(1)`,  `Acces`는 (`N/A`).
+  - `Search, Insertion, Deletion`의 시간 복잡도가 `O(1)`,  `Acces`는 `N/A`
 - **삽입순서를 유지하기 위하여 포인터값을 저장**하므로 HashMap 보다 약간 느립니다.
 - **Map에 있는 엔트리들의 연결 리스트가 유지되므로 입력한 순서대로 반복 가능**합니다.
+
 ```java
 Map<K, V> map = new LinkedHashMap<K, V>();
 ```
@@ -497,10 +500,11 @@ Map<K, V> map = new LinkedHashMap<K, V>();
 
 - 키와 값의 쌍으로 이루어진 데이터 `MapEntry`를 저장
 - **객체를 저장하면 기본적으로 부모 키값과 비교해서 키값이 낮은 것은 왼쪽, 높은 것은 오른쪽에 자동으로 정렬**됩니다.
-  - 트리 구조를 이용하기 때문에  `Search, Insertion, Deletion`의 시간 복잡도가 `O(log(n))`,  `Acces`는 (`N/A`).
+  - 트리 구조를 이용하기 때문에  `Search, Insertion, Deletion`의 시간 복잡도가 `O(log(n))`,  `Acces`는 `N/A`
 - **정렬된 순서대로 키(Key)와 값(Value)을 저장**하여 검색이 빠릅니다.
 - **삽입과 삭제 시, 정렬**을 하기 때문에 저장시간이 다소 오래 걸립니다.
 - **정렬된 순서(기본 오름차순)대로 보관하며 Comparable나 Comparator를 이용해 정렬방법을 지정**할 수 있습니다.
+
 ```java
 TreeMap<K, V> treeMap = new TreeMap<K, V>();
 ```
@@ -521,7 +525,7 @@ TreeMap<K, V> treeMap = new TreeMap<K, V>();
 | **LinkedHashMap** | N/A    | O(1)      | O(1)      | O(1)      |
 | **TreeMap**       | N/A    | O(log(n)) | O(log(n)) | O(log(n)) |
 
-**HashMap과 LinkedHashMap, Hashtable은 해시값으로 호출/삭제/삽입을 하므로 모든 연산에 있어 O(1)의 시간 효율성**을 가집니다.<br>**TreeMap은 이진 탐색 트리를 사용하므로, 검색/삽입/삭제의 시간 효율성은 log(n)**을 가지게 됩니다.
+**HashMap과 LinkedHashMap, Hashtable은 Hash값으로 호출/삭제/삽입을 하므로 모든 연산에 있어 O(1)의 시간 효율성**을 가집니다.<br>**TreeMap은 이진 탐색 트리를 사용하므로, 검색/삽입/삭제의 시간 효율성은 log(n)**을 가지게 됩니다.
 
 
 
@@ -602,13 +606,13 @@ public class EntryMain {
 
 ---
 
-참고 : https://gangnam-americano.tistory.com/41 
+참고 : [https://gangnam-americano.tistory.com/41](https://gangnam-americano.tistory.com/41)
 
-https://hackersstudy.tistory.com/26
+[https://hackersstudy.tistory.com/26](https://hackersstudy.tistory.com/26)
 
-https://minwan1.github.io/2018/07/03/2018-07-03-collection/
+[https://minwan1.github.io/2018/07/03/2018-07-03-collection/](https://minwan1.github.io/2018/07/03/2018-07-03-collection/)
 
-https://gem1n1.tistory.com/97
+[https://gem1n1.tistory.com/97](https://gem1n1.tistory.com/97)
 
 [https://freestrokes.tistory.com/84](https://freestrokes.tistory.com/84)
 
