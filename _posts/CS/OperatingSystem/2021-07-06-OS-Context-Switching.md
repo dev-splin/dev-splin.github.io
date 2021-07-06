@@ -187,18 +187,6 @@ PCB는 Linked List 방식으로 관리됩니다. PCB List Head에 PCB들이 생�
 
 
 
-### Context Switching과 Interrupt
-
-인터럽트 과정을 보면 Context Switching이 발생하는 것을 볼 수 있는데, 그렇다면 어떤 인터럽트 요청이 와야 Context Switching이 일어날까요?? 아래와 같은 다양한 경우들이 있습니다.
-
-1. I/O request (입출력 요청할 때)
-2. time slice expired (CPU 사용시간이 만료 되었을 때)
-3. fork a child (자식 프로세스를 만들 때)
-4. wait for an interrupt (인터럽트 처리를 기다릴 때)
-5. 등등.. 
-
-
-
 ### Context Switching의 필요성
 
 결국 **CPU의 레지스터 정보가 변경되는 것을 Context Switching**이라고 하는데, 왜 Context Switching이 필요한 것일까요??
