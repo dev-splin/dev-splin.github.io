@@ -1,5 +1,5 @@
 ---
-title: "PHP : PHP의 주의사항"
+title: "PHP : PHP 간단 정리"
 excerpt_separator: <!--more-->
 categories:
   - PHP
@@ -11,7 +11,7 @@ toc_sticky: true
 toc_label: 목차
 ---
 
-# PHP의 주의사항
+# PHP 간단 정리
 
 저는 원래 주로 자바를 사용하였기 때문에 PHP의 기본을 따로 정리하지는 않고, 자바와의 다른 점(주의할 점)만 간단히 정리하겠습니다.
 
@@ -171,29 +171,60 @@ echo "test = ".$test;	// 함수 안에서 전역변수 값을 바꿔주었기 �
 
 #### 자료형 관련
 
-`var_dump(arg)` : arg에 해당하는 타입을 보여 줍니다. (배열은 안의 내용까지)
+- `var_dump(arg)` : arg에 해당하는 타입을 보여 줍니다. (배열은 안의 내용까지)
 
-`ucfirst(arg)` : arg의 첫 번째 글자를 대문자로 만들어 줍니다.
+- `ucfirst(arg)` : arg의 첫 번째 글자를 대문자로 만들어 줍니다.
 
 
 
 #### 배열 관련
 
-`array_push(arg1, arg2)` : arg1(배열)의 마지막에 arg2(값)을 추가합니다.
+- `array_push(arg1, arg2)` : arg1(배열)의 마지막에 arg2(값)을 추가합니다.
 
-`array_pop(arg1, arg2)` : arg1(배열)의 마지막 값을 삭제하면서 삭제한 값을 반환합니다.
+- `array_pop(arg1, arg2)` : arg1(배열)의 마지막 값을 삭제하면서 삭제한 값을 반환합니다.
 
-`array_unshift(arg1, arg2)` : arg1(배열)의 맨 앞에 arg2(값)을 추가합니다.
+- `array_unshift(arg1, arg2)` : arg1(배열)의 맨 앞에 arg2(값)을 추가합니다.
 
-`array_shift(arg1, arg2)` : arg1(배열)의 맨 앞 값을 삭제하면서 삭제한 값을 반환합니다.
+- `array_shift(arg1, arg2)` : arg1(배열)의 맨 앞 값을 삭제하면서 삭제한 값을 반환합니다.
 
-`sort(arg)` : arg(배열)을 정렬합니다. (기본 오름차순)
+- `sort(arg)` : arg(배열)을 정렬합니다. (기본 오름차순)
 
-`rsort(arg)` : arg(배열)을 정렬합니다. (기본 내림차순)
+- `rsort(arg)` : arg(배열)을 정렬합니다. (기본 내림차순)
 
-[더 다양한 배열관련 함수들](https://www.php.net/manual/en/ref.array.php)
+[더 다양한 배열 관련 함수들](https://www.php.net/manual/en/ref.array.php)
 
 
+
+#### 파일 관련
+
+- `copy(arg1, arg2)` : arg1(파일 이름)의 파일을 arg2(파일 이름)로 복사합니다.
+
+- `unlink(arg)` : arg(파일 이름)에 해당하는 이름의 파일을 삭제합니다.
+
+- `file_get_contents(arg)` : arg(파일 이름) 파일을 읽어서 리턴합니다. (웹 사이트도 읽을 수 있습니다.)
+
+- `file_put_contents(arg1, arg2)` : arg1(파일 이름)의 파일에 arg2(내용)을 작성합니다. (기존의 내용이 있다면 덮어 쓰고, 없다면 파일을 만든 후 작성합니다.)
+  - 간편 하지만, 파일을 세밀하게 제어하기엔 한계가 있기 때문에 fopen, fwrite등의 함수를 이용하는 것이 더 좋습니다.
+- `is_readable(arg)` : arg 파일이 읽기 가능한 상태인지 확인합니다.
+- `is_writable(arg)` : arg 파일이 쓰기 가능한 상태인지 확인합니다.
+- `file_exists(arg)` : arg 파일이 존재하는지 확인합니다.
+
+
+
+##### 파일 업로드 관련
+
+- 
+
+[더 다양한 파일 관련 함수들](https://www.php.net/manual/en/ref.filesystem.php)
+
+
+
+#### 디렉토리(폴더) 관련
+
+- `getcwd()` : 현재 디렉토리의 위치를 반환합니다.
+- `chdir(arg)` : 현재 디렉토리에서 arg에 해당하는 명령어로 디렉토리 제어합니다.
+- `scandir(arg1, arg2)` : arg1 위치의 디렉토리 안의 파일 이름을 반환합니다. Dfault는 오름차순(arg2가 없을 때), arg2가 1이면 내림차순
+- `mkdir(arg1, arg2, arg3)` : arg1에 해당하는 디렉토리를 arg2의 권한으로 만드는데, arg3을 true를 지정하면 arg1에서 주어진 경로가 여러개의 디렉토리로 이루어져 있을 때 해당 디렉토리를 한번에 생성하게 됩니다.
 
 
 
@@ -268,6 +299,57 @@ Packagist에서 필요한 라이브러리를 찾았다면, 프로젝트의 최�
 
 
 
+
+
+## 파일 업로드
+
+PHP는 라이언트에서 전달한 파일을 아래와 같이 `$_FILES`에 배열 형태로 넣어 놓습니다.
+
+```php
+
+array(2) {
+  ["userfile"]=>
+  array(5) {
+    ["name"]=>
+    string(20) "blog_teaser_mini1.jpg"
+    ["type"]=>
+    string(10) "image/jpeg"
+    ["tmp_name"]=>
+    string(48) "C:\Bitnami\wampstack-8.0.7-0\php\tmp\php2064.tmp"
+    ["error"]=>
+    int(0)
+    ["size"]=>
+    int(854)
+  }
+  ["userfile2"]=>
+  array(5) {
+    ["name"]=>
+    string(20) "blog_teaser_mini2.jpg"
+    ["type"]=>
+    string(10) "image/jpeg"
+    ["tmp_name"]=>
+    string(48) "C:\Bitnami\wampstack-8.0.7-0\php\tmp\php2065.tmp"
+    ["error"]=>
+    int(0)
+    ["size"]=>
+    int(854)
+  }
+}
+
+```
+
+- **name** : 파일의 이름
+- **type** : 파일의 형식
+- **tmp_name** : 임시 이름.
+  - tmp_name은 이 임시 디렉토리의 경로를 나타내는 것입니다.
+  - 클라이언트에서 파일을 전송하게 되면 그 파일은 자동으로 임시 디렉토리에 무조건 들어가게 됩니다.
+  - 이 임시 디렉토리를 알고 있어야지만 원하는 디렉토리로 이동 시킬 수 있습니다.
+- **error** : 
+- **size** : 
+
+
+
 ---
 
-참고 : 
+참고 : [https://opentutorials.org/course/62](https://opentutorials.org/course/62)
+
