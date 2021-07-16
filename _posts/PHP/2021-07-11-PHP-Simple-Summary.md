@@ -451,6 +451,31 @@ new Hi();
 
 
 
+### 상속
+
+PHP는 extends를 이용해서 상속할 수 있고, 부모의 메서드를 `parent::메서드 이름`를 이용해서 호출할 수 있고, 부모의 속성은 `$this->속성 이름`으로 가져올 수 있습니다.
+
+```php
+<?php
+class ParentClass{
+    public $value = 'public value';
+
+    function callMethod($param){
+        echo "<h1>Parent {$param}</h1>";
+    }
+}
+class ChildClass extends ParentClass{
+    function callMethod($param){
+        echo $this->value;
+        parent::callMethod($param);
+        echo "<h1>Child {$param}</h1>";
+    }
+}
+$obj = new ChildClass();
+$obj->callMethod('method');
+?>
+```
+
 
 
 ## include와 namespace
@@ -565,7 +590,7 @@ echo $Parsedown->text('Hello _Parsedown_!');	// 객체의 메서드 사용
 
 ## 파일 업로드
 
-PHP는 라이언트에서 전달한 파일을 아래와 같이 `$_FILES`에 배열 형태로 넣어 놓습니다.
+PHP는 클라이언트에서 전달한 파일을 아래와 같이 `$_FILES`에 배열 형태로 넣어 놓습니다.
 
 ```php
 array(2) {
@@ -838,8 +863,6 @@ echo $_SESSION['title'];
 echo file_get_contents('/ex.u/cep/cep/html/egoing/session/session/sess_'.session_id());
 ?>
 ```
-
-
 
 
 
