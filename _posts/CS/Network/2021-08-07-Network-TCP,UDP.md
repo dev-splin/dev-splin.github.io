@@ -32,7 +32,7 @@ toc_label: 목차
 
 모든 계층에서, 우리가 전송하는 데이터를 데이터라고 부르지 않고 **데이터 자체는 동일하지만 각 레이어를 거치면서 헤더 정보가 추가되면서 이름이 달라집니다.**
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/OSI_Model_v1.svg/870px-OSI_Model_v1.svg.png" alt="img" style="zoom:50%;" />
+<img src="https://user-images.githubusercontent.com/79291114/128603954-ee9b8e75-149c-4512-9f55-f4e913d03cda.png" alt="PDU" style="zoom:50%;" />
 
 
 
@@ -44,13 +44,13 @@ toc_label: 목차
 
 **TCP**
 
-<img src="https://madplay.github.io/img/post/2018-02-04-network-tcp-udp-tcpip-2.png" alt="img" style="zoom: 50%;" />
+<img src="https://user-images.githubusercontent.com/79291114/128603934-944cd9af-dc68-4b03-9e81-fdc70ab9c1c8.png" alt="simple-TCP" style="zoom: 50%;" />
 
 
 
 **UDP**
 
-<img src="https://madplay.github.io/img/post/2018-02-04-network-tcp-udp-tcpip-3.png" alt="img"  />
+![simple-UDP](https://user-images.githubusercontent.com/79291114/128603935-ba1a90b3-0fd8-4a43-b8ee-b5652bb646e2.png)
 
 
 
@@ -68,7 +68,7 @@ toc_label: 목차
 
 
 
-![img](https://github.com/WeareSoft/tech-interview/raw/master/contents/images/tcp-virtual-circuit.png)
+<img src="https://user-images.githubusercontent.com/79291114/128604054-9180a86c-76a8-4176-bf6e-485a7cf779fa.png" alt="TCP" style="zoom:80%;" />
 
 
 
@@ -91,7 +91,7 @@ toc_label: 목차
 
 - **신뢰성이 높은 전송(Reliable transmission)**
   - **Dupack-based retransmission** : 정상적인 상황에서는 ACK 값이 연속적으로 전송되어야 합니다. 그러나 ACK값이 중복으로 올 경우 패킷 이상을 감지하고 재전송을 요청합니다.
-  - **Timeout-based retransmission** : 일정시간동안 ACK 값이 수신을 못할 경우 재전송을 요청합니다.
+  - **Timeout-based retransmission** : 일정 시간동안 ACK 값이 수신을 못할 경우 재전송을 요청합니다.
 
 - **전이중, 점대점 방식**
   - **전이중 (Full-Duplex)** : 전송이 양방향으로 동시에 일어날 수 있습니다.
@@ -106,24 +106,95 @@ toc_label: 목차
 
 #### 추가 설명 - 흐름 제어 해결 방법
 
-- **Stop and Wait** : 매번 전송한 패킷에 대해 확인 응답을 받아야만 그 다음 패킷을 전송하는 방법
+**Stop and Wait** : 매번 전송한 패킷에 대해 확인 응답을 받아야만 그 다음 패킷을 전송하는 방법
 
-  ![img](https://t1.daumcdn.net/cfile/tistory/263B7D4E5715ECEB32)
+![Stop-and-Wait](https://user-images.githubusercontent.com/79291114/128603937-154bb5c0-d9b9-4489-bc04-cfea316083d9.png)
 
+
+
+**Sliding Window** (Go Back N ARQ)
+
+- 수신측에서 설정한 윈도우 크기만큼 송신측에서 확인 응답없이 세그먼트를 전송할 수 있게 하여 데이터 흐름을 동적으로 조절하는 제어 기법
+
+- 목적 : 전송은 되었지만, acked를 받지 못한 byte의 숫자를 파악하기 위해 사용하는 protocol
+
+- LastByteSent - LastByteAcked <= ReceivecWindowAdvertised
+  - (마지막에 보내진 바이트 - 마지막에 확인된 바이트 <= 남아있는 공간) == (현재 공중에 떠있는 패킷 수 <= sliding window)
   
-
-- **Sliding Window** (Go Back N ARQ)
-
-  - 수신측에서 설정한 윈도우 크기만큼 송신측에서 확인응답없이 세그먼트를 전송할 수 있게 하여 데이터 흐름을 동적으로 조절하는 제어기법
-  - 목적 : 전송은 되었지만, acked를 받지 못한 byte의 숫자를 파악하기 위해 사용하는 protocol
-  - LastByteSent - LastByteAcked <= ReceivecWindowAdvertised
-    - (마지막에 보내진 바이트 - 마지막에 확인된 바이트 <= 남아있는 공간) == (현재 공중에 떠있는 패킷 수 <= sliding window)
-
 - **동작방식** : 먼저 윈도우에 포함되는 모든 패킷을 전송하고, 그 패킷들의 전달이 확인되는대로 이 윈도우를 옆으로 옮김으로써 그 다음 패킷들을 전송
 
-  ![img](https://t1.daumcdn.net/cfile/tistory/253F7E485715ED5F27)
-
 - **Window** : TCP/IP를 사용하는 모든 호스트들은 송신하기 위한 것과 수신하기 위한 2개의 Window를 가지고 있습니다. 호스트들은 실제 데이터를 보내기 전에 `3- way handshaking`을 통해 수신 호스트의 receive window size에 자신의 send window size를 맞추게 됩니다.
+
+  ![Sliding-Window](https://user-images.githubusercontent.com/79291114/128603936-19ecd28a-80ef-4b84-b09c-90df123e4e4a.png)
+
+
+
+#### 추가 설명 - 오류 제어
+
+오류 제어는 오류 검출과 재전송을 포함합니다. ARQ(Automatic Repeat Request) 기법을 사용해 프레임이 손상되었거나 손실되었을 경우, 재전송을 통해 오류를 복구합니다. ARQ 기법은 위의 흐름 제어 기법과도 관련되어 있습니다.
+
+> **ARQ(Automatic Repeat Request)** : ARQ(Automatic Repeat Request)란 통신회선에서 착오가 발생하면 수신측은 착오의 발생을 송신측에 알리고, 송신측은 착오가 발생한 block을 재전송하는 방식으로 검출 후 재전송이라 합니다.
+
+**Stop and Wait ARQ**
+
+- 송신측에서 1개의 프레임을 송신하고, 수신측에서 수신된 프레임의 에러 유무 판단에 따라 ACK or NAK를 보내는 방식입니다.
+- 식별을 위해 데이터 프레임과 ACK 프레임은 각각 0,1 번호를 번갈아가며 부여합니다.
+- 수신측이 데이터를 받지 못했을 경우, NAK를 보내고 NAK를 받은 송신측은 데이터를 재전송합니다.
+- 만약, 데이터나 ACK가 분실되었을 경우, 일정 간격의 시간을 두고 타임아웃이 되면, 송신측은 데이터를 재전송합니다.
+
+
+
+**Go-Back-n ARQ(슬라이딩 윈도우)**
+
+- 전송된 프레임이 손상되거나 분실된 경우 그리고 ACK 패킷의 손실로 인한 TIME_OUT이 발생한 경우, 확인된 마지막 프레임 이후로 모든 프레임을 재전송합니다.
+- 슬라이딩 윈도우는 연속적인 프레임 전송 기법으로 전송측은 전송된 모든 프레임의 복사본을 가지고 있어야 하며, ACK와 NAK 모두 각각 구별해야 합니다.
+- ACK : 다음 프레임을 전송
+- NAK : 손상된 프레임 자체 번호를 반환
+
+
+
+**재전송 되는 경우**
+
+**NAK 프레임을 받았을 경우**
+
+- 만약, 수신측으로 0~5까지의 데이터를 보냈다고 가정합니다.
+- 수신측에서 데이터를 받았음을 확인하는 ACK 프레임을 중간 중간 보내게 되며, ACK 프레임을 확인한 전송측은 계속해서 데이터를 전송합니다.
+- 그러나 만약 수신측에서 데이터 오류 프레임 2를 발견하고 NAK2를 전송측에 보냅니다.
+- NAK2를 받은 전송측은 데이터 프레임 2가 잘못되었다는 것을 알고 데이터를 재전송합니다.
+
+> GBn(Go-Back-n) ARQ의 재전송은 NAK(n)를 받아 n 데이터 이후의 모든 데이터를 재전송합니다.
+
+
+
+**전송 데이터 프레임의 분실**
+
+- GBn ARQ의 특징은 확인된 데이터 이후의 모든 데이터 프레임 재전송과 수신측의 폐기입니다.
+
+- 수신측에서 데이터 1을 받고 다음 데이터로 3을 받게 된다면 데이터 2를 받지 못했으므로 수신측에서는 데이터 3을 폐기하고 데이터 2를 받지 못했다는 NAK2를 전송측에 보냅니다.
+
+- NAK를 받은 전송측은 NAK(n) 데이터로부터 모든 데이터를 재전송하며 수신측은 기존에 받았던 데이터 중 NAK(n)으로 보냈던 대상 데이터 이후의 모든 데이터를 폐기하고 재전송 받습니다.
+
+  <img src="https://user-images.githubusercontent.com/79291114/128603931-e73a1467-d82b-4eb1-8734-3af779cdd9fd.png" alt="GBn-ARQ-Frame-Lost" style="zoom: 67%;" />
+
+
+
+**지정된 타임 아웃 내의 ACK 프레임 분실(Lost ACK)**
+
+- 전송측은 분실된 ACK를 다루기 위해 타이머를 가지고 있습니다.
+- 전송측에서는 이 타이머의 타임 아웃 동안 수신측으로부터 ACK 데이터를 받지 못했을 경우, 마지막 ACK된 데이터부터 재전송합니다.
+
+<img src="https://user-images.githubusercontent.com/79291114/128603930-36574e51-df4c-4c11-b864-d1e901cea495.png" alt="GBn-ARQ-Frame-damage" style="zoom:67%;" />
+
+
+
+**SR(Selective-Reject) ARQ**
+
+- GBn ARQ의 확인된 마지막 프레임 이후의 모든 프레임을 재전송하는 단점을 보완한 기법입니다.
+- SR ARQ는 손상된, 손실된 프레임만 재전송합니다.
+- 그렇기 때문에 별도의 데이터 재정렬을 수행해야 하며, 별도의 버퍼를 필요로 합니다.
+- 수신측에 버퍼를 두어 받은 데이터의 정렬이 필요합니다.
+
+<img src="https://user-images.githubusercontent.com/79291114/128604216-28c4bd70-f609-4d31-b39d-6dd4c997a057.png" alt="Selective-Reject-ARQ" style="zoom:80%;" />
 
 
 
@@ -135,7 +206,7 @@ toc_label: 목차
 
 
 
-##### 해결 방법
+![Congestion-Control](https://user-images.githubusercontent.com/79291114/128603927-4d01df03-7554-4f69-8189-0466d5ea7829.png)
 
 **AIMD(Additive Increase / Multiplicative Decrease)**
 
@@ -160,8 +231,10 @@ toc_label: 목차
 
 - 빠른 재전송은 TCP의 혼잡 조절에 추가된 정책입니다.
 - 패킷을 받는 쪽에서 먼저 도착해야할 패킷이 도착하지 않고 다음 패킷이 도착한 경우에도 ACK 패킷을 보내게 됩니다.
-- 단, 순서대로 잘 도착한 마지막 패킷의 다음 패킷의 순번을 ACK 패킷에 실어서 보내게 되므로, 중간에 하나가 손실되게 되면 송신 측에서는 순번이 중복된 ACK 패킷을 받게 됩니다. 이것을 감지하는 순간 문제가 되는 순번의 패킷을 재전송 해줄 수 있습니다.
+- 중간에 하나가 손실되면 송신 측에서는 순번이 중복된 ACK 패킷을 받게 됩니다. 이것을 감지하는 순간 문제가 되는 순번의 패킷을 재전송 해줄 수 있습니다.
 - 중복된 순번의 패킷을 3개 받으면 재전송을 하게 됩니다. 약간 혼잡한 상황이 일어난 것이므로 혼잡을 감지하고 window size를 줄이게 됩니다.
+
+![Fast-Retransmit](https://user-images.githubusercontent.com/79291114/128603928-00bbc52d-755b-4a6b-b6b1-f75da965b328.jpg)
 
 
 
@@ -183,13 +256,11 @@ toc_label: 목차
 - **SYN-SENT :** 로컬의 Active  Close 어플리케이션이 원격 호스트에 연결을 요청한 상태
 - **SYN_RECEIVED(RCVD) :** Passive Close가 원격 Active  Close로부터 접속 요구를 받아 Active  Close에게 응답을 하였지만 아직 Active  Close에게 확인 메시지는 받지 않은 상태
 - **ESTABLISHED :** 3 way-handshaking 이 완료된 후 서로 연결된 상태
-- **FIN-WAIT1, FIN-WAIT2 :** Passive Close에서 연결을 종료하기 위해 Active  Close에게 종결을 요청하고 회신을 받아 종료하는 과정의 상태 (에러 발생으로 인해 Time Out 되면 스스로 연결을 종료)
+- **FIN-WAIT1, FIN-WAIT2 :** Passive Close에서 연결을 종료하기 위해 Active Close에게 종결을 요청하고 회신을 받아 종료하는 과정의 상태 (에러 발생으로 인해 Time Out 되면 스스로 연결을 종료)
 - **CLOSE-WAIT** : Close실행을 하지 않고, TCP 포트를 사용중인 프로세스에게 종료 명령을 내리고 Close 명령을 실행할 때까지 대기 하는 상태 (처리해야 할 통신이 끝날 때 까지 기다리는 상태)
 - **TIME-WAIT :** 연결은 종료되었지만 분실되었을지 모를 느린 세그먼트를 위해 당분간 소켓을 열어두고 있는 상태
 - **CLOSING :** 흔하지 않지만 주로 확인 메시지가 전송도중 분실된 상태 
 - **CLOSED :** 완전히 종료
-
-![img](https://nesoy.github.io/assets/posts/20181010/2.png)
 
 
 
@@ -197,17 +268,21 @@ toc_label: 목차
 
 TCP 통신을 위한 네트워크 연결은 3-way handshake 이라는 방식으로 연결됩니다. 3-way handshake 방식은 서로의 통신을 위한 관문(port)을 확인하고 연결하기 위하여 3번의 요청/응답 후에 연결이 되는 것을 말합니다. (이 과정에서 가장 많은 시간이 소요되어 UDP방식보다 속도가 느려지는 주요 원인으로 지목됩니다.)
 
-1. Client에서 Server에 연결 요청(`SYN-SENT`)을 하기위해 `SYN` 데이터를 보냅니다.
-2. Server에서 해당 포트는 `LISTEN` 상태에서 `SYN` 데이터를 받고 `SYN_RCV`로 상태가 변경됩니다.
-3. 그리고 요청을 정상적으로 받았다는 대답(`ACK`)와 Client도 포트를 열어달라는 `SYN` 을 같이 보냅니다.
-4. Client에서는 `SYN+ACK` 를 받고 `ESTABLISHED`로 상태를 변경하고 Passive Close에 `ACK` 를 전송합니다.
-5. ACK를 받은 Passive Close는 상태가 `ESTABLSHED`로 변경됩니다. 
+![3-way-handshake](https://user-images.githubusercontent.com/79291114/128603922-a6afd602-affd-433d-a970-806cd1fe2534.png)
+
+1. Active Close에서 Passive Close에 연결 요청(`SYN-SENT`)을 하기위해 `SYN` 데이터를 보냅니다.
+2. Passive Close에서 해당 포트는 `LISTEN` 상태에서 `SYN` 데이터를 받고 `SYN_RCV`로 상태가 변경됩니다.
+3. 그리고 요청을 정상적으로 받았다는 대답(`ACK`)와 Active Close도 포트를 열어달라는 `SYN` 을 같이 보냅니다.
+4. Active Close에서는 `SYN+ACK` 를 받고 `ESTABLISHED`로 상태를 변경하고 Passive Close에 `ACK` 를 전송합니다.
+5. ACK를 받은 Passive Close는 상태가 `ESTABLSHED`로 변경됩니다.
 
 **위와 같이 3번의 통신이 정상적으로 이루어지면, 서로의 포트가 ESTABLISHED 되면서 연결됩니다.**
 
 
 
 ##### TCP Disconnection (4-way handshake)
+
+![4-way-handshake](https://user-images.githubusercontent.com/79291114/128603924-9b5a9099-a0ef-4ee4-93ab-b6ce13112fb5.png)
 
 1. 먼저 `close()`를 실행한 Active Close가 FIN을 보내고 `FIN_WAIT1` 상태로 대기합니다.
 2. Passive Close는 `CLOSE_WAIT`으로 바꾸고 응답 ACK를 전달합니다. 동시에 해당 포트에 연결되어 있는 Active Close에게 close()를 요청합니다.
@@ -221,7 +296,7 @@ TCP 통신을 위한 네트워크 연결은 3-way handshake 이라는 방식으�
 
 응용 계층으로부터 데이터를 받은 TCP는 `헤더`를 추가한 후에 이를 IP로 보냅니다. 헤더에는 아래 표와 같은 정보가 포함됩니다.
 
-![img](https://blog.kakaocdn.net/dn/cIt86U/btqNiVx6GmY/nPEo5ZZsFq71gFGqAxtvxK/img.png)
+<img src="https://user-images.githubusercontent.com/79291114/128603939-45a60889-3db9-4871-a76d-5398c522f750.png" alt="TCP-Header" style="zoom:80%;" />
 
 
 
@@ -270,17 +345,23 @@ TCP 통신을 위한 네트워크 연결은 3-way handshake 이라는 방식으�
 - ACK 번호를 사용하여 패킷이 도착했는지 확인합니다.
   - 송신한 패킷이 제대로 도착하지 않았으면 **재송신**을 요구합니다.
 
-<img src="https://image.slidesharecdn.com/tcp-150426214109-conversion-gate01/95/tcp-12-1024.jpg?cb=1430085440" alt="img" style="zoom:80%;" />
+<img src="https://user-images.githubusercontent.com/79291114/128603926-ae630d66-ac71-4b4d-9c0e-07923ebf23ba.png" alt="ACK-Control-Bit" style="zoom:67%;" />
 
 
 
-##### 처음 SYN 패킷을 보낼 때 Sequence Number를 난수로 사용하는 이유
+#### 처음 SYN 패킷을 보낼 때 Sequence Number를 난수로 사용하는 이유
 
 Connection을 맺을 때, 사용하는 포트(port)는 유한 범위 내에서 사용하고 시간이 지남에 따라 재사용합니다. 따라서 이전에 사용한 포트 번호를 재사용할 가능성이 있습니다. 따라서 **Sequence Number가 순차적인 숫자로 전송된다면 수신측는 이전의 Connection으로부터 전송되는 패킷으로 인식할 수 있기 때문에 난수로 초기 Sequence Number를 설정**합니다.
 
-**난수로 해도 중복이 발생??**
 
 
+*보통 구글링을 하면 위와 같은 설명이 많은데, 뭔가 와닿지가 않아서 외국 사이트도 찾아본 결과 아래와 같은 설명들을 볼 수 있었습니다. 개인적으로는 아래의 설명이 조금 더 와닿았던 거 같습니다.*
+
+
+
+각 TCP 연결에는 두 개의 초기 Sequence Number(ISN)가 있습니다. 하나는 클라이언트에서 생성되고 다른 하나는 서버에서 생성됩니다. **랜덤으로 Sequence Number(ISN)를 사용하면 공격자가 새 연결을 위한 다음 ISN을 예측하고 새 세션을 가로채는 것을 방지**할 수 있습니다. 원하는 경우 트래픽 클래스당 임의 추출을 사용하지 않도록 설정할 수 있습니다.
+
+예를 들어 설명하자면, 순차적으로 1,2,3,4 Sequence Number를 생성하게 되면 3이 실행되는 중에 4의 Sequence Number를 예측해서 악용할 수 있는 상황을 랜덤으로 Sequence Number를 생성함으로써 방지하는 것입니다.
 
 
 
@@ -288,7 +369,7 @@ Connection을 맺을 때, 사용하는 포트(port)는 유한 범위 내에서 �
 
 비 연결형 서비스를 지원하는 프로토콜로써, TCP와 비교하여 호스트 간 완전성 또는 신뢰성이 없는 데이터를 전달합니다. 그러나 가상 회선을 굳이 확립할 필요가 없고 유연한 특성이 있으므로 효율적인 응용 계층의 데이터 전송이 필요한 곳에 적합합니다. 프로토콜 번호는 17 입니다.
 
-![img](https://github.com/WeareSoft/tech-interview/raw/master/contents/images/udp-datagram.png)
+<img src="https://user-images.githubusercontent.com/79291114/128604023-3626c9b8-efff-4d9a-ac79-6f832d571796.png" alt="UDP" style="zoom:80%;" />
 
 
 
@@ -336,7 +417,7 @@ Zone transfer 을 사용해야하는 경우에는 TCP를 사용해야 합니다.
 
 UDP의 헤더는 고정 크기의 8바이트만 사용합니다. 따라서 TCP와 비교하여 헤더의 처리에 적은 리소스가 필요합니다.
 
-![img](https://t1.daumcdn.net/cfile/tistory/272A5A385759267B36)
+<img src="https://user-images.githubusercontent.com/79291114/128603941-a79c200d-bde9-43b5-8800-1e6b1ea3df30.png" alt="UDP-Header" style="zoom:80%;" />
 
 | **필드**                             | **크기** | **내용**                                 |
 | ------------------------------------ | -------- | ---------------------------------------- |
@@ -392,7 +473,7 @@ UDP의 헤더는 고정 크기의 8바이트만 사용합니다. 따라서 TCP�
 
 [https://github.com/WooVictory/Ready-For-Tech-Interview/blob/master/Network/3%20way%20handshake.md](https://github.com/WooVictory/Ready-For-Tech-Interview/blob/master/Network/3%20way%20handshake.md)
 
-**[https://velog.io/@hidaehyunlee/TCP-%EC%99%80-UDP-%EC%9D%98-%EC%B0%A8%EC%9D%B4](https://velog.io/@hidaehyunlee/TCP-%EC%99%80-UDP-%EC%9D%98-%EC%B0%A8%EC%9D%B4)**
+[https://velog.io/@hidaehyunlee/TCP-%EC%99%80-UDP-%EC%9D%98-%EC%B0%A8%EC%9D%B4](https://velog.io/@hidaehyunlee/TCP-%EC%99%80-UDP-%EC%9D%98-%EC%B0%A8%EC%9D%B4)
 
 [https://coding-factory.tistory.com/614](https://coding-factory.tistory.com/614)
 
@@ -405,3 +486,5 @@ UDP의 헤더는 고정 크기의 8바이트만 사용합니다. 따라서 TCP�
 [https://tech.kakao.com/2016/04/21/closewait-timewait/](https://tech.kakao.com/2016/04/21/closewait-timewait/)
 
 [https://movefast.tistory.com/36](https://movefast.tistory.com/36)
+
+[https://github.com/WeareSoft/tech-interview/blob/master/contents/network.md#tcp%EC%99%80-udp](https://github.com/WeareSoft/tech-interview/blob/master/contents/network.md#tcp%EC%99%80-udp)
