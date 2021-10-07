@@ -365,6 +365,8 @@ Database의 성능 이슈는 디스크 I/O 를 어떻게 줄이느냐에서 시�
 
 
 
+
+
 ---
 
 참고 : [https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Database](https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Database)
