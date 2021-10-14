@@ -1,5 +1,5 @@
 ---
-title: "Database : Database"
+title: "Database : 데이터베이스"
 excerpt_separator: <!--more-->
 categories:
   - CS(Computer Science)
