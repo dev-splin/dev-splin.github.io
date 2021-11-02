@@ -1,0 +1,152 @@
+---
+title: "Vue : 정리(1)"
+excerpt_separator: <!--more-->
+categories:
+  - Vue
+tags:
+  - Vue
+  - "Vue : Sammary"
+toc: true
+toc_sticky: true
+toc_label: 목차
+---
+
+# Vue 정리(1)
+
+캡틴판교 장기효님의 `초급 ~ 실전 Vue.js로 완성하는 프론트엔드 개발자 로드맵`을 보면서 제 나름대로 정리한 글입니다.
+
+
+
+
+
+## Plugins 추천
+
+- Vetur
+- Night Owl
+- Material Icon Theme
+- Live Server
+- ESLint
+- Prettier
+- Auto Close Tag
+- Atom Keymap
+
+
+
+
+
+## Reactivity
+
+뷰의 핵심인 Reactivity는 **데이터의 변화를 라이브러리에서 감지해서 알아서 화면에 그려주는 것**입니다.
+
+
+
+### Object.defineProperty()
+
+객체의 속성을 재정의 하는 함수입니다. 이 함수를 이용하여 아래의 예제처럼 동적으로 화면을 그릴 수 있습니다.
+
+```javascript
+Object.defineProperty(대상 객체, 객체의 속성, {
+  // 정의할 내용                    
+})
+```
+
+
+
+**예제**
+
+```javascript
+let div = document.querySelector('#app');
+let viewModel = {};
+
+Object.defineProperty(viewModel, 'str', {
+    // 속성에 접근했을 때의 동작을 정의
+    get: function() {
+    	console.log('접근');
+    },
+    // 속성에 값을 할당했을 때의 동작을 정의
+    set: function(newValue) {
+        console.log('할당', newValue);
+        div.innerHTML = newValue;
+    }
+})
+```
+
+
+
+
+
+## 인스턴스(Instance)
+
+인스턴스는 뷰로 개발할 때 필수로 생성해야 하는 코드 입니다.
+
+```vue
+<body>
+	<div id="app">
+       
+    </div>
+
+<scirpt>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+        message: 'hi'
+        }
+    });
+</scirpt>
+    
+</body>
+```
+
+위의 코드는 `el`에서 정의한 `app`이라는 id를 가진 태그를 찾아서 인스턴스를 붙이겠다는 의미 입니다.
+
+**인스턴스를 붙여줘야 Vue의 다양한 기능과 속성들을 사용할 수 있습니다.**
+
+인스턴스를 생성하면 인스턴스는 Root 컴포넌트가 됩니다.
+
+
+
+
+
+## 컴포넌트(Component)
+
+![component](https://user-images.githubusercontent.com/79291114/139777640-5b6768eb-a2c2-43f2-aa70-de1925421df8.PNG)
+
+**컴포넌트는 화면의 영역을 영역 별로 구분해서 관리하는 것**이라고 보면 됩니다. 컴포넌트의 핵심은 영역을 구분하여 재사용성을 높이는 것 입니다.
+
+
+
+### 전역 컴포넌트와 지역 컴포넌트
+
+전역과 지역으로 컴포넌트를 생성할 수 있습니다.
+
+```vue
+<script>
+    // 전역 컴포넌트
+    Vue.component('app-header', {
+        template: '<h1>Header</h1>'
+    });
+
+    Vue.component('app-content', {
+        template: '<div>Content</div>'
+    });
+
+    new Vue({
+        el: '#app',
+        // 지역 컴포넌트
+        components: {
+            'app-footer' : {
+                template: '<footer>footer</footer>'
+            }
+        }
+    });
+</script>
+```
+
+만약 인스턴스가 여러 개가 있다고 가정했을 때, **전역 컴포넌트는 어떤 인스턴스에서도 다 사용 가능**하고 **지역컴포넌트는 해당 컴포넌트를 선언한 인스턴스에서만 사용 가능**합니다.
+
+
+
+---
+
+참고 : [[초급 ~실전] Vue.js로 완성하는 프론트엔드 개발자 로드맵 - 장기효(캡틴판교)](https://www.inflearn.com/roadmaps/3)
+
