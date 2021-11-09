@@ -146,6 +146,13 @@ Object.defineProperty(viewModel, 'str', {
 
 
 
+## 컴포넌트 통신
+
+- 프롭스 속성 : 상위 컴포넌트에서 하위로 데이터를 내려줄 때 사용
+- 이벤트 발생 : 하위에서 상위로 이벤트를 올려줄 때 사용
+
+
+
 ---
 
 참고 : [[초급 ~실전] Vue.js로 완성하는 프론트엔드 개발자 로드맵 - 장기효(캡틴판교)](https://www.inflearn.com/roadmaps/3)
