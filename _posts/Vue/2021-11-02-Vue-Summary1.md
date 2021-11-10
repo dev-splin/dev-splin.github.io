@@ -148,6 +148,8 @@ Object.defineProperty(viewModel, 'str', {
 
 ## 컴포넌트 통신
 
+![components-communication](https://user-images.githubusercontent.com/79291114/141136329-71a83b9d-8b0e-4b46-b466-54a24c24c84f.PNG)
+
 - 프롭스 속성 : 상위 컴포넌트에서 하위로 데이터를 내려줄 때 사용
 - 이벤트 발생 : 하위에서 상위로 이벤트를 올려줄 때 사용
 
