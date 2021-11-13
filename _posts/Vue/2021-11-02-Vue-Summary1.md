@@ -150,14 +150,143 @@ Object.defineProperty(viewModel, 'str', {
 
 ![components-communication](https://user-images.githubusercontent.com/79291114/141136329-71a83b9d-8b0e-4b46-b466-54a24c24c84f.PNG)
 
-- 프롭스 속성 : 상위 컴포넌트에서 하위로 데이터를 내려줄 때 사용
-- 이벤트 발생 : 하위에서 상위로 이벤트를 올려줄 때 사용
+- 프롭스(props) 속성 : 상위 컴포넌트에서 하위로 데이터를 내려줄 때 사용
+- 이벤트(emit) 발생 : 하위에서 상위로 이벤트를 올려줄 때 사용
 
 데이터는 한방향으로만 움직이는 것이 아니라 유기적 으로 다양한 통신을 하는 경우가 대다수이기 때문에 컴포넌트 통신 규칙이 필요하게 됩니다.
+
+
+
+### 프롭스(props)
+
+상위 컴포넌트에서 하위로 데이터를 내려줄 때 사용합니다. 즉, 상위 컴포넌트에서 하위 컴포넌트를 적용할 때 값을 설정해서 사용할 수 있다는 것입니다.
+
+```vue
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> -->
+    <!-- 하위 컴포넌트 props에 값을 설정 -->
+    <app-header v-bind:propsdata="message"></app-header>
+    <app-content v-bind:propsdata="num"></app-content>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var appHeader = {
+      template: '<h1>{{ propsdata }}</h1>',
+      props: ['propsdata']
+    }
+    var appContent = {
+      template: '<div>{{ propsdata }}</div>',
+      props: ['propsdata']
+    }
+
+    new Vue({
+      el: '#app',
+      components: {
+        'app-header': appHeader,
+        'app-content': appContent
+      },
+      data: {
+        message: 'hi',
+        num: 10
+      }
+    })
+  </script>
+</body>
+</html>
+```
+
+
+
+### 이벤트(emit)
+
+하위컴포넌트에서 상위컴포넌트로 이벤트를 올려줄 때 사용합니다. 즉, 하위 컴포넌트의 특정 부분에서 사용되는 메소드를 상위 컴포넌트에서 정의할 수 있는 것입니다.
+
+```vue
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{ num }}</p>
+    <!-- <app-header v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위 컴포넌트의 메서드 이름"></app-header> -->
+    <!-- 하위 컴포넌트의 메소드(pass, increase)를 실행시키면 상위 컴포넌트의 메소드(logText, increaNumber)가 실행됨 -->
+    <app-header v-on:pass="logText"></app-header>
+    <app-content v-on:increase="increaseNumber"></app-content>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var appHeader = {
+      template: '<button v-on:click="passEvent">click me</button>',
+      methods: {
+        passEvent: function() {
+          this.$emit('pass');
+        }
+      }
+    }
+    var appContent = {
+      template: '<button v-on:click="addNumber">add</button>',
+      methods: {
+        addNumber: function() {
+          this.$emit('increase');
+        }
+      }
+    }
+
+    var vm = new Vue({
+      el: '#app',
+      components: {
+        'app-header': appHeader,
+        'app-content': appContent
+      },
+      methods: {
+        logText: function() {
+          console.log('hi');
+        },
+        increaseNumber: function() {
+          this.num = this.num + 1;
+        }
+      },
+      data: {
+        num: 10
+      }
+    });
+  </script>
+</body>
+</html>
+```
+
+
+
+### this의 활용
+
+JavaScript를 보면 `this.`가 많이 나오는데, 이 this에 대해서 정확히 알고 갈 필요가 있습니다. (Vue도 JavaScript 기반이기 때문에 알아두면 좋습니다.)
+
+**참고 링크**
+
+- https://www.w3schools.com/js/js_this.asp
+- https://betterprogramming.pub/understanding-the-this-keyword-in-javascript-cb76d4c7c5e8
 
 
 
 ---
 
 참고 : [[초급 ~실전] Vue.js로 완성하는 프론트엔드 개발자 로드맵 - 장기효(캡틴판교)](https://www.inflearn.com/roadmaps/3)
+
+
 
