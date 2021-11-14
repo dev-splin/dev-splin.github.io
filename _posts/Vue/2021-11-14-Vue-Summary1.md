@@ -273,7 +273,7 @@ Object.defineProperty(viewModel, 'str', {
 
 
 
-### this의 활용
+#### this의 활용
 
 JavaScript를 보면 `this.`가 많이 나오는데, 이 this에 대해서 정확히 알고 갈 필요가 있습니다. (Vue도 JavaScript 기반이기 때문에 알아두면 좋습니다.)
 
@@ -281,6 +281,69 @@ JavaScript를 보면 `this.`가 많이 나오는데, 이 this에 대해서 정�
 
 - https://www.w3schools.com/js/js_this.asp
 - https://betterprogramming.pub/understanding-the-this-keyword-in-javascript-cb76d4c7c5e8
+
+
+
+### 같은 레벨에서의 컴포넌트 통신 방법
+
+상위에서 하위, 하위에서 상위 간의 통신이 아니라 같은 레벨에서의 컴포넌트 통신이 필요할 수도 있습니다. 이 때, 상위 컴포넌트를 통해 같은 레벨의 컴포넌트 끼리 통신하는 방법입니다.
+
+즉, 하위 컴포넌트1과 하위 컴포넌트2가 있다고 가정할 때,
+하위 컴포넌트1에서 상위 컴포넌트로 **emit으로 통신 시, 파라미터 값을 넘겨 주고** 상위 컴포넌트와 하위 컴포넌트2를 **props로 통신 시 사용하는 변수의 값을 emit을 정의한 메서드에서 변경해주는 방법**입니다.
+
+```vue
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- props로 값을 넣어줌 -->
+    <app-header v-bind:propsdata="num"></app-header>
+    <!-- pass를 deliverNum으로 정의 -->
+    <app-content v-on:pass="deliverNum"></app-content>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var appHeader = {
+      template: '<div>header</div>',
+      props: ['propsdata']
+    }
+    var appContent = {
+      template: '<div>content<button v-on:click="passNum">pass</button></div>',
+      // 상위 컴포넌트로 통신할 때, 파라미터를 넘겨줌
+      methods: {
+        passNum: function() {
+          this.$emit('pass', 10);
+        }
+      }
+    }
+
+    new Vue({
+      el: '#app',
+      components: {
+        'app-header': appHeader,
+        'app-content': appContent
+      },
+      data: {
+        num: 0
+      },
+      methods: {
+        // props로 연결된 변수 값을 변경
+        deliverNum: function(value) {
+          this.num = value;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
+```
 
 
 
