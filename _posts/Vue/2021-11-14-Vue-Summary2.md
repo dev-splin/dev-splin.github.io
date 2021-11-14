@@ -58,9 +58,59 @@ vue에서는 vue resource라는 공식 라이브러리가 있었지만, 현재�
 
 
 
+
+
+## Computed와 Methods의 차이
+
+참고 링크에 더 자세한 설명을 볼 수 있습니다만, 간략히 줄여보겠습니다.
+
+Computed와 똑같은 기능을 **Methods로 사용할 경우 렌더링 할 때마다 Methods에 정의한 익명 함수의 로직이 수행**되지만, **Computed는 해당 익명 함수에 종속된 값이 바뀌기 전 까지는 로직의 결과를 캐싱해서 가지고 있기 때문에 Methods에 비해 더 빠릅니다.**
+
+때문에 대부분이 Computed를 사용하지만, 캐싱을 사용하지 않을 때는 Methods를 사용해도 괜찮습니다.
+
+
+
+## Computed와 watch의 차이
+
+computed와 watch는 특정 값이 변경되면 실행되기 때문에 혼동될 수 있습니다.
+
+하지만 둘은 조금 다른데, 우선 **Computed는 Computed의 익명 함수 속에 종속되는 값이 변경되면 실행되는 것(return 값 필수)**이고,
+**watch는 메서드의 이름에 해당하는 값이 변경되면 실행되는 것(새로운 값과 이전 값을 이용할 수 있음)**입니다.
+
+a+b로 이루어진 c의 값이 있다고 가정해보겠습니다.
+
+```vue
+computed: {
+	c: function() {
+		return a + b;
+	}
+}
+
+watch: {
+	a: function(newValue, oldValue) {
+		axios.get(....)
+	}
+}
+```
+
+- 위의 예시처럼 인스턴스의 data에 할당된 값들 사이의 종속관계를 자동으로 세팅하고자 할때는 `computed`로 구현하는것이 좋습니다. 
+  -  c의 값이 a,b에에 따라 결정되어집니다.
+  - 이 종속관계가 조금이라도 복잡해질 때, `watch`로 구현할 경우 중복계산이 일어나거나 코드 복잡도가 높아질 것 입니다. 이는 오류가 발생할 가능성이 증가합니다.
+- `watch`는 특정 프로퍼티의 변경시점에 특정 액션(call api, push route …)을 취하고자 할때 적합합니다.
+- `computed`의 경우 종속관계가 복잡할 수록 재계산 시점을 예상하기 힘들기 때문에 종속관계의 값으로 계산된 결과를 리턴하는 것 외의 사이드 이펙트가 일어나는 코드를 지양해야합니다.
+- 만약 `computed`로 구현가능한 것이라면 `watch`가 아니라 `computed`로 구현하는것이 대게의 경우 좋습니다.
+
+
+
+**참고 링크**
+
+- [Vue 공식 문서 - computed와 watch](https://kr.vuejs.org/v2/guide/computed.html)
+
+
+
 ---
 
 참고 : [[초급 ~실전] Vue.js로 완성하는 프론트엔드 개발자 로드맵 - 장기효(캡틴판교)](https://www.inflearn.com/roadmaps/3)
 
-
+[[Vue.js] watch와 computed 의 차이와 사용법](https://framework.zend.com/manual/1.12/en/learning.quickstart.create-project.html)
 
