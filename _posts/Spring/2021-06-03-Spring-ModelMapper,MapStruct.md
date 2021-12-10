@@ -150,7 +150,7 @@ public class ApplicationConfig {
 
 주석이 된 부분은 매칭 전략을 설정하는 부분이며 `Standard`, `Loose`, `Strict` 세 가지가 있고 **Default는 Standard**로 되어있습니다.
 
-추가적인 내용은 [http://modelmapper.org/user-manual/configuration/#matching-strategies](http://modelmapper.org/user-manual/configuration/#matching-strategies) 레퍼런스를 참조면 되겠습니다.
+추가적인 내용은 [http://modelmapper.org/user-manual/configuration/#matching-strategies](http://modelmapper.org/user-manual/configuration/#matching-strategies) 레퍼런스를 참조하면 되겠습니다.
 
 
 
@@ -176,7 +176,8 @@ public class ModelMapperTest {
 				public UserEntity get(ProvisionRequest<UserEntity> request) {
 					// 변환할 클래스를 가져와서 Setter가 없는 클래스를 만듭니다.
 					UserDTO dto = UserDTO.class.cast(request.getSource());
-					return UserEntity.builder().id(1L)
+					return UserEntity.builder()
+                        	.id(1L)
 							.password(dto.getPassword())
 							.name(dto.getName())
 							.nickName(dto.getNickName())
@@ -373,7 +374,8 @@ public class UserMapperImpl implements UserMapper {
 	@Test
 	public void MapStructTest() throws Exception {
 		
-		UserEntity userEntity = UserEntity.builder().id(1L)
+		UserEntity userEntity = UserEntity.builder()
+            	.id(1L)
 				.password("testPassword")
 				.name("testName")
 				.nickName("testNickName")
@@ -382,7 +384,7 @@ public class UserMapperImpl implements UserMapper {
 		
 		// Entity -> DTO
 		UserDTO resultDTO = UserMapper.INSTANCE.userEntityToDTO(userEntity);
-		// DTO -> Entity, Setter가 없을 시 변환할 수 없음
+		// DTO -> Entity, Setter가 없어도 @Builder가 붙어있다면 변환 가능
 		UserEntity resultEntity = UserMapper.INSTANCE.userDTOToEntity(resultDTO);
 		
 		System.out.println(resultDTO);
