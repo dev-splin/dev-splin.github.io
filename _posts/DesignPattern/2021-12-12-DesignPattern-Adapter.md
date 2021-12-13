@@ -12,9 +12,228 @@ toc_sticky: true
 toc_label: 목차 
 ---
 
-# ㅇ(Adapter)
+# 어댑터(Adapter) 패턴
 
-ㅁㄴㅇㄻㄴㅇㄻasdfasdasdfasdf
+어댑터 패턴은 기존 코드를 클라이언트가 사용하는 인터페이스의 구현체로 바꿔주는 패턴을 말합니다.
+
+
+
+## 1. 정의
+
+일반적으로 어댑터 패턴은 110V 콘센트와 220V콘센트를 변환해주는 것을 예로 많이 드는데,
+
+프로그래밍적으로 얘기하자면 클라이언트가 사용하는 인터페이스가 기존 코드와 다를 때, 기존 코드를 클라이언트 코드와 호환될 수 있게 처리해 주는 것으로 생각하면 됩니다.
+
+
+
+## 2. 예시
+
+![adapter](https://user-images.githubusercontent.com/79291114/145826232-fe549766-c31e-4a31-a009-65a30cef8c1d.png)
+
+그림을 보게되면, 클라이언트는 `Target` 인터페이스를 사용하고 있습니다. 이 때, 기존의 코드는 `Adaptee`에 해당하게 되는데, 이 Adaptee를 `Adapter`를 이용해 `Target` 인터페이스로 매핑시켜 줍니다.
+
+
+
+### 2.1 코드
+
+#### 클라이언트 코드
+
+```java
+// 유저 상세 정보
+public interface UserDetails {
+
+    String getUsername();
+
+    String getPassword();
+
+}
+
+// 유저 상세 서비스
+public interface UserDetailsService {
+
+    UserDetails loadUser(String username);
+
+}
+
+// 로그인 핸들러
+public class LoginHandler {
+
+    UserDetailsService userDetailsService;
+
+    public LoginHandler(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+    // login(password 일치 판단)
+    public String login(String username, String password) {
+        UserDetails userDetails = userDetailsService.loadUser(username);
+        if (userDetails.getPassword().equals(password)) {
+            return userDetails.getUsername();
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+}
+```
+
+`LoginHandler`의 `login` 메서드는 파라미터로 받은 username을 `UserDetailsService`를 이용해 `UserDetails`를 불러와 UserDetails의 **password와 login 메서드로 받은 password가 일치하는지 판단**하는 메서드 입니다.
+
+
+
+#### 기존 코드
+
+```java
+// 계정 정보
+public class Account {
+
+    private String name;
+
+    private String password;
+
+    private String email;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+}
+
+// 계정 서비스
+public class AccountService {
+
+    // username으로 계정 정보 찾기
+    public Account findAccountByUsername(String username) {
+        Account account = new Account();
+        account.setName(username);
+        account.setPassword(username);
+        account.setEmail(username);
+        return account;
+    }
+
+    public void createNewAccount(Account account) {
+
+    }
+
+    public void updateAccount(Account account) {
+
+    }
+
+}
+```
+
+기존의 계정 관련 코드 입니다. 보시다시피 클라이언트 중복되는 부분이 있긴 하지만 같다고 할 수는 없습니다.
+
+이 기존 코드를 어떻게 클라이언트 코드와 호환되게 만들 수 있을까요?? (*hint : 인터페이스 상속을 이용*)
+
+
+
+#### 어댑터 패턴 적용
+
+```java
+// 로그인 핸들러
+public class LoginHandler {
+
+    UserDetailsService userDetailsService;
+
+    public LoginHandler(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+    // login(password 일치 판단)
+    public String login(String username, String password) {
+        UserDetails userDetails = userDetailsService.loadUser(username);
+        if (userDetails.getPassword().equals(password)) {
+            return userDetails.getUsername();
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+}
+```
+
+아까 위에서 `LoginHandler`는 `UserDetailsService`와 `UserDetails`을 사용하고 있는데, 이 두 Class는 인터페이스로 되어 있기 때문에 **해당 인터페이스들을 상속을 이용해 클라이언트 코드와 기존 코드를 호환되게 만들 수 있습니다.**
+
+---
+
+```java
+// UserDetails을 상속받음
+public class  AccountUserDetails implements UserDetails {
+
+    // 계정 정보를 가지고 있음
+    private Account account;
+
+    public AccountUserDetails(Account account) {
+        this.account = account;
+    }
+
+    //Override한 메서드에서 알맞는 계정 정보를 반환
+    @Override
+    public String getUsername() {
+        return account.getName();
+    }
+
+    @Override
+    public String getPassword() {
+        return account.getPassword();
+    }
+}
+
+// UserDetailsService를 상속받음
+public class AccountUserDetailsService implements UserDetailsService {
+
+    // 계정 서비스를 가지고 있음
+    private AccountService accountService;
+
+    public AccountUserDetailsService(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
+    //Override한 메서드에서 알맞는 계정 서비스 메서드를 가져와 반환
+    // AccountUserDetails가 UserDetails를 상속받기 때문에 이런 식으로 사용 가능
+    @Override
+    public UserDetails loadUser(String username) {
+        return new AccountUserDetails(accountService.findAccountByUsername(username));
+    }
+}
+```
+
+```java
+public static void main(String[] args) {
+        AccountService accountService = new AccountService();
+        UserDetailsService userDetailsService = new AccountUserDetailsService(accountService);
+        LoginHandler loginHandler = new LoginHandler(userDetailsService);
+        String login = loginHandler.login("keesun", "keesun");
+        System.out.println(login);
+    }
+```
+
+이렇게 새로운 클래스를 만들어 인터페이스 상속을 이용하면 어댑터 패턴으로 기존의 코드를 수정하지 않고도 서로 다른 두 객체를 호환되게 만들 수 있습니다.
+
+> 만약 기존 코드를 수정할 수 있다면, Account에 바로 UserDetails를 상속해주고 AccountService에 UserDetailsService을 상속해서 복잡도를 줄여 편하게 사용할 수 있지만
+>
+> `SRP(Single Responsibility Principle)` 즉, 단일 책임 원칙에서 보자면 Class를 나누는게 조금 더 객체지향에 알맞는 프로그래밍이라고 할 수 있습니다. (하지만 실용적인 선택을 해야하는 경우도 있기 때문에 잘 판단해야 합니다.)
+
+
 
 ---
 
