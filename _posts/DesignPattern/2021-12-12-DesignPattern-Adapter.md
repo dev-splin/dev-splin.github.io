@@ -258,11 +258,45 @@ public static void main(String[] args) {
 
 ## 4. 자바와 스프링에서의 어댑터 패턴
 
+우리가 사용하는 자바, 스프링에서 사용되는 어댑터 패턴을 알아보겠습니다.
 
 
 
+### 자바
 
----
+```java
+// collections
+List<String> strings = Arrays.asList("a", "b", "c"); // 배열을 리스트로 변환
+Enumeration<String> enumeration = Collections.enumeration(strings); // Collections(여기에서는 List)를 Enumeration으로 변환
+ArrayList<String> list = Collections.list(enumeration); // Enumeration을 list로 변환
 
-참고 : 
+// io
+try(InputStream is = new FileInputStream("input.txt"); // 파일로 부터 바이트를 입력 받음
+    InputStreamReader isr = new InputStreamReader(is); // 바이트를 문자로 변환
+    BufferedReader reader = new BufferedReader(isr)) { // 문자를 버퍼링
+    while(reader.ready()) {
+        System.out.println(reader.readLine());
+    }
+} catch (IOException e) {
+    throw new RuntimeException(e);
+}
+```
+
+> **Enumeration** : Collection에서 자주 쓰이며 배열에서 반복문을 이용하여 데이터를 출력하는 것과 같이 반복문을 통해 데이터를 한 번에 출력할 수 있도록 도와주는 클래스, `Iterator`도 비슷한 기능을 하는데, 가능하면 `Iterator` 사용을 권장
+>
+> **FileInputStream** : `InputStream`을 상속받았으며, 파일로 부터 바이트로 입력받아, 바이트 단위로 출력할 수 있는 클래스
+>
+> **InputStreamReader** : 바이트 스트림을 문자 스트림으로 변환 해주는 클래스, 바이트를 읽고 지정된 문자 집합을 사용하여 문자로 디코딩
+>
+> **BufferedReader** : 문자 입력 스트림에서 텍스트를 읽고 문자, 배열 및 행을 효율적으로 읽을 수 있도록 문자를 버퍼링하는 클래스
+
+생성자나 파라미터로 받은 타입을 **다른 타입으로 반환해주거나 다른 방식으로 사용할 수 있게 해주기 때문**에 `어댑터 패턴`이 적용됐다고 볼 수 있습니다.
+
+**참고 링크**
+
+- [Enumeration과 Iterator의 차이](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=seektruthyb&logNo=150114747262)
+
+
+
+### 스프링
 
