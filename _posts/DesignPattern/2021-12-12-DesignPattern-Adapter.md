@@ -1,12 +1,11 @@
 ---
-title: "Database : Index"
+title: "Design Pattern : Adapter"
 excerpt_separator: <!--more-->
 categories:
-  - CS(Computer Science)
-  - Database
+  - Design Pattern
 tags:
-  - CS(Computer Science)
-  - "Database : Index"
+  - Design Pattern
+  - "Design Pattern : Adapter"
 toc: true
 toc_sticky: true
 toc_label: 목차 
