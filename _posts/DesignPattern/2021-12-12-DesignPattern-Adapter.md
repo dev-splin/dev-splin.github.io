@@ -229,9 +229,37 @@ public static void main(String[] args) {
 
 이렇게 새로운 클래스를 만들어 인터페이스 상속을 이용하면 어댑터 패턴으로 기존의 코드를 수정하지 않고도 서로 다른 두 객체를 호환되게 만들 수 있습니다.
 
-> 만약 기존 코드를 수정할 수 있다면, Account에 바로 UserDetails를 상속해주고 AccountService에 UserDetailsService을 상속해서 복잡도를 줄여 편하게 사용할 수 있지만
+> 만약 기존 코드를 수정할 수 있다면, `Account`에 바로 `UserDetails`를 상속해주고 `AccountService`에 `UserDetailsService`을 상속해서 복잡도를 줄여 편하게 사용할 수 있지만
 >
-> `SRP(Single Responsibility Principle)` 즉, 단일 책임 원칙에서 보자면 Class를 나누는게 조금 더 객체지향에 알맞는 프로그래밍이라고 할 수 있습니다. (하지만 실용적인 선택을 해야하는 경우도 있기 때문에 잘 판단해야 합니다.)
+> `SRP(Single Responsibility Principle)` 즉, 단일 책임 원칙에서 보자면 **User 쪽에서는 User와 관련된 로직이 들어갈 수 있기 때문**에 Class를 나누는게 조금 더 객체지향에 알맞는 프로그래밍이라고 할 수 있습니다. (하지만 실용적인 선택을 해야하는 경우도 있기 때문에 잘 판단해야 합니다.)
+
+
+
+
+
+## 3. 장점과 단점
+
+### 장점
+
+- **기존 코드를 변경하지 않고 원하는 인터페이스 구현체를 만들어 재사용**할 수 있습니다.
+  - 기존의 `UserDetails, UserDetailsService`를 변경하지 않고 호환될 수 있게 만들어주었기 때문에 `개방 폐쇄 원칙(OCP, Open-Closed Principle)` 을 지키면서 프로그래밍할 수 있습니다.
+- 기존 코드가 하던 일과 **특정 인터페이스 구현체로 변환하는 작업을 각기 다른 클래스로 분리하여 관리**할 수 있습니다.
+  - 변환하는 작업 자체를 `AccountUserDetailsService`로 분리해서 하기 때문에 `단일 책임 원칙(SRP, Single Responsibility Principle)` 을 지키면서 프로그래밍할 수 있습니다.
+
+
+
+### 단점
+
+- 다른 디자인 패턴들과 마찬가지로 새 클래스가 생겨 **복잡도가 증가**할 수 있습니다.
+  - 때문에 경우에 따라서 기존 코드가 해당 인터페이스를 구현하도록 수정하는 것이 좋은 선택이 될 수도 있습니다.
+
+
+
+
+
+## 4. 자바와 스프링에서의 어댑터 패턴
+
+
 
 
 
