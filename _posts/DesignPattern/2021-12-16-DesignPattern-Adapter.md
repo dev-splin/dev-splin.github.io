@@ -300,3 +300,22 @@ try(InputStream is = new FileInputStream("input.txt"); // 파일로 부터 바�
 
 ### 스프링
 
+스프링에서는 스프링 MVC에서 사용하는 `HandlerAdapter`가 어댑터 패턴을 사용하고 있다고 볼 수 있습니다. `HandlerAdapter`가 다양한 핸들러를 받아 `ModelAndView`를 반환하기 때문입니다. 즉, 스프링에서 아래와 같이 어댑터에 해당하는 인터페이스를 제공해 주는 것 입니다.
+
+```java
+public interface HandlerAdapter {
+    boolean supports(Object var1);
+
+    @Nullable
+    // Object에 다양한 핸들러가 올 수 있음
+    ModelAndView handle(HttpServletRequest var1, HttpServletResponse var2, Object var3) throws Exception;
+
+    long getLastModified(HttpServletRequest var1, Object var2);
+}
+```
+
+
+
+---
+
+참고 : [코딩으로 학습하는 GoF의 디자인 패턴](https://www.inflearn.com/course/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/dashboard)
