@@ -13,7 +13,7 @@ toc_label: 목차
 
 # 컴포짓(Composite) 패턴
 
-컴포짓 패턴은 **전체 계층 구조와 그 계층 구조를 구성하는 부분적인 객체를 클라이언트 부분에서 동일하게 취급할 수 있게 구조를 만드는 패턴**입니다. 
+컴포짓 패턴은 **전체 계층 구조에서 그 계층 구조를 구성하는 부분적인 객체들을 클라이언트에서 동일하게 취급할 수 있게 구조를 만드는 패턴**입니다. 
 
 
 
@@ -23,212 +23,220 @@ toc_label: 목차
 
 
 
+
+
 ## 2. 예시
 
-![composite](https://user-images.githubusercontent.com/79291114/146661935-59ded83f-e427-4455-83be-c0fe23288793.PNG)
-
-그림을 보게되면, 클라이언트는 `Target` 인터페이스를 사용하고 있습니다. 이 때, 기존의 코드는 `Adaptee`에 해당하게 되는데, 이 Adaptee를 `Adapter`를 이용해 `Target` 인터페이스로 매핑시켜 줍니다.
+가방에 아이템을 넣어 가격을 구하는 코드로 예시를 들어보겠습니다.
 
 
 
-### 2.1 코드
+### 2-1. 컴포짓 패턴 적용 전 코드
 
-#### 클라이언트 코드
-
-```java
-// 유저 상세 정보
-public interface UserDetails {
-
-    String getUsername();
-
-    String getPassword();
-
-}
-
-// 유저 상세 서비스
-public interface UserDetailsService {
-
-    UserDetails loadUser(String username);
-
-}
-
-// 로그인 핸들러
-public class LoginHandler {
-
-    UserDetailsService userDetailsService;
-
-    public LoginHandler(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-
-    // login(password 일치 판단)
-    public String login(String username, String password) {
-        UserDetails userDetails = userDetailsService.loadUser(username);
-        if (userDetails.getPassword().equals(password)) {
-            return userDetails.getUsername();
-        } else {
-            throw new IllegalArgumentException();
-        }
-    }
-}
-```
-
-`LoginHandler`의 `login` 메서드는 파라미터로 받은 username을 `UserDetailsService`를 이용해 `UserDetails`를 불러와 UserDetails의 **password와 login 메서드로 받은 password가 일치하는지 판단**하는 메서드 입니다.
+컴포짓 패턴 적용 전 코드는 아래와 같습니다.
 
 
 
-#### 기존 코드
+#### 아이템 클래스
+
+다양한 아이템들을 표현할 수 있는 아이템 클래스입니다.
 
 ```java
-// 계정 정보
-public class Account {
+public class Item {
 
     private String name;
 
-    private String password;
+    private int price;
 
-    private String email;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Item(String name, int price) {
         this.name = name;
+        this.price = price;
     }
 
-    public String getPassword() {
-        return password;
+    public int getPrice() {
+        return this.price;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-}
-
-// 계정 서비스
-public class AccountService {
-
-    // username으로 계정 정보 찾기
-    public Account findAccountByUsername(String username) {
-        Account account = new Account();
-        account.setName(username);
-        account.setPassword(username);
-        account.setEmail(username);
-        return account;
-    }
-
-    public void createNewAccount(Account account) {
-
-    }
-
-    public void updateAccount(Account account) {
-
-    }
-
 }
 ```
 
-기존의 계정 관련 코드 입니다. 보시다시피 클라이언트 중복되는 부분이 있긴 하지만 같다고 할 수는 없습니다.
-
-이 기존 코드를 어떻게 클라이언트 코드와 호환되게 만들 수 있을까요?? (*hint : 인터페이스 상속을 이용*)
 
 
+#### 가방 클래스
 
-#### 어댑터 패턴 적용
+다양한 아이템들을 넣어 놓는 가방 클래스 입니다.
 
 ```java
-// 로그인 핸들러
-public class LoginHandler {
+public class Bag {
 
-    UserDetailsService userDetailsService;
+  	// 아이템들을 가지고 있음
+    private List<Item> items = new ArrayList<>();
 
-    public LoginHandler(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public void add(Item item) {
+        items.add(item);
     }
 
-    // login(password 일치 판단)
-    public String login(String username, String password) {
-        UserDetails userDetails = userDetailsService.loadUser(username);
-        if (userDetails.getPassword().equals(password)) {
-            return userDetails.getUsername();
-        } else {
-            throw new IllegalArgumentException();
-        }
+    public List<Item> getItems() {
+        return items;
     }
 }
 ```
 
-아까 위에서 `LoginHandler`는 `UserDetailsService`와 `UserDetails`을 사용하고 있는데, 이 두 Class는 인터페이스로 되어 있기 때문에 **해당 인터페이스들을 상속을 이용해 클라이언트 코드와 기존 코드를 호환되게 만들 수 있습니다.**
 
----
+
+#### 클라이언트
+
+코드를 실행 시킬 수 있는 클라이언트 코드 입니다. 현재 아이템들의 가격은 클라이언트에서 구하게 됩니다.
 
 ```java
-// UserDetails을 상속받음
-public class  AccountUserDetails implements UserDetails {
+public class Client {
 
-    // 계정 정보를 가지고 있음
-    private Account account;
+    public static void main(String[] args) {
+      	// 아이템 생성 후
+        Item doranBlade = new Item("도란검", 450);
+        Item healPotion = new Item("체력 물약", 50);
 
-    public AccountUserDetails(Account account) {
-        this.account = account;
+      	// 가방에 넣음
+        Bag bag = new Bag();
+        bag.add(doranBlade);
+        bag.add(healPotion);
+	
+      	// 클라이언트 객체를 만든 후 도란 검의 가격, 가방 안에 들어있는 아이템들의 총 가격을 구함
+        Client client = new Client();
+        client.printPrice(doranBlade);
+        client.printPrice(bag);
     }
 
-    //Override한 메서드에서 알맞는 계정 정보를 반환
-    @Override
-    public String getUsername() {
-        return account.getName();
+  	// 아이템 가격을 구하는 메서드
+    private void printPrice(Item item) {
+        System.out.println(item.getPrice());
     }
 
-    @Override
-    public String getPassword() {
-        return account.getPassword();
-    }
-}
-
-// UserDetailsService를 상속받음
-public class AccountUserDetailsService implements UserDetailsService {
-
-    // 계정 서비스를 가지고 있음
-    private AccountService accountService;
-
-    public AccountUserDetailsService(AccountService accountService) {
-        this.accountService = accountService;
+  	// 가방에 들어있는 아이템 총 가격을 구하는 메서드
+    private void printPrice(Bag bag) {
+        int sum = bag.getItems().stream().mapToInt(Item::getPrice).sum();
+        System.out.println(sum);
     }
 
-    //Override한 메서드에서 알맞는 계정 서비스 메서드를 가져와 반환
-    // AccountUserDetails가 UserDetails를 상속받기 때문에 이런 식으로 사용 가능
-    @Override
-    public UserDetails loadUser(String username) {
-        return new AccountUserDetails(accountService.findAccountByUsername(username));
-    }
 }
 ```
+
+
+
+### 2-2. 컴포짓 패턴 적용 후 코드
+
+컴포짓 패턴은 전체 계층 구조에서 그 계층 구조를 구성하는 `부분적인 객체`를 클라이언트 부분에서 동일하게 취급할 수 있게 구조를 만들어야 하기 때문에, `Bag, Item`을 `Component`를 상속받게 하여 부분적인 객체가 되어, 계층 구조를 만들 수 있습니다.
+
+이것을 생각하면서 아래의 그림을 보게되면, `Item은 Leaf`가 되고 `여러가지 Item(Leaf)을 가지고 있는 Bag은 Composite`이 됩니다. 
+
+![composite](https://user-images.githubusercontent.com/79291114/146661935-59ded83f-e427-4455-83be-c0fe23288793.PNG)
+
+위의 그림에서  `Leaf`와 `Composite`은 `Componenet`를 상속받게 되기 때문에 클라이언트에서는 기존의 Item의 가격과 Bag 안의 총 가격을 구하는 메서드를 따로 구현할 필요 없이, **Component에 가격을 구하는 메서드를 만들어 놓으면 Item과 Bag을 동일한 하나의 메서드로 처리할 수 있기 때문에 동일하게 취급**할 수 있게 됩니다.
+
+
+
+#### 컴포넌트 인터페이스
+
+아이템과 가방이 상속받게 될 컴포넌트 인터페이스를 만듭니다.
 
 ```java
-public static void main(String[] args) {
-        AccountService accountService = new AccountService();
-        UserDetailsService userDetailsService = new AccountUserDetailsService(accountService);
-        LoginHandler loginHandler = new LoginHandler(userDetailsService);
-        String login = loginHandler.login("keesun", "keesun");
-        System.out.println(login);
-    }
+public interface Component {
+
+  	// 상속 받은 클래스들이 구현해야하는 가격을 구하는 메서드
+    int getPrice();
+
+}
 ```
 
-이렇게 새로운 클래스를 만들어 인터페이스 상속을 이용하면 어댑터 패턴으로 기존의 코드를 수정하지 않고도 서로 다른 두 객체를 호환되게 만들 수 있습니다.
 
-> 만약 기존 코드를 수정할 수 있다면, `Account`에 바로 `UserDetails`를 상속해주고 `AccountService`에 `UserDetailsService`을 상속해서 복잡도를 줄여 편하게 사용할 수 있지만
->
-> `SRP(Single Responsibility Principle)` 즉, 단일 책임 원칙에서 보자면 **User 쪽에서는 User와 관련된 로직이 들어갈 수 있기 때문**에 Class를 나누는게 조금 더 객체지향에 알맞는 프로그래밍이라고 할 수 있습니다. (하지만 실용적인 선택을 해야하는 경우도 있기 때문에 잘 판단해야 합니다.)
+
+#### 아이템 클래스
+
+다양한 아이템들을 표현할 수 있는 아이템 클래스입니다. 컴포넌트를 상속받았습니다.
+
+```java
+public class Item implements Component {
+
+    private String name;
+
+    private int price;
+
+    public Item(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+
+  	// 가격을 구하는 메서드를 Override하여 아이템의 가격을 구함
+    @Override
+    public int getPrice() {
+        return this.price;
+    }
+}
+
+```
+
+
+
+#### 가방 클래스
+
+다양한 아이템들을 넣어 놓는 가방 클래스 입니다. 컴포넌트를 상속받았습니다. 기존과의 큰 차이점은 **List에서 Item을 가지는 게 아니라 Component를 가지게 함으로써, 다양한 구현체들을 담을 수 있다는 것**입니다.
+
+```java
+public class Bag implements Component {
+
+  	// 기존 처럼 Item을 가지고 있는 게 아니라, Component를 가지게 됨
+    private List<Component> components = new ArrayList<>();
+
+    public void add(Component component) {
+        components.add(component);
+    }
+
+    public List<Component> getComponents() {
+        return components;
+    }
+
+  	// 가격을 구하는 메서드를 Override하여 가방안에 들어있는 Component 구현체들의 총 가격을 구함
+    @Override
+    public int getPrice() {
+        return components.stream().mapToInt(Component::getPrice).sum();
+    }
+}
+```
+
+
+
+#### 클라이언트
+
+코드를 실행 시킬 수 있는 클라이언트 코드 입니다. 기존과의 차이점은 `가방 안에 들어있는 아이템들의 가격을 구하는 메서드`와 `아이템의 가격을 구하는 메서드`를 따로 구분하지 않고 `Component의 getPrice만 호출`해주면 된다는 것입니다.
+
+```java
+public class Client {
+
+    public static void main(String[] args) {
+      	// 아이템 생성 후
+        Item doranBlade = new Item("도란검", 450);
+        Item healPotion = new Item("체력 물약", 50);
+
+      	// 가방에 넣음
+        Bag bag = new Bag();
+        bag.add(doranBlade);
+        bag.add(healPotion);
+	
+      	// 클라이언트 객체를 만든 후 도란 검의 가격, 가방 안에 들어있는 아이템들의 총 가격을 구함
+        Client client = new Client();
+        client.printPrice(doranBlade);
+        client.printPrice(bag);
+    }
+
+  	// 기존의 코드와 달리 Component의 getPrice만 호출해주면 됨
+  	private void printPrice(Component component) {
+        System.out.println(component.getPrice());
+    }
+}
+```
+
+위와 같이 만든 계층 구조는 아래와 같은 트리 형식이 됩니다.
+
+<img width="815" alt="Composite-Diagram" src="https://user-images.githubusercontent.com/79291114/146667237-cb0d07bf-ec1b-4bec-8f86-1b3562185c26.png">
 
 
 
@@ -238,81 +246,89 @@ public static void main(String[] args) {
 
 ### 장점
 
-- **기존 코드를 변경하지 않고 원하는 인터페이스 구현체를 만들어 재사용**할 수 있습니다.
-  - 기존의 `UserDetails, UserDetailsService`를 변경하지 않고 호환될 수 있게 만들어주었기 때문에 `개방 폐쇄 원칙(OCP, Open-Closed Principle)` 을 지키면서 프로그래밍할 수 있습니다.
-- 기존 코드가 하던 일과 **특정 인터페이스 구현체로 변환하는 작업을 각기 다른 클래스로 분리하여 관리**할 수 있습니다.
-  - 변환하는 작업 자체를 `AccountUserDetailsService`로 분리해서 하기 때문에 `단일 책임 원칙(SRP, Single Responsibility Principle)` 을 지키면서 프로그래밍할 수 있습니다.
+- 복잡한 트리 구조를 편하게 사용할 수 있습니다.
+  - 클라이언트는 Component의 getPrice 메서드만 사용하면 되기 때문
+
+- 다형성과 재귀를 활용할 수 있습니다.
+  - 하나의 `getPrice` 메서드가 구현체 마다 다르게 동작하는 `다형성`과 `Composite`의 여러 가지 구현체를 담고 있는 리스트에 재귀(여기서는 Stream을 활용)를 활용할 수 있습니다.
+
+- 클라이언트 코드를 변경하지 않고 새로운 구현체를 추가할 수 있습니다.
+
+컴포짓 패턴을 사용함으로써 `OCP(Open-Closed Principle)` 즉, 개방 폐쇄 원칙을 지키면서 프로그래밍을 할 수 있다는 것을 알 수 있습니다.
 
 
 
 ### 단점
 
-- 다른 디자인 패턴들과 마찬가지로 새 클래스가 생겨 **복잡도가 증가**할 수 있습니다.
-  - 때문에 경우에 따라서 기존 코드가 해당 인터페이스를 구현하도록 수정하는 것이 좋은 선택이 될 수도 있습니다.
+- 트리를 만들야 하기 때문에 (공통된 인터페이스를 정의해야 하기 때문에) 지나치게 일반화 해야 하는 경우가 생길 수 있습니다.
+  - 예를 들어, 가격이 존재하지 않는 객체가 있을 수도 있는데, 이 객체는 getPrice가 굳이 필요하지 않지만 **가방에 넣으려면 Component를 상속받아야 하기 때문에 지나친 일반화가 발생하는 경우**라고 할 수 있습니다.
+
+
+컴포짓 패턴을 적용하다가 억지로 일반화해야하는 경우가 발생한다면, 해당 구조가 컴포짓 패턴으로 구현하는 게 맞는지 다시 한 번 생각해봐야 합니다.
 
 
 
 
 
-## 4. 자바와 스프링에서의 어댑터 패턴
+## 4. 컴포짓 패턴을 사용하는 Swing 라이브러리
 
-우리가 사용하는 자바, 스프링에서 사용되는 어댑터 패턴을 알아보겠습니다.
-
-
-
-### 자바
+`스윙(Swing)`은 자바 언어에서 GUI의 구현하기 위해 제공되는 라이브러리입니다. 자바에서 추구하는 WORE(Wirte Once, Run Everywhere)을 구현하기 위해 `JDK 1.2` 버전부터 사용되었습니다.
 
 ```java
-// collections
-List<String> strings = Arrays.asList("a", "b", "c"); // 배열을 리스트로 변환
-Enumeration<String> enumeration = Collections.enumeration(strings); // Collections(여기에서는 List)를 Enumeration으로 변환
-ArrayList<String> list = Collections.list(enumeration); // Enumeration을 list로 변환
+import javax.swing.*;
 
-// io
-try(InputStream is = new FileInputStream("input.txt"); // 파일로 부터 바이트를 입력 받음
-    InputStreamReader isr = new InputStreamReader(is); // 바이트를 문자로 변환
-    BufferedReader reader = new BufferedReader(isr)) { // 문자를 버퍼링
-    while(reader.ready()) {
-        System.out.println(reader.readLine());
+public class SwingExample {
+
+    public static void main(String[] args) {
+      	// 프레임을 만듬
+        JFrame frame = new JFrame();
+
+      	// 텍스트 필드 박스를 만들고 프레임에 추가
+        JTextField textField = new JTextField();
+        textField.setBounds(200, 200, 200, 40);
+        frame.add(textField);
+
+      	// 버튼을 만들고 프레임에 추가
+        JButton button = new JButton("click");
+        button.setBounds(200, 100, 60, 40);
+        button.addActionListener(e -> textField.setText("Hello Swing"));
+        frame.add(button);
+
+      	// 프레임 크기 설정 후 보여주기
+        frame.setSize(600, 400);
+        frame.setLayout(null);
+        frame.setVisible(true);
     }
-} catch (IOException e) {
-    throw new RuntimeException(e);
 }
 ```
 
-> **Enumeration** : Collection에서 자주 쓰이며 배열에서 반복문을 이용하여 데이터를 출력하는 것과 같이 반복문을 통해 데이터를 한 번에 출력할 수 있도록 도와주는 클래스, `Iterator`도 비슷한 기능을 하는데, 가능하면 `Iterator` 사용을 권장
->
-> **FileInputStream** : `InputStream`을 상속받았으며, 파일로 부터 바이트로 입력받아, 바이트 단위로 출력할 수 있는 클래스
->
-> **InputStreamReader** : 바이트 스트림을 문자 스트림으로 변환 해주는 클래스, 바이트를 읽고 지정된 문자 집합을 사용하여 문자로 디코딩
->
-> **BufferedReader** : 문자 입력 스트림에서 텍스트를 읽고 문자, 배열 및 행을 효율적으로 읽을 수 있도록 문자를 버퍼링하는 클래스
+여기서 `JFrame, JTextField, JButton`은 컴포짓 패턴으로 이루어져 있습니다. 이 3개의 객체는 전부 `Component	`라는 추상 클래스를 상속받고 있습니다.
 
-생성자나 파라미터로 받은 타입을 **다른 타입으로 반환해주거나 다른 방식으로 사용할 수 있게 해주기 때문**에 `어댑터 패턴`이 적용됐다고 볼 수 있습니다.
-
-**참고 링크**
-
-- [Enumeration과 Iterator의 차이](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=seektruthyb&logNo=150114747262)
-
-
-
-### 스프링
-
-스프링에서는 스프링 MVC에서 사용하는 `HandlerAdapter`가 어댑터 패턴을 사용하고 있다고 볼 수 있습니다. `HandlerAdapter`가 다양한 핸들러를 받아 `ModelAndView`를 반환하기 때문입니다. 즉, 스프링에서 아래와 같이 어댑터에 해당하는 인터페이스를 제공해 주는 것 입니다.
+프레임의 `add` 메서드는 아래 처럼 되어 있는데, 위 예시의 `Bag(Composite)`처럼 되어있다는 것을 알 수 있습니다.
 
 ```java
-public interface HandlerAdapter {
-    boolean supports(Object var1);
-
-    @Nullable
-    // Object에 다양한 핸들러가 올 수 있음
-    ModelAndView handle(HttpServletRequest var1, HttpServletResponse var2, Object var3) throws Exception;
-
-    long getLastModified(HttpServletRequest var1, Object var2);
+public Component add(Component comp) {
+        addImpl(comp, null, -1);
+        return comp;
 }
+
+protected void addImpl(Component comp, Object constraints, int index) {
+        synchronized (getTreeLock()) {
+          
+          	.... 생략
+              
+            // component라는 리스트에 파라미터로 받은 comp를 넣습니다.
+            if (index == -1) {
+                component.add(comp);
+            } else {
+                component.add(index, comp);
+            }
+            
+          	.... 생략
+              
+        }
+    }
 ```
-
-
 
 
 
