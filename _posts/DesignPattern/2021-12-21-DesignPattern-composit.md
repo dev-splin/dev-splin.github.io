@@ -304,7 +304,7 @@ public class SwingExample {
 
 여기서 `JFrame, JTextField, JButton`은 컴포짓 패턴으로 이루어져 있습니다. 이 3개의 객체는 전부 `Component	`라는 추상 클래스를 상속받고 있습니다.
 
-프레임의 `add` 메서드는 아래 처럼 되어 있는데, 위 예시의 `Bag(Composite)`처럼 되어있다는 것을 알 수 있습니다.
+프레임의 `add` 메서드는 아래 처럼 되어 있는데, 위 예시의 `Bag(Composite)` 같은 `Component`를 상속하는 객체들을 리스트로 가지고 있는 것을 알 수 있습니다.
 
 ```java
 public Component add(Component comp) {
@@ -329,6 +329,32 @@ protected void addImpl(Component comp, Object constraints, int index) {
         }
     }
 ```
+
+
+
+
+
+## 5. 컴포짓 패턴의 방식
+
+컴포짓 패턴에서 `Composite` 클래스는 자식들을 관리하기 위한 추가적인 메서드가 필요합니다. 이러한 메서드의 설계 방식에 따라 2가지 형태의 방식으로 나눌 수 있습니다.
+
+![composite-way](https://user-images.githubusercontent.com/79291114/147174785-16d0a493-79eb-4392-8e90-cf3475c51ca6.png)
+
+
+
+### 안정성을 추구하는 방식
+
+안정성을 추구하는 방식은 자식을 다루는 `add(), remove()` 와 같은 메소드들은 오직 `Composite` 만 정의되었다. 그로 인해, **Client는 Leaf와 Composite을 다르게 취급**하고 있습니다. 하지만 **Client에서 Leaf객체가 자식을 다루는 메소드를 호출할 수 없기 때문에, 타입에 대한 안정성**을 얻게 됩니다.
+
+*먼저 예시로 들었던, `Bag`과 `Item`을 생각하면 됩니다.*
+
+
+
+### 일관성을 추구하는 방식
+
+일관성을 추구하는 방식은 자식을 다루는 메소드들을 `Composite`가 아닌 `Component`에 정의하는 방식입니다. 그로 인해, `Client`는 `Leaf`와 `Composite`를 일관되게 취급할 수 있습니다. 하지만 `Client`는 `Leaf` 객체가 자식을 다루는 메소드를 호출할 수 있기 때문에, 타입의 안정성을 잃게 됩니다.
+
+`Swing`라이브러리가 일관성을 추구하는 방식으로 되어있습니다.
 
 
 
