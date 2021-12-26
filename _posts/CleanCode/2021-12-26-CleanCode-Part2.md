@@ -188,13 +188,13 @@ for (int j=0; j < NUMBER_OF_TASKS; j++) {
 
 클래스 이름과 객체 이름은 명사나 명사구가 적합합니다. `Customer, WikiPage, Account` 등등..
 
+`Manager, Processor, Data, Info` 같은 단어를 피해야 합니다. 
+
 
 
 ### 나의 생각
 
-`Manager, Processor, Data, Info` 같은 단어를 피하라고 하는데.. `Data, Info`는 너무 추상적이니 이해는 가지만 `Manager, Processor`는 왜 피해야 하는지 모르겠습니다.
-
-
+`Data, Info`는 너무 추상적이니 이해는 가지만 `Manager, Processor`는 좀 애매모호할 수 있지만, 객체를 관리한다는 의미로 `Manager`를 붙일 수 있기 때문에 피해야 한다고 하는 것 같습니다.
 
 
 
@@ -222,13 +222,7 @@ for (int j=0; j < NUMBER_OF_TASKS; j++) {
 
 ## 2-11. 한 개념에 한 단어를 사용하라
 
-추상적인 개념 하나에 단어 하나를 선택해 이를 고수합니다. 예를 들어, 똑같은 메서드를 클래스마다 `fetch, retrieve, get`으로 제각각 부르면 혼란스럽습니다. 마찬가지로 동일 코드 기반에 `Controller, Manager, Driver`를 섞어 쓰면 비슷 비슷한 의미이기 때문에 혼란스럽습니다.
-
-
-
-### 나의 생각
-
-`Controller, Manager, Driver`가 헷갈릴 수 있지만, **MVC 패턴을 사용하는 웹 개발자의 입장에서는 조금 다를 수 있다고 생각**합니다. 때문에 이 부분은 분야마다 다를 수 있다고 생각됩니다.
+추상적인 개념 하나에 단어 하나를 선택해 이를 고수합니다. 예를 들어, 똑같은 메서드를 클래스마다 `fetch, retrieve, get`으로 제각각 부르면 혼란스럽습니다. 마찬가지로 동일 코드 기반에 `Controller, Manager, Driver`같이 비슷한 의미를 섞어 쓰면 혼란스럽습니다.
 
 
 
