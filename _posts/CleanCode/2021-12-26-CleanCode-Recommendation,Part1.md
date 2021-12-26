@@ -163,13 +163,7 @@ toc_label: 목차
 
 - [객체 지향 설계 원칙(SOLID) 이란?](https://dev-splin.github.io/cs(computer%20science)/CS-Development-common-sense/#%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EC%A0%81-%EC%84%A4%EA%B3%84-%EC%9B%90%EC%B9%99-solid)
 
-
-
-
-
 ---
 
-참고 : [코딩으로 학습하는 GoF의 디자인 패턴](https://www.inflearn.com/course/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/dashboard)
 
-[컴포지트 패턴(Composite Pattern) :: 마이구미](https://mygumi.tistory.com/343)
 
