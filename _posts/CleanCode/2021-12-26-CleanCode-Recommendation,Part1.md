@@ -165,5 +165,4 @@ toc_label: 목차
 
 ---
 
-
-
+참고 : Clean Code - 로버트 C. 마틴
