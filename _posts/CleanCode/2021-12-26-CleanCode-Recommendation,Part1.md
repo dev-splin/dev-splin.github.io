@@ -1,5 +1,5 @@
 ---
-title: "Clean Code : 추천사 및 1장"
+title: "Clean Code : 추천사 및 1장(깨끗한 코드)"
 excerpt_separator: <!--more-->
 categories:
   - Clean Code
@@ -11,7 +11,7 @@ toc_sticky: true
 toc_label: 목차 
 ---
 
-# Clean Code - 추천사 및 1장
+# Clean Code : 추천사 및 1장(깨끗한 코드)
 
 다니는 회사의 인턴 부터 시작해 정규직이 되고 난 후, 신규 프로젝트에 투입되었는데, **다른 사람의 코드를 분석하고 활용해야 하는 경우**가 많았습니다. 예전부터 확장성 있고 효율적인 좋은 코드에 대해 관심이 있었지만, 이번 신규 프로젝트를 통해 좋은 코드의 중요성에 대해 한 번 더 느끼게 되어 공채 동기들과 함께  `Clean Code - 로버트 C. 마틴`을 베이스로 하는 Clean Code 스터디를 시작하게 되었습니다.
 
