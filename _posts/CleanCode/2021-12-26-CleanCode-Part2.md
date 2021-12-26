@@ -232,6 +232,148 @@ for (int j=0; j < NUMBER_OF_TASKS; j++) {
 
 
 
+
+
+## 2-12. 말장난을 하지 마라
+
+한 단어를 두 가지 목적으로 사용하지 말아야 합니다. 다른 개념에 같은 단어를 사용한다면 그것은 말장난에 불과합니다.
+
+여러 클래스에 `add`라는 메서드가 있을 때, 모든 `add` 메서드의 매개변수와 반환값이 의미적으로 똑같다면 문제 없습니다. 하지만 종종 프로그래머들은 같은 맥락이 아닌데도 `일관성`을 고려해 `add`라는 단어를 선택합니다. 아래와 같은 두 개의 `add` 메서드가 있다고 가정하겠습니다.
+
+- `기존의 add 메서드` : 기존 값 두 개를 더하거나 이어서 새로운 값을 만드는 메서드
+- `두 번째 add 메서드` : 집합에 값을 하나 추가하는 메서드
+
+`두 번째 add 메서드`를 add라 불러도 괜찮을까요?? 일관성을 위해 add라 부를수도 있지만, **두 번째 add 메서드는 기존의 add 메서드와 맥락이 다르기 때문에 insert나 append라는 이름이 적합**합니다. 즉, **두 번째 메서드를 add라고 부른다면 말장난인 것**입니다.
+
+
+
+
+
+## 2-13. 해법 영역에서 가져온 이름을 사용하라
+
+모든 이름을 도메인 영역에서 가져오는 정책은 같은 개념을 다른 이름으로 이해할 수 있어 매번 고객에게 의미를 물어봐야 하기 때문에 좋지 않습니다. **코드를 읽을 사람도 프로그래머이기 때문에 전산 용어, 알고리즘 이름, 패턴 이름, 수학 용어등을 사용해도 괜찮습니다.** 프로그래머에게 익숙한 기술 개념은 아주 많기 때문에 **기술 개념에는 기술 이름이 가장 적합한 선택**입니다.
+
+
+
+
+
+## 2-14. 문제(도메인) 영역에서 가져온 이름을 사용하라
+
+하지만 `적절한 프로그래머 용어`가 없다면 도메인 영역에서 이름을 가져옵니다. 그러면 **코드를 보수하는 프로그래머가 도메인 전문가에게 의미를 물어 파악**할 수 있습니다. 다만 **우수한 프로그래머와 설계자라면 해법 영역과 문제(도메인) 영역을 구분할 줄 알아야 합니다.**
+
+
+
+
+
+## 2-15. 의미 있는 맥락을 추가하라
+
+모든 이름은 스스로 의미를 가지지만 대다수 이름은 그렇지 못합니다. 때문에 **클래스, 함수, 이름 공간에 넣어 맥락을 부여합니다. 이 모든 방법이 실패했을 때, 마지막 수단으로 접두어를 붙입니다.**
+예를 들어, 주소에 속하는 `addrFirstName, addrLastName, addrState`가 있습니다. 접두어 `addr`을 추가하므로써 코드를 읽는 사람이 주소에 속한다는 것을 알 수있습니다. 물론 Adress라는 클래스를 생성하면 더 좋습니다. 아래의 두 예제를 비교하면서 좀 더 확실히 알아보겠습니다.
+
+
+
+### 예제1
+
+해당 예제는 메서드 이름에서 통계 추측 메세지를 출력한다는 것을 알수는 있지만, 함수를 끝까지 읽어보고 나서야 `number, verb, pluralModifier`라는 변수 세 개가 `통계 추측 메세지`에 사용된다는 사실을 알 수 있습니다.
+
+```java
+private void printGuessStatistics(char candidate, int count) {
+	String number;
+	String verb;
+	String pluralModifier;
+	
+	if (count == 0) {
+		number = "no";
+		verb = "are";
+        pluralModifier = "s";
+	} else if (count == 1) {
+        number = "1";
+        verb = "is";
+        pluralModifier = "";
+	} else {
+        number = Integer.toString(count);
+        verb = "are";
+        pluralModifier = "s";
+    }
+    
+    String guessMessage = String.format(
+        "There %s %s %s%s", verb, number, candidate, pluralModifier
+    );
+}
+```
+
+
+
+### 예제2
+
+위의 함수를 작은 조각으로 쪼개어 세 변수를 가지는 `GuessStatisticsMessage`라는 클래스를 만듭니다. 그러면 **세 변수는 맥락이 분명해지고 함수를 쪼개기가 쉬워지므로 알고리즘도 좀 더 명확**해집니다.
+
+```java
+public class GuessStatisticsMessage {
+    private String number;
+    private String verb;
+    private String pluralModifier;
+    
+    public String make(char candidate, int count) {
+        createPluralDependentMessageParts(count);
+        return String.format(
+        	"There %s %s %s%s", verb, number, candidate, pluralModifier
+        );
+    }
+    
+    private void createPluralDependentMessageParts(int count) {
+        if (count == 0) {
+            thereAreNoLetters();
+        } else if (count == 1) {
+            thereIsOneLetter();
+        } else {
+            thereAreManyLetters(count);
+        }
+    }
+    
+    private void thereAreManyLetters(int count) {
+        number = Integer.toString(count);
+        verb = "are";
+        pluralModifier = "s";
+    }
+    
+    private void thereIsOneLetter() {
+        number = "1";
+        verb = "is";
+        pluralModifier = "";
+    }
+    
+    private void thereAreNoLetters() {
+        number = "no";
+		verb = "are";
+        pluralModifier = "s";
+    }
+}
+```
+
+
+
+
+
+## 2-16. 불필요한 맥락을 없애라
+
+`(Gas Station Deluxe)고급 휘발유 충전소`라는 애플리케이션을 짠다고 가정합니다. 
+
+만약 모든 클래스 이름을 `GSD`로 시작한다면 IDE에서 G를 입력하고 자동 완성 키를 누르면 IDE는 모든 클래스를 열거하게 되므로 좋지 않습니다. 또 다른 프로그램에서 해당 객체를 사용하는 경우가 생기면 `GSD`가 붙는 객체는 사용하기에 적절하지 않습니다.
+
+일반적으로는 의미가 분명한 경우에 짧은 이름이 긴 이름보다 좋습니다. 때문에 불필요한 맥락을 제거해야하고 이름을 정할 때 의미가 분명하게 만들어야합니다.
+
+
+
+
+
+## 2-17. 2장을 마치며...
+
+우리들 대다수는 자신이 작성한 클래스 이름과 메서드 이름을 모두 암기하지 못합니다. 때문에 **우리는 문장이나 문단처럼 읽히는 코드나 표나 자료 구조처럼 읽히는 코드를 작성하는데 집중**해야 합니다. 만약 코드 개선 노력과 마찬가지로 이름 역시 나름대로 바꿨다가는 누군가의 질책을 받을지도 모르지만 그렇다고 **코드를 개선하려는 노력을 중단해서는 안 됩니다.**
+
+
+
 ---
 
 참고 : Clean Code - 로버트 C. 마틴
+
