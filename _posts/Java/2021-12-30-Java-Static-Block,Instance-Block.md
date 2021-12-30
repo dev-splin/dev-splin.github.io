@@ -11,8 +11,6 @@ toc_sticky: true
 toc_label: 목차
 ---
 
-# 스태틱 블록(Static Block)과 인스턴스 블록(Instance Block)
-
 # JVM과 연관지어 보는 스태틱 블록(Static Block)과 인스턴스 블록(Instance Block)
 
 Java로 디자인 패턴 스터디 중 Class 안에 `static { }`와 `{ }`로만 이루어진 처음보는 블록이 있어 이 글을 포스팅하게 되었습니다.
@@ -221,18 +219,19 @@ Instance Block 2
 
 ## 4. Inner Class 소유 시 스태틱 블록과 인스턴스 블록
 
-만약 Class가 Inner Class를 가지고 있다면 어떻게 될 지 알아보겠습니다.
+만약 Font Class가 `Inner Class인 Owner Class` 가지고 있다면 어떻게 될 지 알아보겠습니다.
 
 
 
 ### 코드
 
-```
+```java
 public class Font {
     static String name;
     private int size;
     Owner owner;
 
+    // Font 생성 시 멤버 변수인 Owner 객체도 같이 생성
     public Font() {
         size = 12;
         owner = new Owner();
@@ -251,6 +250,7 @@ public class Font {
         System.out.println("Static Block 2");
     }
 
+    // Inner Class
     public class Owner {
         static String name;
         int tel;
@@ -264,19 +264,88 @@ public class Font {
         }
     }
 }
+```
 
+
+
+### 실행 결과
+
+호출 순서를 바꿔보면서 다양한 경우를 테스트 해보겠습니다.
+
+
+
+#### Font Class의 Static 속성을 호출하는 경우
+
+```java
 public class Main {
     public static void main(String[] args) {
+        // Font Class의 Static 속성 name 호출
         Font.name = null;
-//        Font.Owner.name = null;
 
         Font font = new Font();
-
 
         font = new Font();
     }
 }
 ```
+
+```java
+Static Block 1
+Static Block 2
+Instance Block 1
+Instance Block 2
+Inner Class Static Block 1
+Inner Class Instance Block 1
+Instance Block 1
+Instance Block 2
+Inner Class Instance Block 1
+```
+
+코드의 실행 결과는 위와 같은데, 실행 순서를 나열해보자면 아래와 같습니다.
+
+1. Font 객체의 name 접근(`최초로 Font Class 접근`) -> **Font Class의 Static Block 실행**
+2. Font 객체 생성 -> **Font Class의 Instance Block 실행**
+3. Font 객체 생성 시 Owner 객체 생성(`최초로 Owner Class 접근`) -> **Owner Class의 Static Block 실행 후, Instance Block 실행**
+4. Font 객체 한 번 더 생성 -> **Font Class의 Instance Block 실행**
+5. Font 객체 생성 시 Owner 객체 생성 -> **Owner Class의 Instance Block 실행**
+
+
+
+#### Inner Class의 Static 속성을 호출하는 경우
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Font.Owner.name = null;
+
+        Font font = new Font();
+
+        font = new Font();
+    }
+}
+```
+
+```java
+Inner Class Static Block 1
+Static Block 1
+Static Block 2
+Instance Block 1
+Instance Block 2
+Inner Class Instance Block 1
+Instance Block 1
+Instance Block 2
+Inner Class Instance Block 1
+```
+
+`Owner Class(Inner Class)`의 Static 속성을 먼저 호출하여도 Owner Class를 가지고 있는 Font Class의 Block은 실행되지 않는 것을 볼 수 있습니다.
+
+
+
+
+
+## 5. 마치며
+
+같은 Class로 객체를 생성하더라도 생성자마다, 사용 용도에 따라 다르게 사용하게 되는데, 이 때 Static Block 이나 Instance Block을 적절히 잘 활용하면 좋을 거 같다는 생각이 들었습니다 :)
 
 
 
