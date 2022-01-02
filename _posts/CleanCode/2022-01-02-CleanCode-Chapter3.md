@@ -267,7 +267,122 @@ public class EmployeeFactoryImpl implements EmployeeFactory {
 
 
 
+
+
+## 3-9. 오류 코드보다 예외를 사용하라!
+
+함수에서 오류 코드를 사용하게 되면 **오류 코드에 관련된 처리를 추가적으로 해주어야 합니다.** 때문에 오류 코드 대신 예외를 사용하면 오류 처리 코드가 분리되므로 코드가 더 깔끔해집니다.
+
+
+
+### Try/Catch 블록 뽑아내기
+
+try/catch 블록은 정상 동작과 오류 처리 동작이 섞이게 됩니다.(정상 동작 할 수도 있고, 오류가 날 수도 있어서 이렇게 말한 거 같음..) 때문에 try/catch 블록을 아래와 같이 별도 함수로 분리하는 편이 좋습니다.
+
+```java
+// try catch 블록을 포함하는 delete 함수
+public void delete(Page page) {
+    try {
+        deletePageAndAllReferences(page);
+    } catch (Exception e) {
+        logError(e);
+    }
+}
+
+// 실질 적인 로직을 모아 놓은 deletePageAndAllReferences 함수
+private void deletePageAndAllReferences(Page page) throws Exception {
+    deletePage(page);
+    registry.deleteReference(page.name);
+    configKeys.deleteKey(page.name.makeKey());
+}
+
+// 로그를 보여주는 logError 함수
+private void logError(Exception e) {
+    logger.log(e.getMessage());
+}
+```
+
+
+
+#### 나의 생각
+
+사실 뭔가 애매모호한 느낌이 드는 부분이긴 합니다. 제 생각으로는 `delete` 함수를 읽을 때 `deletePageAndAllReferences 함수에서 오류가 발생할 수도 있구나`라고 한 번에 파악하기 쉽게 만들기 위함이 아닐까 싶습니다.
+
+
+
+### 오류 처리도 한 가지 작업이다.
+
+**함수는 한 가지 일만해야 하는데, 오류 처리도 한 가지 작업에 속합니다.** 때문에 위의 예시와 같이 오류를 처리하는 함수는 오류만 처리해야 한다고 합니다.
+
+
+
+### Error.java 의존성
+
+만약 자바에서 Error 코드를 위한 Enum을 사용한다고 했을 떄, 다른 클래스에서 Error enum을 사용해야 하므로 Error enum이 변경된다면, Error enum을 사용하는 클래스 전부를 다시 컴파일하고 다시 배치해야 합니다. 하지만 **예외를 사용한다면 재컴파일/재배치 없이도 새 예외 클래스를 추가해서 사용할 수 있기 때문에 예외를 권장하는 것**입니다.
+
+
+
+### 오류 코드와 예외에 대한 나의 생각
+
+오류 코드 처리를 위한 작업이 생기기 때문에 예외 처리가 더 좋은 것에는 동감합니다. 하지만 웹 프로그래머 입장에서는 백엔드에서 프론트엔드와의 통신을 위한 오류 코드는 백엔드와 프론트엔드 간의 약속이기 때문에 괜찮다고 생각합니다.
+
+
+
+
+
+## 3-10. 반복하지 마라!
+
+많은 원칙과 기법들이 중복을 없애거나 제어할 목적으로 나왔습니다. **중복이 발생한다면 코드 길이가 늘어날 뿐 아니라 중복 코드가 변하면 중복된 부분 모두를 수정해야 하기 때문에 오류가 발생할 확률도 높아지게 됩니다.**
+
+`구조적 프로그래밍`, `AOP(Aspect Oriented Programming)`, `COP(Component Oriented Programming)` 모두 어떤 면에서는 중복 제거 전략입니다.
+
+> **AOP(Aspect Oriented Programming)** : 관점 지향 프로그래밍이라고 합니다. 어떤 로직을 기준으로 핵심적인 관점, 부가적인 관점으로 나누어서 보고 그 관점을 기준으로 각각 묘듈화 하는 것을 말합니다.
+>
+> **COP(Component Oriented Programming)** : Vue, React, Angular 등.. 에서 사용하는 컴포넌트 지향 프로그래밍입니다. 프론트 엔드에서 반복되는 요소들을 컴포넌트로 분리하여 애플리케이션을 더 빠르게 구축할 수 있게 해주는 것을 말합니다.
+
+
+
+
+
+## 3-11. 구조적 프로그래밍
+
+모든 함수와 함수 내 모든 블록에는 입구와 출구가 하나만 존재해야 한다고 합니다.(`입/출구 규칙`) 때문에  **break, continue는 사용해선 안 되고 goto는 절대로 사용하지 말라고 합니다.**
+
+하지만 함수를 작게 만든다면 때로는 `입/출구 규칙` 보다 아래의 예시 처럼 `return, break ,continue`를 사용하는 게 의도를 표현하기 쉬워지기 때문에 적절히만 사용한다면 괜찮다고 합니다.
+
+```java
+public boolean findNum(int target) {
+	for(int num : nums) {
+		if (num == target) {
+			return true;	// 해당 숫자를 찾는다면, 함수를 종료하겠다는 의도를 확실히 표현
+		}
+	}
+	
+	return false;
+}
+```
+
+
+
+
+
+## 3-12. 함수를 어떻게 짜죠?
+
+프로그램을 만들 때 처음부터 함수를 분리하는 것은 매우 어렵습니다. 때문에 **처음에는 길고 복잡하게 만들더라도 단위 테스트를 통해 코드를 다듬고, 함수를 만들고, 이름을 바꾸고, 중복을 제거하는 과정이 필요**하다고 합니다.
+
+
+
+
+
+## 3-13. 3장을 마치며..
+
+마지막 `3-12. 함수를 어떻게 짜죠?` 부분에서 나왔던 것처럼 함수를 처음부터 완벽하게 분리해서 작성하는 것은 거의 불가능하다고 생각합니다. 때문에 지금까지 알아본 3장을 토대로 **항상 좋은 함수를 만들기 위한 고민과 노력을 끊임없이 해야하고 단위 테스트를 통해 검증하고 리팩토링하는 과정이 필요**하다고 생각됩니다.
+
+
+
 ---
 
 참고 : Clean Code - 로버트 C. 마틴
+
+
 
