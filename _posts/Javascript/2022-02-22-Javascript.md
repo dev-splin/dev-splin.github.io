@@ -1,5 +1,5 @@
 ---
-title: "Javscript : Javascript 알쓸신잡(알아두면 쓸모있는 신기한 잡(?)지식)"
+title: "Javscript : Javascript 알쓸신잡(알아두면 쓸모있는 신기한 잡아스크립트)"
 excerpt_separator: <!--more-->
 categories:
   - Javscript 
@@ -24,7 +24,7 @@ toc_label: 목차
 
 
 
-## REPL(Read Eval Print Loop)
+### REPL(Read Eval Print Loop)
 
 기본적으로 Javascript는 컴퓨터가 한줄 씩 읽는 인터프리터 방식의 언어입니다.
 
@@ -71,6 +71,51 @@ parseFloat('234.23423오오오테스트324'); // 234.23423
 하지만, 빼기 연산자는 문자열이 숫자로 바뀐 후 연산합니다. 때문에 **문자열에 숫자가 아닌 다른 문자가 들어올 경우 Nan을 반환**합니다.
 
 즉, 위에서 말한 것 처럼 문자열이 `parseInt`보다는 `Number`가 적용되는 것이라고 볼 수 있습니다.
+
+
+
+
+
+### NaN끼리 비교하기
+
+값 중에서 NaN은 비교할 때 독특한 성질을 가집니다. 바로 NaN끼리 비교할 때 false 값을 가진다는 것입니다.
+
+```javascript
+> NaN == NaN;
+< false
+```
+
+
+
+
+
+### 문자열 코드 보기
+
+`charCodeAt()`이라는 메서드를 사용하면 해당 문자가 어떤 코드 번호를 가지고 있는지 알 수 있습니다.'
+
+```javascript
+> '&'.charCodeAt();
+< 65286
+> 'a'.charCodeAt();
+< 97
+> 'b'.charCodeAt();
+< 98
+```
+
+
+
+
+
+### 문자와 숫자 비교
+
+Javascript에서 문자와 숫자를 비교할 때, **문자를 숫자로 변환 후 비교**하게 됩니다. 이 때, 숫자로 변환할 수 없는 문자는 `NaN`이 됩니다.
+
+```javascript
+> '1' < 5
+< true
+> 'abc' < 5
+< false
+```
 
 
 
