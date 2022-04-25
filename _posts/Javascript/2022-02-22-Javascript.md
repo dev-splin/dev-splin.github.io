@@ -201,6 +201,114 @@ undefined는 빈 값이기 때문에 특정 변수에 빈 값을 넣을 때는 n
 
 
 
+## 배열 메서드
+
+아래와 같은 배열이 있다고 가정합니다.
+
+```javascript
+const arr = ['가', '나', '다', '라', '마'];
+```
+
+
+
+### 추가 및 제거
+
+- `shift` : 배열 맨 앞에 값을 제거함 :arrow_right: arr.shift();
+- `unshift` : 배열 맨 앞에 값을 추가함 :arrow_right: arr.unshift('가');
+- `push` : 배열 맨 뒤에 값을 추가함 :arrow_right: arr.push('다');
+- `pop` : 배열 맨 뒤 값을 제거함 :arrow_right: arr.pop();
+- `splice` : 다양하게 배열의 값을 제거하거나 추가할 수 있음
+  - arr.splice(1,2) :arrow_right: 배열의 1번 째 인덱스부터 2개의 값을 지움
+  - arr.splice(1) :arrow_right: 배열의 1번 째 인덱스 뒤의 값을 모두 지움
+  - arr.splice(1, 3, "타", "파") :arrow_right: 배열의 1번 째 인덱스부터 3개의 값을 지운 후, 타, 파를 끼워넣음
+  - arr.splice(1, 0, "타", "파") :arrow_right: 배열의 1번 째 인덱스 앞에 타, 파를 끼워넣음
+
+
+
+### 요소 찾기
+
+- `includes` : 배열 안에 값이 있는지 체크(true/false) :arrow_right: arr.includes('가');  // **true**
+- `indexOf` : 배열의 앞에서부터 해당 값의 인덱스 번호를 찾아줌 없으면 -1 :arrow_right: arr.indexOf('라'); // **3**
+- `lastIndexOf` : 배열의 뒤에서부터 해당 값의 인덱스 번호를 찾아줌 없으면 -1 :arrow_right: arr.lastIndexOf('하'); // **-1** 
+
+
+
+
+
+## 함수
+
+### 함수에 이름을 붙이는 방법 3가지
+
+1. `함수 선언문(function declaration statement)` : function예약어 다음에 이름을 붙이는 방법 :arrow_right: function a() {}
+2. `함수 표현식(function expression)` : 변수를 만들어 함수를 넣는 방법 :arrow_right:const a = function() {}
+3. `화살표 함수(익명 함수)` : 변수를 만들어 함수를 넣는 방법(화살표 함수는 해당 방식만 가능) :arrow_right:  const a = () => {}
+
+
+
+### 함수의 parameter와 argument
+
+가끔 parameter와 argument를 헷갈리곤 하는데, 정확히 정의하자면 아래와 같습니다.
+
+- `parameter` : 함수를 선언할 때 받는 매개변수
+- `argument` : 함수를 호출할 때 넣어주는 인수
+
+만약 함수의 parameter(매개변수)와 argument(인수)가 일치하지 않는다면, **짝지어지지 않은 매개변수는 undefined**가 되고 **짝지어지지 않은 인수는 무시**됩니다.
+
+
+
+
+
+## 객체
+
+### 객체 속성의 접근방법
+
+```javascript
+const obj = {
+    bc : 'hello',
+    ab : 'hi',
+    dc : 'world',
+    // 아래는 특수한 이름을 가진 속성(문자열로 묶어주어야 함)
+    '2bc' : 'unique',
+    'a b' : 'space',
+}
+```
+
+위와 같은 객체가 있을 때, 자바스크립트에서  2가지 방법으로 접근할 수 있습니다.
+
+1. 온점으로 구분하는 방법 :arrow_right: obj.bc
+2. 대괄호로 구분하는 방법(이 때, 속성명을 문자열로 묶어주어야 한다는 것을 유의) :arrow_right: obj['bc']
+
+이렇게 **객체에 접근하는 방법이 나뉘어져 있는 이유는 '2bc', 'a b'와 같은 특수한 경우 때문**입니다.
+
+속성명 앞에 숫자가 오거나 공백이 있는 경우는 **obj.2bc 처럼 온점으로 구별할 수 없기 때문에 대괄호로 구분**하는 방법이 있는 것입니다.
+
+
+
+
+
+### 배열과 함수도 객체다?!
+
+자바스크립트에서 배열과 함수도 객체이기 때문에 객체와 같이 속성을 정의할 수 있습니다.
+
+```javascript
+function hello() {}
+hello.a = 'really?';
+
+const array = [];
+array.b = 'wow';
+
+console.log(hello.a);
+console.log(array.b);
+```
+
+즉, 배열과 함수는 객체를 각각 배열과 함수모양으로 만들어 놓은 것이라고 생각하면 됩니다.
+
+> 하지만, 목적에 맞게 사용하는 것이 중요합니다.
+
+
+
+
+
 
 
 
