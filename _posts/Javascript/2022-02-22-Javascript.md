@@ -22,7 +22,7 @@ toc_label: 목차
 
 
 
-## REPL(Read Eval Print Loop)
+# REPL(Read Eval Print Loop)
 
 기본적으로 Javascript는 컴퓨터가 한줄 씩 읽는 인터프리터 방식의 언어입니다.
 
@@ -34,7 +34,7 @@ toc_label: 목차
 
 
 
-## Number와 parseInt/parseFloat의 차이
+# Number와 parseInt/parseFloat의 차이
 
 아래의 예시와 같이 `Number`는 안에 들어있는 값이 전부 숫자가 아니라면 `Nan(Not a Number)`를 반환하고 `parseInt/parseFloat`은 **Int와 Float으로 인식할 수 있는 위치까지 읽어 해당 타입**으로 반환합니다.
 
@@ -54,7 +54,7 @@ parseFloat('234.23423오오오테스트324'); // 234.23423
 
 
 
-## prompt()
+# prompt()
 
 값을 입력할 수 있는 시스템 창을 출력합니다.
 
@@ -62,7 +62,7 @@ parseFloat('234.23423오오오테스트324'); // 234.23423
 
 
 
-## 빼기(-) 연산자
+# 빼기(-) 연산자
 
 `1 + '0'` 처럼 더하기 연산자는 숫자가 문자열로 변환 후, 더하기 연산을 진행하는것은 대부분이 다 아는 사실일 겁니다.
 
@@ -74,7 +74,7 @@ parseFloat('234.23423오오오테스트324'); // 234.23423
 
 
 
-## NaN끼리 비교하기
+# NaN끼리 비교하기
 
 값 중에서 NaN은 비교할 때 독특한 성질을 가집니다. 바로 NaN끼리 비교할 때 false 값을 가진다는 것입니다.
 
@@ -87,7 +87,7 @@ parseFloat('234.23423오오오테스트324'); // 234.23423
 
 
 
-## 문자열 코드 보기
+# 문자열 코드 보기
 
 `charCodeAt()`이라는 메서드를 사용하면 해당 문자가 어떤 코드 번호를 가지고 있는지 알 수 있습니다.'
 
@@ -104,7 +104,7 @@ parseFloat('234.23423오오오테스트324'); // 234.23423
 
 
 
-## 문자와 숫자 비교
+# 문자와 숫자 비교
 
 Javascript에서 문자와 숫자를 비교할 때, **문자를 숫자로 변환 후 비교**하게 됩니다. 이 때, 숫자로 변환할 수 없는 문자는 `NaN`이 됩니다.
 
@@ -119,7 +119,7 @@ Javascript에서 문자와 숫자를 비교할 때, **문자를 숫자로 변환
 
 
 
-## !!연산자
+# !!연산자
 
 `!`가 true를 false로 false를 true로 바꿔주는 연산자이기 때문에 `!!`를 사용하면 해당 연산자를 붙인 코드가 true인지 false인지를 판단할 수 있다.
 
@@ -152,7 +152,7 @@ false
 
 
 
-## typeof null
+# typeof null
 
 `typeof null`은 원래 null이 나와야 하지만 **결과값은 object**가 나옵니다. 이 현상은 **자바스크립트의 유명한 버그**입니다. 언어가 만들어진 초창기에 object가 되었는데, 기존에 typeof null을 사용하는 모든 곳에 영향을 끼치기 때문에 버그를 수정할 수가 없었다고 합니다.
 
@@ -162,7 +162,7 @@ false
 
 
 
-## let let = '1' 선언했을 때 오류 메시지가 다른 이유
+# let let = '1' 선언했을 때 오류 메시지가 다른 이유
 
 `var var = 3;` 처럼 예약어를 변수의 이름으로 사용했을 때, `Unexpected token 'var'`라는 에러 메시지가 나옵니다.
 
@@ -178,7 +178,7 @@ let은 ES2015의 새로운 기능이었기 때문에 기존 코드를 끊을 수
 
 
 
-## 변수의 값을 변경하면 반환값이 undefined가 아니다?!
+# 변수의 값을 변경하면 반환값이 undefined가 아니다?!
 
 ```javascript
 > let test = 1; // 처음 test를 초기화할 때는 undefined를 반환하지만
@@ -191,7 +191,7 @@ let은 ES2015의 새로운 기능이었기 때문에 기존 코드를 끊을 수
 
 
 
-## 빈 값을 넣을 때는 null을 사용하자!
+# 빈 값을 넣을 때는 null을 사용하자!
 
 undefined는 빈 값이기 때문에 특정 변수에 빈 값을 넣을 때는 null을 사용함으로써, **의도적으로 null을 넣었다는 것을 표현**해주는 것이 좋습니다.
 
@@ -201,7 +201,7 @@ undefined는 빈 값이기 때문에 특정 변수에 빈 값을 넣을 때는 n
 
 
 
-## 배열 메서드
+# 배열 메서드
 
 아래와 같은 배열이 있다고 가정합니다.
 
@@ -211,7 +211,7 @@ const arr = ['가', '나', '다', '라', '마'];
 
 
 
-### 추가 및 제거
+## 추가 및 제거
 
 - `shift` : 배열 맨 앞에 값을 제거함 :arrow_right: arr.shift();
 - `unshift` : 배열 맨 앞에 값을 추가함 :arrow_right: arr.unshift('가');
@@ -225,7 +225,7 @@ const arr = ['가', '나', '다', '라', '마'];
 
 
 
-### 요소 찾기
+## 요소 찾기
 
 - `includes` : 배열 안에 값이 있는지 체크(true/false) :arrow_right: arr.includes('가');  // **true**
 - `indexOf` : 배열의 앞에서부터 해당 값의 인덱스 번호를 찾아줌 없으면 -1 :arrow_right: arr.indexOf('라'); // **3**
@@ -235,9 +235,9 @@ const arr = ['가', '나', '다', '라', '마'];
 
 
 
-## 함수
+# 함수
 
-### 함수에 이름을 붙이는 방법 3가지
+## 함수에 이름을 붙이는 방법 3가지
 
 1. `함수 선언문(function declaration statement)` : function예약어 다음에 이름을 붙이는 방법 :arrow_right: function a() {}
 2. `함수 표현식(function expression)` : 변수를 만들어 함수를 넣는 방법 :arrow_right:const a = function() {}
@@ -245,7 +245,7 @@ const arr = ['가', '나', '다', '라', '마'];
 
 
 
-### 함수의 parameter와 argument
+## 함수의 parameter와 argument
 
 가끔 parameter와 argument를 헷갈리곤 하는데, 정확히 정의하자면 아래와 같습니다.
 
@@ -258,9 +258,9 @@ const arr = ['가', '나', '다', '라', '마'];
 
 
 
-## 객체
+# 객체
 
-### 객체 속성의 접근방법
+## 객체 속성의 접근방법
 
 ```javascript
 const obj = {
@@ -286,7 +286,7 @@ const obj = {
 
 
 
-### 배열과 함수도 객체다?!
+## 배열과 함수도 객체다?!
 
 자바스크립트에서 배열과 함수도 객체이기 때문에 객체와 같이 속성을 정의할 수 있습니다.
 
@@ -309,7 +309,11 @@ console.log(array.b);
 
 
 
+# call(), apply(), bind()
 
+call, apply, bind는 함수 호출과 관련된 메서드 입니다.  해당 내용에 대한 설명은 아래의 링크를 참고하는 게 좋을 것 같습니다.
+
+- [함수 호출 call, apply, bind의 차이](https://velog.io/@josworks27/%ED%95%A8%EC%88%98%ED%98%B8%EC%B6%9C-call-apply-bind-%EC%B0%A8%EC%9D%B4)
 
 
 
