@@ -1,5 +1,5 @@
 ---
-title: "Javscript : Javascript 알쓸신잡(알아두면 쓸모있는 신기한 잡아스크립트)"
+title: "Javscript : 알쓸신잡(알아두면 쓸모있는 신기한 잡아스크립트) - Javascript"
 excerpt_separator: <!--more-->
 categories:
   - Javscript 
@@ -10,7 +10,7 @@ toc_sticky: true
 toc_label: 목차
 ---
 
-# Javascript
+# 알쓸신잡(알아두면 쓸모있는 신기한 잡아스크립트) - Javascript
 
 저는 기존에 Java와 Spring 공부를 했었는데, 회사에 입사 후 Javascript를 다룰 일이 많아졌습니다.
 
