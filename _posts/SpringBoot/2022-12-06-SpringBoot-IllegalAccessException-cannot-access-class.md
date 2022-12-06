@@ -1,5 +1,5 @@
 ---
-title: "Spring Boot : IllegalAccessException : cannot access class ... 에러 해결 방법(Intellij)"
+title: "Spring Boot : "IllegalAccessException : cannot access class ..." 에러 해결 방법(Intellij)"
 excerpt_separator: <!--more-->
 categories:
   - "Spring Boot"
