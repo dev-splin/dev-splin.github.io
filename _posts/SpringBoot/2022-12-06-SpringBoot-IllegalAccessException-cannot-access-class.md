@@ -39,24 +39,7 @@ toc_label: 목차
 
 ## 해결 방법
 
-여러가지의 해결방법이 있는데, 상황에 따라 여러가지를 동시에 적용해야 할 수도 있습니다.
-
-
-
-### 1. illegal-access 허용
-
-해당 옵션을 사용하여 위에서 말했던 것 처럼 이전 버전을 지원하기 위하여 JDK 8에 존재하는 패키지(`java.*`, `sun.*` 등)에 대해 사용자가 캡슐화를 허용할지 말지 선택할 수 있습니다.
-
-Intellij에서 `File -> Settings -> Compiler -> Java Compiler`의 `Additional command line parameters`나 `Override compiler parameters per-module -> Compilation options` 에 아래 옵션 중 하나를 추가해주면됩니다.
-
-- **--illegal-access=permit(JDK 9 이후 디폴트)** : JDK 8에 존재하는 모든 패키지가 이름이 지정되지 않은 모듈의 코드에 개방되도록 설정
-- **--illegal-access=warn** : `permit과 동일`하지만 `경고 메세지`가 발생
-- **--illegal-access=debug** : `permit과 동일`하지만 `경고 메세지와 스택 추적`이 발생
-- **--illegal-access=deny** : 다른 명령줄 옵션(--add-opens 등)으로 활성화된 작업을 제외한 모든 액세스 작업을 비활성화
-
-
-
-### 2. --add-exports 사용
+### --add-exports 사용
 
 기본적으로 액세스할 수 없는 내부 API를 사용해야 하는 경우 --add-exports 명령줄 옵션을 사용하여 캡슐화를 해제할 수 있습니다.
 
