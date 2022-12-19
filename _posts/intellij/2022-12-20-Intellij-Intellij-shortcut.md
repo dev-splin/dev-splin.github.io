@@ -86,6 +86,7 @@ toc_label: 목차
 | Ctrl + Shift + T     | ⇧ + ⌘ +  T | 테스트 케이스 생성                                         |                                                              |
 | Alt + Enter          | ⌥  + ⏎     | 자동 완성 Help                                             | 커서에 위치하는 목록에 대해서 자동으로 완성해줌 (import, 메서드 생성, 리팩토링 추천 등) |
 | Ctrl + Alt + P       | ⌘ + ⌥ + P  | 커서에 위치하는 값 메서드 파라미터로 만듦                  |                                                              |
+| Ctrl + Alt + N       | ⌥ + ⌘ + N  | 자동으로 inline으로 바꿔줌                                 | Ex) int를 반환하는 메서드에서<br />int a = 6 + 7; return a; -> return 6+7;<br />로 변경해줌 |
 
 
 
