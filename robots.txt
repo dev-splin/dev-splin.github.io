@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://dev-splin.github.io/sitemap.xml
