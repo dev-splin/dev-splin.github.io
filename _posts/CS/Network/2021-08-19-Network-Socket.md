@@ -330,7 +330,7 @@ Node.js 기반으로 만들어진 기술로 자체 스펙으로 만들어진 Soc
 
 ### SockJS
 
-Spring Framework에서도 Web Socket을 지원합니다. 스프링 메뉴얼에 Web Socket 부분을 보면 위와 같은 브라우저 문제를 해결하기 위한 방법으로 [SockJS를 솔루션으로 제시](http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#websocket-fallback)합니다. 역시 자체 스펙으로 Web Scoket 미지원 브라우저를 관리합니다. 서버 개발 시 스프링 설정에서 일반 Web Socket 으로 통신할지 SockJS 호환으로 통신할지 결정할 수 있습니다. 클라이언트쪽은 SockJS Client를 통해 서버와 통신합니다.
+Spring Framework에서도 Web Socket을 지원합니다. 스프링 메뉴얼에 Web Socket 부분을 보면 위와 같은 브라우저 문제를 해결하기 위한 방법으로 [SockJS를 솔루션으로 제시](https://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#websocket-fallback)합니다. 역시 자체 스펙으로 Web Scoket 미지원 브라우저를 관리합니다. 서버 개발 시 스프링 설정에서 일반 Web Socket 으로 통신할지 SockJS 호환으로 통신할지 결정할 수 있습니다. 클라이언트쪽은 SockJS Client를 통해 서버와 통신합니다.
 
 
 
