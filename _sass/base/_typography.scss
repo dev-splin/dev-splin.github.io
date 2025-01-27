@@ -189,6 +189,8 @@ main {
 .footnotes > ol {
   padding-left: 2rem;
   margin-top: 0.5rem;
+  font-size: 0.9em; /* 폰트사이즈 */
+  margin-top:0; /* 문서끝단 각주위의 선 */
 
   > li {
     &:not(:last-child) {
@@ -204,6 +206,16 @@ main {
     }
   }
 }
+
+/* 문서끝단 각주위의 선 */
+.footnotes:before {
+  content: "";
+  border-bottom: 1px solid #d3d3d3;
+  width: 30%;
+  display: block;
+  margin:0px;
+  padding:0px;
+} /* 여기까지 */
 
 .footnote {
   @at-root a#{&} {

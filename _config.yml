@@ -120,7 +120,7 @@ comments:
   # Giscus options › https://giscus.app
   giscus:
     repo: dev-splin/giscus # <gh-username>/<repo>
-    repo_id: R_kgDONwaKX
+    repo_id: R_kgDONwaKXg
     category: comments
     category_id: DIC_kwDONwaKXs4CmY2V
     mapping: # optional, default to 'pathname'
