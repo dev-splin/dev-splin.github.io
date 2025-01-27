@@ -5,6 +5,7 @@
 
 .highlighter-rouge {
   color: var(--highlighter-rouge-color);
+  font-family: v.$code-font-family; /* 추가한 부분 */
   margin-top: 0.5rem;
   margin-bottom: 1.2em; /* Override BS Inline-code style */
 }
@@ -23,6 +24,7 @@
   pre {
     margin-bottom: 0;
     font-size: v.$code-font-size;
+    font-family: v.$code-font-family; /* 추가한 부분 */
     line-height: 1.4rem;
     word-wrap: normal; /* Fixed Safari overflow-x */
   }
