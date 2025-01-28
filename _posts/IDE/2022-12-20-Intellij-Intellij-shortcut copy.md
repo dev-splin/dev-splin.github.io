@@ -1,14 +1,17 @@
 ---
-title: "Intellij : 유용한 단축키"
+title: "[IDE] : WebStorm 유용한 단축키"
 excerpt_separator: <!--more-->
 categories:
-  - Intellij
+  - IDE
+  - Jetbrains
 tags:
-  - Intellij
-  - "Intellij : Shorcut"
+  - IDE
+  - Jetbrains
+  - Setting
 toc: true
 toc_sticky: true
 toc_label: 목차
+image: /assets/img/thumbnail/jetbrains-webstorm-logo.png
 ---
 
 # Intellij 유용한 단축키
@@ -74,18 +77,18 @@ toc_label: 목차
 
 ## 자동 완성
 
-| WINDOW               | MAC        | 간단한 설명                                                | 비고                                                         |
-| -------------------- | ---------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| Ctrl + Shift + Enter | ⇧ + ⌘ + ⏎  | 현재 구문 자동 완성                                        | for, if 문 등도 자동 완성 가능                               |
-| Ctrl + Alt + L       | ⌥ + ⌘ + L  | 현재 파일의 서식 지정                                      | -                                                            |
-| Alt + insert         | ⌘ + N      | 생성자, getter(), setter(), toString() 메서드 등 자동 생성 | -                                                            |
-| Ctrl + Alt + V       | ⌥ + ⌘ + V  | 해당 메서드에 대한 반환 타입, 변수를 자동 작성             | new Member() 라고 입력 후 해당 단축키를 누르면 자동으로 변수를 만들어줌 |
-| Ctrl + Alt + T       | ⌥ + ⌘ + T  | 선택한 영역을 if/else, try/catch 등으로 감쌀 수 있음       | -                                                            |
-| Ctrl + Alt + M       | ⌥ + ⌘ + M  | 입력한 메서드 명으로 메서드 생성                           | 어느 정도 메서드명 가이드도 잡아줌                           |
-| Ctrl + Shift + O     | ^ + ⌥ + O  | 안쓰는 import 제거                                         | -                                                            |
-| Ctrl + Shift + T     | ⇧ + ⌘ +  T | 테스트 케이스 생성                                         |                                                              |
-| Alt + Enter          | ⌥  + ⏎     | 자동 완성 Help                                             | 커서에 위치하는 목록에 대해서 자동으로 완성해줌 (import, 메서드 생성, 리팩토링 추천 등) |
-| Ctrl + Alt + P       | ⌘ + ⌥ + P  | 커서에 위치하는 값 메서드 파라미터로 만듦                  |                                                              |
+| WINDOW               | MAC        | 간단한 설명                                                | 비고                                                                                        |
+| -------------------- | ---------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Ctrl + Shift + Enter | ⇧ + ⌘ + ⏎  | 현재 구문 자동 완성                                        | for, if 문 등도 자동 완성 가능                                                              |
+| Ctrl + Alt + L       | ⌥ + ⌘ + L  | 현재 파일의 서식 지정                                      | -                                                                                           |
+| Alt + insert         | ⌘ + N      | 생성자, getter(), setter(), toString() 메서드 등 자동 생성 | -                                                                                           |
+| Ctrl + Alt + V       | ⌥ + ⌘ + V  | 해당 메서드에 대한 반환 타입, 변수를 자동 작성             | new Member() 라고 입력 후 해당 단축키를 누르면 자동으로 변수를 만들어줌                     |
+| Ctrl + Alt + T       | ⌥ + ⌘ + T  | 선택한 영역을 if/else, try/catch 등으로 감쌀 수 있음       | -                                                                                           |
+| Ctrl + Alt + M       | ⌥ + ⌘ + M  | 입력한 메서드 명으로 메서드 생성                           | 어느 정도 메서드명 가이드도 잡아줌                                                          |
+| Ctrl + Shift + O     | ^ + ⌥ + O  | 안쓰는 import 제거                                         | -                                                                                           |
+| Ctrl + Shift + T     | ⇧ + ⌘ +  T | 테스트 케이스 생성                                         |                                                                                             |
+| Alt + Enter          | ⌥  + ⏎     | 자동 완성 Help                                             | 커서에 위치하는 목록에 대해서 자동으로 완성해줌 (import, 메서드 생성, 리팩토링 추천 등)     |
+| Ctrl + Alt + P       | ⌘ + ⌥ + P  | 커서에 위치하는 값 메서드 파라미터로 만듦                  |                                                                                             |
 | Ctrl + Alt + N       | ⌥ + ⌘ + N  | 자동으로 inline으로 바꿔줌                                 | Ex) int를 반환하는 메서드에서<br />int a = 6 + 7; return a; -> return 6+7;<br />로 변경해줌 |
 
 
