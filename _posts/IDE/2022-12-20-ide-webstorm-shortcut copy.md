@@ -7,6 +7,7 @@ categories:
 tags:
   - IDE
   - Jetbrains
+  - WebStorm
   - Setting
 toc: true
 toc_sticky: true
