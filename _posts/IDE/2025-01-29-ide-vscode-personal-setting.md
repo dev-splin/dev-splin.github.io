@@ -50,6 +50,7 @@ VSCode는 다양한 확장프로그램으로 마치 유료 IDE처럼 사용할 �
 23. `node-readme`: npm모듈 readme.md 바로 노출
 24. `dotenv-autocomplete`: .env파일 내 환경변수 자동 완성
 25. `vscode goto node_modules`: node_modules 내 경로 바로 탐색
+26. `Markdown All in One`: 마크 다운을 좀 더 편하게 작성할 수 있게 도와줌
 
 ### 에러 감지 관련
 1. `Prettier`: 자동 정렬 및 코드 포멧팅
