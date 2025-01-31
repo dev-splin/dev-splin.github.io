@@ -61,7 +61,7 @@ VSCode는 다양한 확장프로그램으로 마치 유료 IDE처럼 사용할 �
 7. `scss-lint`: scss 문법 검사
 
 ### 테마 및 가독성 관련
-1. `Bracket Pair Colorizer DLW`: 괄호 색 변경(`설정 -> 텍스트 편집기`에서 VSCode 내장 기능 사용 가능)
+1. `Bracket Pair Colorizer DLW`: 괄호 색 변경(`설정 -> 텍스트 편집기`에서 VSCode 내장 기능(`Bracket Pair Colorization` 활성화) 사용 가능)
 2. `Color Highlight`: 색깔 코드 배경색으로 노출
 3. `Material Theme`: VSCode 테마 변경
 4. `Material Icon Theme`: 파일/폴더 Icon Theme
