@@ -91,7 +91,7 @@ VSCode는 다양한 확장프로그램으로 마치 유료 IDE처럼 사용할 �
 10. `HTML End Tag Labels`: html 마지막 닫는 태그에 클래스명 표시
 11. `Html Auto Completion`: 자주 쓰이는 태그 자동 완성
 12. `CSS Initial Value`: 마우스 오버 시 CSS 속성 기본값 노출
-13. `SCSS Scope Helper`: scss에서 
+13. `SCSS Scope Helper`: scss에서 해당 중괄가 어느 선택자인지 표시
 
 ### Javascript/Typescript/Node/React 관련
 1. `JavaScript (ES6) code snippets`: 다양한 자바스크립트 템플릿 사용 가능
