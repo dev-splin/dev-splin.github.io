@@ -8,8 +8,8 @@ tags:
   - IDE
   - VSCODE
   - Setting
-# 이미지 url (없으면 삭제)
-image: /assets/img/thumbnail/image.png
+# 이미지 url (썸네일 필요한 경우 추가)
+# image: /assets/img/thumbnail/image.png
 ---
 
 ## head2 부터 사용
