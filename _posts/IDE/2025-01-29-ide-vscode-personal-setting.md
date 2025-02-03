@@ -19,7 +19,12 @@ image: /assets/img/thumbnail/visual-studio-code-logo.png
 
 
 ## VSCode 기본 설정
-`지속적으로 업데이트 중...`
+1. `괄호 색깔 표시`: `설정 -> 텍스트 편집기`에서 VSCode 내장 기능(`Bracket Pair Colorization` 활성화) 사용 가능
+2. parameter 이름, 변수 타입, return 타입 미리보기
+   1. `Settings -> Inlay Hints 검색 -> Editor > Inlay Hints: Enabled on으로 설정`
+   2. 아래로 조금 스크롤 해서 `JavaScript > Inlay Hints > ...`과 `TypeScript > Inlay Hints > ...` 전부 활성화
+3. 단축키 설정 (`cmd + shift + p -> Open Keyboard Shortcuts`)
+   1. 터미널 단축키에 ₩(한글인 경우) 설정: 키보드 한글로 변경 후 `Toggle Terminal`에서 `Keybinding 더블 클릭` 후 `ctrl + [Back quote]`로 설정
 
 ## 확장프로그램
 VSCode는 다양한 확장프로그램으로 마치 유료 IDE처럼 사용할 수 있기 때문에, 알맞은 확장프로그램을 사용하는 것이 생산성 향산에 많은 도움이 될 수 있습니다.
@@ -51,6 +56,8 @@ VSCode는 다양한 확장프로그램으로 마치 유료 IDE처럼 사용할 �
 24. `dotenv-autocomplete`: .env파일 내 환경변수 자동 완성
 25. `vscode goto node_modules`: node_modules 내 경로 바로 탐색
 26. `Markdown All in One`: 마크 다운을 좀 더 편하게 작성할 수 있게 도와줌
+27. `Regex Previewer`: 정규식에 해당하는 문자열 하이라이팅
+28. `Version Lens`: npm 패키지 버전 확인
 
 ### 에러 감지 관련
 1. `Prettier`: 자동 정렬 및 코드 포멧팅
@@ -62,16 +69,15 @@ VSCode는 다양한 확장프로그램으로 마치 유료 IDE처럼 사용할 �
 7. `scss-lint`: scss 문법 검사
 
 ### 테마 및 가독성 관련
-1. `Bracket Pair Colorizer DLW`: 괄호 색 변경(`설정 -> 텍스트 편집기`에서 VSCode 내장 기능(`Bracket Pair Colorization` 활성화) 사용 가능)
-2. `Color Highlight`: 색깔 코드 배경색으로 노출
-3. `Material Theme`: VSCode 테마 변경
-4. `Material Icon Theme`: 파일/폴더 Icon Theme
-5. `Active File In StatusBar`: 하단에 작업중인 파일의 path 표시
-6. `Bracket Peek`: 해당 태그나 중괄호가 어느 코드에 포함되어 있는지 표시
-7. `Output Colorizer`: Output 텍스트 색상을 입혀 가독성 높아짐
-8. `Log File Highlighter`: 로그 파일에 색상을 입혀 가독성 높아짐
-9. `Colorful Comments`: 주석색상 자유롭게 변경
-10. `DotENV`: 환경변수 파일 하이라이팅
+1. `Color Highlight`: 색깔 코드 배경색으로 노출
+2. `Material Theme`: VSCode 테마 변경
+3. `Material Icon Theme`: 파일/폴더 Icon Theme
+4. `Active File In StatusBar`: 하단에 작업중인 파일의 path 표시
+5. `Bracket Peek`: 해당 태그나 중괄호가 어느 코드에 포함되어 있는지 표시
+6. `Output Colorizer`: Output 텍스트 색상을 입혀 가독성 높아짐
+7. `Log File Highlighter`: 로그 파일에 색상을 입혀 가독성 높아짐
+8. `Colorful Comments`: 주석색상 자유롭게 변경
+9.  `DotENV`: 환경변수 파일 하이라이팅
 
 ### Git 관련
 1. `GitHub Repositories`: Git Hub에 올라간 프로젝트 바로 불러오기
