@@ -37,6 +37,24 @@ layout: compress
             <div class="access">
               {% include_cached update-list.html lang=lang %}
               {% include_cached trending-tags.html lang=lang %}
+
+              <!-- Google Adsense : Side Bar -->
+              <script
+                async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7625462844991697"
+                crossorigin="anonymous"
+              ></script>
+              <ins
+                class="adsbygoogle"
+                style="display: block"
+                data-ad-client="ca-pub-7625462844991697"
+                data-ad-slot="3495125557"
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+              ></ins>
+              <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
             </div>
 
             {% for _include in layout.panel_includes %}
@@ -53,8 +71,24 @@ layout: compress
               {% assign _include_path = _include | append: '.html' %}
               {% include {{ _include_path }} lang=lang %}
             {% endfor %}
-
+            
             {% include_cached footer.html lang=lang %}
+
+            <!-- Google Adsense : Blog Footer -->
+            <script
+              async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7625462844991697"
+              crossorigin="anonymous">
+            </script> 
+            <ins
+              class="adsbygoogle"
+              style="display:block"
+              data-ad-format="autorelaxed"
+              data-ad-client="ca-pub-7625462844991697"
+              data-ad-slot="8005216200">
+            </ins>
+            <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
           </div>
         </div>
 
