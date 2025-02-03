@@ -70,9 +70,11 @@ git을 설치하게되면 git에 관련된 모든 환경설정이 .gitconfig라�
 - core.autocrlf true(Mac에선 put)
   - window에서 true로 설정하게 되면 git에 저장할때 \r를 삭제하게 되고 다시 git에서 window로 가져올 때는 \r이 자동으로 붙게 합니다.
   - mac에서 input으로 설정하게되면 git에서 가져올때 별다른 수정이 일어나지 않지만 저장할때는 \r를 삭제하게 됩니다.
-  > core.autocrlf란?<p/>
-  > 운영체제마다 에디터에서 줄바꿈을 할 때 들어가는 문자열이 달라지게 되는데 window의 경우는 \r\n, mac의 경우는 \n이 들어가게 됩니다.<br/>
-  > 때문에 git repository를 다양한 운영체제에서 사용하는 경우에 내가 수정하지 않았음에도 불구하고 줄 바꿈 문자열이 달라져서 문제가 생길 수 있습니다.<br/>
+  > core.autocrlf란?
+  >
+  > 운영체제마다 에디터에서 줄바꿈을 할 때 들어가는 문자열이 달라지게 되는데 window의 경우는 \r\n, mac의 경우는 \n이 들어가게 됩니다.
+  > 때문에 git repository를 다양한 운영체제에서 사용하는 경우에 내가 수정하지 않았음에도 불구하고 줄 바꿈 문자열이 달라져서 문제가 생길 수 있습니다.
+  >
   > 이것을 수정할 수 있는 속성이 core.autocrlf 입니다. 
    
 
@@ -248,10 +250,12 @@ commit한 history를 확인할 수 있습니다.
 
 HEAD는 제일최근에 commit한 버전을 가리키게 됩니다.
 
-> HEAD란?<p/>
-> git에서 commit을 하나씩 한다고 생각해봅니다.<br/>
-> a를 먼저 commit한 다음에 b라는 commit을 만들게 되면 뒤에 commit(b)은 이전 commit(a)를 참고하게 됩니다. 다음에 c라는 commit은 마찬가지로 b를 가리키게 되는데, c가 b를 b가 a를 가리키고 있는 포인터가 생성이 되는 것입니다.<br/>
-> 이렇게 commit을 해나가는 기본 줄기가 master branch인데, 이제 막 d를 commit했다면 head는 d를 가리키게 됩니다.<p/>
+> HEAD란?
+> 
+> git에서 commit을 하나씩 한다고 생각해봅니다.
+> a를 먼저 commit한 다음에 b라는 commit을 만들게 되면 뒤에 commit(b)은 이전 commit(a)를 참고하게 됩니다. 다음에 c라는 commit은 마찬가지로 b를 가리키게 되는데, c가 b를 b가 a를 가리키고 있는 포인터가 생성이 되는 것입니다.
+> 이렇게 commit을 해나가는 기본 줄기가 master branch인데, 이제 막 d를 commit했다면 head는 d를 가리키게 됩니다.
+> 
 > 즉 head는 지금 내가 바라보는 이 시점의 버전을 가르키게 되는 것입니다.
 
 `about.txt`
@@ -473,10 +477,12 @@ master branch에 service branch에서 파생된 ui branch를 rebase 합니다.
 
 지정한 HEAD 나 hashcode의 다음 commit부터 최신 commit까지를 interactive rebasing 합니다
 
-> interactive rebasing이란?<p/>
-> `git commit --amend` 명령어를 이용해서 최신 commit의 타이틀을 변경하거나 수정사항을 업데이트 할 수 있었습니다.<br/>
-> 만약 최신 commit이 아니라 이전의 commit을 업데이트 하고 싶을 때 interactive rebasing를 사용합니다.<br/>
-> interactive rabasing을 하는 순간 뒤에 있는 모든 포인터들이 업데이트 되기 때문에 주의해야합니다. 즉, 기존에 존재하는 history를 변경하는 것으므로 때문에 서버에 업로드된 경우라면 피하는게 좋습니다.<p/>
+> interactive rebasing이란?
+> 
+> `git commit --amend` 명령어를 이용해서 최신 commit의 타이틀을 변경하거나 수정사항을 업데이트 할 수 있었습니다.
+> 만약 최신 commit이 아니라 이전의 commit을 업데이트 하고 싶을 때 interactive rebasing를 사용합니다.
+> interactive rabasing을 하는 순간 뒤에 있는 모든 포인터들이 업데이트 되기 때문에 주의해야합니다. 즉, 기존에 존재하는 history를 변경하는 것으므로 때문에 서버에 업로드된 경우라면 피하는게 좋습니다.
+> 
 > 혼자서 작업 하는 경우 history를 변경해야 한다면 강추하는 명령어입니다!
 
 `--abort`
