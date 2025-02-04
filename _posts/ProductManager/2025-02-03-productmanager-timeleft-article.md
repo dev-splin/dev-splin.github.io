@@ -8,7 +8,7 @@ tags:
   - Article
   - "Produt Manager"
 # 이미지 url (없으면 삭제)
-# image: /assets/img/thumbnail/image.png timeleft 이미지 추가 필요
+image: /assets/img/thumbnail/timeleft-logo.png
 ---
 
 [매주 모르는 사람 5명을 매칭시켜 연 150억을 버는 창업가](https://eopla.net/magazines/25195)  아티클을 보면서 `timeleft` 서비스를 알게 되었는데, 해당 서비스가 제공하는 가치를 다른 곳에서도 다양하게 활용할 수 있을 것 같습니다.
