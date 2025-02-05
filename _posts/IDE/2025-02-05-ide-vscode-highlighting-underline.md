@@ -10,7 +10,6 @@ tags:
   - "Highlighting Underline"
 # 이미지 url (썸네일 필요한 경우 추가)
 image: /assets/img/thumbnail/visual-studio-code-logo.png
-published: false
 ---
 
 chripy 블로그 작성 시 <span class="highlighting-underline">이와 같이 다양한 스타일링 효과</span>를 적용할 수 있는데 적용 방법과 `vscode 내 snippets`을 활용하여 더 쉽게 작성하는 방법을 알아보겠습니다.
