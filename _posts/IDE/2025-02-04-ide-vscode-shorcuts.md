@@ -95,6 +95,7 @@ image: /assets/img/thumbnail/visual-studio-code-logo.png
 |   `⇧⌥⌘↑ / ⇧⌥⌘↓`   |          커서 기준 위/아래 다중 선택          |
 |       `⌘U`        |             마지막 커서 실행 취소             |
 |       `⇧⌥I`       |          선택한 각 줄 끝에 커서 삽입          |
+|       `⌘D`        |                같은 단어 선택                 |
 
 ## 제안 및 힌트
 
