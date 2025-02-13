@@ -175,8 +175,8 @@
   }
 
   .highlight .err {
-    color: #151515;
-    background-color: #ac4142;
+    // color: #151515;
+    // background-color: #ac4142;
   }
 
   .highlight .c,
@@ -302,4 +302,6 @@
   }
 }
 
-.txt_bg {background:linear-gradient(180deg,#00ff0000 70%,#7c7d7c 30%);}
+.txt_bg {
+  background: linear-gradient(180deg, #00ff0000 70%, #7c7d7c 30%);
+}
