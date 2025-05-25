@@ -1,12 +1,14 @@
 ---
-title: "[최적화] : 분석 툴 소개 및 기본내용"
+title: "[최적화] : Lighthouse 분석 방법 및 옵션 정리"
 excerpt_separator: <!--more-->
 categories:
   - PERFORMANCE
   - "Analysis Tools"
+  - Lighthouse
 tags:
   - PERFORMANCE
   - "Analysis Tools"
+  - Lighthouse
 # 이미지 url (썸네일 필요한 경우 추가)
 # image: /assets/img/thumbnail/image.png
 # 기본 비노출 상태, 노출하고 싶은 경우 아래 옵션 제거
