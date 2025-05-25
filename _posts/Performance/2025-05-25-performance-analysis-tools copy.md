@@ -17,7 +17,7 @@ published: true
 
 ## Lighthouse
 
-<img width="645" alt="Image" src="https://github.com/user-attachments/assets/c13781e9-2362-4fac-bea0-0943fee35a08" />
+![Lighthouse](https://github.com/user-attachments/assets/34a89062-f900-446c-b696-e35fbd38bb94)
 
 Lighthouse를 실행하면 위와 같은 화면을 볼 수 있는데 옵션을 고른 후 `Analyze page load`를 누를러 검사를 시작할 수 있습니다. 
 
@@ -42,7 +42,7 @@ Lighthouse를 실행하면 위와 같은 화면을 볼 수 있는데 옵션을 �
 
 ### 검사 결과
 
-<img width="803" alt="Image" src="https://github.com/user-attachments/assets/fd8e3dda-2603-4195-bd41-64b73a1275bd" />
+![Result](https://github.com/user-attachments/assets/7a82ac40-892f-462c-acbb-699dbffa832d)
 
 <span class="highlighting-underline">가장 위에 보이는 그래프가 Lighthouse가 측정한 이 웹 페이지의 종합 성능 점수</span>입니다.<br/>
 이 점수는 아래에 보이는 다섯 가지 지표(metrics)에 가중치를 적용해 평균 낸 점수입니다.
@@ -84,6 +84,7 @@ CLS는 총점을 계산할 때 `25%의 가중치`를 갖습니다.
 
 
 ### Diagnostics
-<img width="731" alt="Image" src="https://github.com/user-attachments/assets/767a0f2b-7355-4e2c-b7c2-44dd634973f7" />
+
+![Diagnostics](https://github.com/user-attachments/assets/b43fbba1-5f76-45d3-be08-ee762a1aeed8)
 Lighthouse 지표 화면에서 아래로 스크롤을 내려보면 성능과 관련된 기타 정보를 보여줍니다.<br/>
 이 섹션을 통해 <span class="highlighting-underline">해당 서비스의 어느 부분을 개선해야 성능을 향상할 수 있는지 쉽게 파악</span>할 수 있습니다.
