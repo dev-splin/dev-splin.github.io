@@ -69,7 +69,7 @@ TBT는 총점을 계산할 때 `30%의 가중치`를 갖습니다.
 SI는 총점을 계산할 때 `10%의 가중치`를 갖습니다.
 
 
-#### Largest Contentful Paint (LCP) ![Diagnostics](05-25-performance_info.png)
+#### Largest Contentful Paint (LCP)
 <span class="highlighting-underline">페이지 로드 중에 가장 큰 이미지나 텍스트 요소가 표시되는 시간에 관한 지표</span>입니다.<br/>
 위 결과에서 페이지에 진입하여 가장 큰 콘텐츠가 뜨기까지 1.3초가 걸렸음을 알 수 있습니다.
 
